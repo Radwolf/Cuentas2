@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Cuentas</string>
+    <string name="clean_up">Limpiar</string>
+    <string name="label">Etiqueta</string>
+</resources>
