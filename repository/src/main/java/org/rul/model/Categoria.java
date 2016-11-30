@@ -1,4 +1,4 @@
-package org.rul.cuentas.model;
+package org.rul.model;
 
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;

@@ -3,9 +3,6 @@ package org.rul.cuentas.repository;
 import org.rul.cuentas.model.Categoria;
 import org.rul.cuentas.model.Cuenta;
 
-import io.realm.RealmQuery;
-import io.realm.RealmResults;
-
 /**
  * Created by rgonzalez on 03/10/2016.
  */

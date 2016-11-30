@@ -11,6 +11,7 @@ import android.widget.TextView;
 import org.rul.cuentas.model.Cuenta;
 import org.rul.cuentas.repository.CuentaRepositoriImpl;
 import org.rul.cuentas.repository.CuentaRepository;
+import org.rul.cuentas.repository.exceptions.RepositoryException;
 
 import io.realm.Realm;
 
@@ -38,7 +39,13 @@ public class MainActivity extends AppCompatActivity {
         // Small operation that is ok to run on the main thread
         //basicCRUD(realm);
         CuentaRepository cuentaRepository = new CuentaRepositoriImpl();
-        cuentaRepository.createCuenta("Casa");
+        Cuenta cuentaInsert = new Cuenta();
+        cuentaInsert.setNombre("Casa");
+        try {
+            cuentaRepository.insert(cuentaInsert);
+        } catch (RepositoryException e) {
+            Log.e(TAG, String.format("Error al crear una cuenta: %s", e.getMessage()));
+        }
 
         final Cuenta cuenta = realm.where(Cuenta.class).findFirst();
         showStatus(cuenta.getNombre());
