@@ -15,7 +15,7 @@
  *
  */
 
-package org.rul.cuentas.repository.exceptions;
+package org.rul.repository.exceptions;
 
 public class RepositoryException extends Exception {
 

@@ -13,6 +13,25 @@ buildscript {
 }
 
 allprojects {
+
+    ext {
+
+        COMPILE_SDK_VERSION = 24
+        BUILD_TOOLS_VERSION = "24.0.2"
+        MIN_SDK_VERSION = 19
+        TARGET_SDK_VERSION = 24
+
+        libDagger = 'com.google.dagger:dagger:2.0'
+        libDaggerCompiler = 'com.google.dagger:dagger-compiler:2.0'
+        libAnnotations = 'javax.annotation:jsr250-api:1.0'
+        libRecyclerView = 'com.android.support:recyclerview-v7:23.2.1'
+        libDesign= 'com.android.support:design:23.2.1'
+        libAppCompat= 'com.android.support:appcompat-v7:23.2.1'
+        libButterknife = 'com.jakewharton:butterknife:7.0.1'
+        libJunit = "junit:junit:4.12"
+
+    }
+
     repositories {
         jcenter()
     }
@@ -21,3 +40,4 @@ allprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+

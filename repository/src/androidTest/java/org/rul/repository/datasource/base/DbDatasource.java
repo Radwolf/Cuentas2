@@ -15,22 +15,10 @@
  *
  */
 
-package org.rul.cuentas.repository;
+package org.rul.repository.datasource.base;
 
-import org.rul.cuentas.repository.exceptions.RepositoryException;
+import io.realm.RealmObject;
 
-import java.util.List;
-
-public interface Repository<T> {
-
-    List<T> findAll();
-
-    T insert(T element) throws RepositoryException;
-
-    List<T> insertAll(List<T> elementList) throws RepositoryException;
-
-    void remove(T element);
-
-    void removeAll();
+public interface DbDatasource<T extends RealmObject> {
 
 }

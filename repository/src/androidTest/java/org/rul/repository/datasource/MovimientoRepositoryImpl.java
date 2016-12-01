@@ -1,7 +1,9 @@
-package org.rul.cuentas.repository;
+package org.rul.repository.datasource;
 
-import org.rul.cuentas.model.Movimiento;
-import org.rul.cuentas.repository.exceptions.RepositoryException;
+
+
+import org.rul.repository.exceptions.RepositoryException;
+import org.rul.repository.model.Movimiento;
 
 import java.util.Date;
 import java.util.List;
@@ -13,7 +15,7 @@ import io.realm.RealmResults;
  * Created by rgonzalez on 06/10/2016.
  */
 
-public class MovimientoRepositoryImpl implements MovimientoRepository {
+public class MovimientoRepositoryImpl implements MovimientoDbDatasource {
 
 
     @Override

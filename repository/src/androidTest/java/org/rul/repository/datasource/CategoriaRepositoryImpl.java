@@ -1,4 +1,4 @@
-package org.rul.cuentas.repository;
+package org.rul.repository.datasource;
 
 import org.rul.cuentas.model.Categoria;
 import org.rul.cuentas.repository.exceptions.RepositoryException;

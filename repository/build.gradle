@@ -1,17 +1,15 @@
 apply plugin: 'com.android.library'
+apply plugin: 'realm-android'
 
 android {
-    compileSdkVersion 24
-    buildToolsVersion "24.0.2"
+    compileSdkVersion parent.ext.COMPILE_SDK_VERSION
+    buildToolsVersion parent.ext.BUILD_TOOLS_VERSION
 
     defaultConfig {
-        minSdkVersion 21
-        targetSdkVersion 24
+        minSdkVersion parent.ext.MIN_SDK_VERSION
+        targetSdkVersion parent.ext.TARGET_SDK_VERSION
         versionCode 1
         versionName "1.0"
-
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-
     }
     buildTypes {
         release {
@@ -26,6 +24,8 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:24.2.1'
-    testCompile 'junit:junit:4.12'
+    testCompile parent.ext.libJunit
+    compile parent.ext.libAppCompat
+    provided parent.ext.libAnnotations
+    //compile project(':domain')
 }

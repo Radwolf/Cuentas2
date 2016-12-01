@@ -1,7 +1,9 @@
-package org.rul.cuentas.repository;
+package org.rul.repository.datasource;
 
-import org.rul.cuentas.model.Cuenta;
-import org.rul.cuentas.model.Movimiento;
+
+
+import org.rul.repository.datasource.base.DbDatasource;
+import org.rul.repository.model.Movimiento;
 
 import java.util.Date;
 
@@ -11,7 +13,7 @@ import io.realm.RealmResults;
  * Created by rgonzalez on 06/10/2016.
  */
 
-public interface MovimientoRepository extends Repository<Movimiento> {
+public interface MovimientoDbDatasource extends DbDatasource<Movimiento> {
 
     RealmResults<Movimiento> findByTipoMovimiento(String tipoMovimiento);
     Movimiento findById(int id);

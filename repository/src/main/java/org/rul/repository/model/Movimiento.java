@@ -1,4 +1,4 @@
-package org.rul.model;
+package org.rul.repository.model;
 
 import java.util.Date;
 

@@ -1,6 +1,5 @@
-package org.rul.model;
+package org.rul.repository.model;
 
-import java.math.BigDecimal;
 import java.util.Date;
 
 import io.realm.RealmObject;
