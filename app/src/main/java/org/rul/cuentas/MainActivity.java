@@ -8,11 +8,6 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import org.rul.cuentas.model.Cuenta;
-import org.rul.cuentas.repository.CuentaRepositoriImpl;
-import org.rul.cuentas.repository.CuentaRepository;
-import org.rul.cuentas.repository.exceptions.RepositoryException;
-
 import io.realm.Realm;
 
 public class MainActivity extends AppCompatActivity {

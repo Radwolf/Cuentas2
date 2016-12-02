@@ -15,7 +15,7 @@
  *
  */
 
-package org.rul.cuentas.interactors.base;
+package org.rul.domain.interactors.base;
 
 /**
  * Class Description.

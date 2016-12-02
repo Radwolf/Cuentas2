@@ -15,10 +15,10 @@
  *
  */
 
-package org.rul.cuentas.interactors.base;
+package org.rul.domain.interactors.base;
 
-import com.asy.realmexample.threads.InteractorExecutor;
-import com.asy.realmexample.threads.MainThread;
+import org.rul.domain.threads.InteractorExecutor;
+import org.rul.domain.threads.MainThread;
 
 /**
  * Class Description.
