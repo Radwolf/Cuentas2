@@ -9,7 +9,7 @@ import io.realm.annotations.PrimaryKey;
  * Created by rgonzalez on 03/10/2016.
  */
 
-public class Movimiento extends RealmObject {
+public class MovimientoDb extends RealmObject {
 
     @PrimaryKey
     private int id;
@@ -19,7 +19,7 @@ public class Movimiento extends RealmObject {
     private float importe;
     private float importePrevisto;
     private Categoria categoria;
-    private Cuenta cuenta;
+    private CuentaDb cuentaDb;
     private Date fechaPrevista;
     private Date fechaConfirmacion;
 
@@ -79,12 +79,12 @@ public class Movimiento extends RealmObject {
         this.categoria = categoria;
     }
 
-    public Cuenta getCuenta() {
-        return cuenta;
+    public CuentaDb getCuentaDb() {
+        return cuentaDb;
     }
 
-    public void setCuenta(Cuenta cuenta) {
-        this.cuenta = cuenta;
+    public void setCuentaDb(CuentaDb cuentaDb) {
+        this.cuentaDb = cuentaDb;
     }
 
     public Date getFechaPrevista() {

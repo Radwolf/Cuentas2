@@ -15,7 +15,7 @@
  *
  */
 
-package org.rul.repository.exceptions;
+package org.rul.domain.repository.exceptions;
 
 public class RepositoryException extends Exception {
 

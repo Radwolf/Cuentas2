@@ -17,8 +17,10 @@
 
 package org.rul.repository.datasource.base;
 
+import org.rul.domain.repository.Repository;
+
 import io.realm.RealmObject;
 
-public interface DbDatasource<T extends RealmObject> {
+public interface DbDatasource<T extends RealmObject> extends Repository<T>{
 
 }

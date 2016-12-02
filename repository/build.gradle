@@ -27,5 +27,6 @@ dependencies {
     testCompile parent.ext.libJunit
     compile parent.ext.libAppCompat
     provided parent.ext.libAnnotations
-    //compile project(':domain')
+
+    compile project(':domain')
 }

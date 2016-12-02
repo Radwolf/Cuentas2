@@ -1,7 +1,7 @@
 package org.rul.repository.datasource;
 
-import org.rul.cuentas.model.Cuenta;
-import org.rul.cuentas.repository.exceptions.RepositoryException;
+import org.rul.domain.repository.exceptions.RepositoryException;
+import org.rul.repository.model.CuentaDb;
 
 import java.util.List;
 
@@ -12,37 +12,38 @@ import io.realm.RealmResults;
  * Created by rgonzalez on 03/10/2016.
  */
 
-public class CuentaRepositoriImpl implements CuentaRepository{
+public class CuentaDbDatasourceImpl implements CuentaDbDatasource{
 
     @Override
-    public RealmResults<Cuenta> findAll() {
-        return Realm.getDefaultInstance().where(Cuenta.class).findAll();
+    public RealmResults<CuentaDb> findAll() {
+        return Realm.getDefaultInstance().where(CuentaDb.class).findAll();
     }
 
     @Override
-    public List<Cuenta> insertAll(List<Cuenta> elementList) throws RepositoryException {
+    public List<CuentaDb> insertAll(List<CuentaDb> elementList) throws RepositoryException {
         return null;
     }
 
     @Override
-    public void remove(Cuenta element) {}
+    public void remove(CuentaDb element) {
+    }
 
     @Override
     public void removeAll() {}
 
     @Override
-    public Cuenta findByNombre(String nombre) {
-        return Realm.getDefaultInstance().where(Cuenta.class).equalTo("nombre", nombre).findFirst();
+    public CuentaDb findByNombre(String nombre) {
+        return Realm.getDefaultInstance().where(CuentaDb.class).equalTo("nombre", nombre).findFirst();
     }
 
     @Override
-    public Cuenta insert(final Cuenta cuenta) {
+    public CuentaDb insert(final CuentaDb cuenta) {
         Realm realm = Realm.getDefaultInstance();
-        final Cuenta[] cuentas = {null};
+        final CuentaDb[] cuentas = {null};
         realm.executeTransaction(new Realm.Transaction() {
             @Override
             public void execute(Realm realm) {
-                cuentas[0] = realm.createObject(Cuenta.class, cuenta.getNombre());
+                cuentas[0] = realm.createObject(CuentaDb.class, cuenta.getNombre());
             }
         });
         realm.close();
@@ -50,14 +51,14 @@ public class CuentaRepositoriImpl implements CuentaRepository{
     }
 
     @Override
-    public void updateSaldo(Cuenta cuenta) {
+    public void updateSaldo(CuentaDb cuenta) {
         Realm.getDefaultInstance().insertOrUpdate(cuenta);
     }
 
     @Override
     public void deleteCuenta(String nombre) {
         Realm realm = Realm.getDefaultInstance();
-        final RealmResults<Cuenta> cuentas = realm.where(Cuenta.class).equalTo("nombre", nombre).findAll();
+        final RealmResults<CuentaDb> cuentas = realm.where(CuentaDb.class).equalTo("nombre", nombre).findAll();
         realm.executeTransaction(new Realm.Transaction() {
             @Override
             public void execute(Realm realm) {
