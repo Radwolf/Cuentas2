@@ -2,4 +2,13 @@
     <string name="app_name">Cuentas</string>
     <string name="clean_up">Limpiar</string>
     <string name="label">Etiqueta</string>
+    <string name="nombre">Nombre</string>
+    <string name="saldo">Saldo</string>
+    <string name="insert_cuenta">Añadir cuenta</string>
+    <string name="error_msg_get_cuentas">Error obteniendo las cuentas</string>
+    <string name="progress_title">Acción en curso</string>
+    <string name="progress_description">Se está realizado la petición. ¡Espera!</string>
+    <string name="error_msg_insert_cuenta">Error al insertar</string>
+    <string name="error_msg_remove_cuenta">Se ha producido un error eliminando el elemento.</string>
+    <string name="error_msg_fields_needed">Quedan campos sin rellenar</string>
 </resources>
