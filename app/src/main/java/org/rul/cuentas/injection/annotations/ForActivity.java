@@ -1,4 +1,4 @@
-package org.rul.cuentas.intection.annotations;
+package org.rul.cuentas.injection.annotations;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;

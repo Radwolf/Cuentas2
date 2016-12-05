@@ -4,6 +4,7 @@ import android.app.Application;
 
 import javax.inject.Inject;
 
+import io.realm.BuildConfig;
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
 
@@ -15,13 +16,15 @@ public class RealmProvider implements DbProvider<Realm> {
 
     @Inject
     public RealmProvider(Application application) {
-        RealmConfiguration realmConfiguration = new RealmConfiguration.Builder(application)
+
+        Realm.init(application);
+        RealmConfiguration realmConfiguration = new RealmConfiguration.Builder()
                 .name("cuentas.realm")
-                .deleteRealmIfMigrationNeeded()
                 .schemaVersion(1)
                 .build();
 
         Realm.setDefaultConfiguration(realmConfiguration);
+
     }
 
 

@@ -1,10 +1,10 @@
-package org.rul.cuentas.intection.component;
+package org.rul.cuentas.injection.component;
 
 import android.app.Activity;
 
-import org.rul.cuentas.intection.ActivityModule;
-import org.rul.cuentas.intection.HomeModule;
-import org.rul.cuentas.intection.annotations.ForActivity;
+import org.rul.cuentas.injection.ActivityModule;
+import org.rul.cuentas.injection.HomeModule;
+import org.rul.cuentas.injection.annotations.ForActivity;
 import org.rul.cuentas.view.home.HomeActivity;
 import org.rul.cuentas.view.home.HomeFragment;
 import org.rul.domain.interactors.cuenta.get.GetAllCuentasInteractor;

@@ -1,7 +1,9 @@
 package org.rul.repository.datasource;
 
-import org.rul.cuentas.model.Categoria;
-import org.rul.cuentas.repository.exceptions.RepositoryException;
+
+
+import org.rul.domain.repository.exceptions.RepositoryException;
+import org.rul.repository.model.Categoria;
 
 import java.util.List;
 

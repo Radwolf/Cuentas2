@@ -1,8 +1,8 @@
-package org.rul.cuentas.intection;
+package org.rul.cuentas.injection;
 
 import android.app.Activity;
 
-import org.rul.cuentas.intection.annotations.ForActivity;
+import org.rul.cuentas.injection.annotations.ForActivity;
 
 import dagger.Module;
 import dagger.Provides;

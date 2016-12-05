@@ -4,8 +4,9 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import org.rul.cuentas.R;
-import org.rul.cuentas.intection.ActivityModule;
-import org.rul.cuentas.intection.component.HomeComponent;
+import org.rul.cuentas.injection.ActivityModule;
+import org.rul.cuentas.injection.component.HomeComponent;
+import org.rul.cuentas.injection.component.DaggerHomeComponent;
 import org.rul.cuentas.view.CuentasApplication;
 
 /**
@@ -28,8 +29,8 @@ public class HomeActivity extends AppCompatActivity {
     public HomeComponent getComponent() {
         if (homeComponent == null ){
 
-            homeComponent = Dagger.builder()
-                    .applicationComponent( ((CuentasApplication)getApplication()).getComponent() )
+            homeComponent = DaggerHomeComponent.builder()
+                    .applicationComponent( ((CuentasApplication)getApplication()).getApplicationComponent() )
                     .activityModule( new ActivityModule( this ) )
                     .build();
 

@@ -1,6 +1,6 @@
-package org.rul.cuentas.intection;
+package org.rul.cuentas.injection;
 
-import org.rul.cuentas.intection.annotations.ForActivity;
+import org.rul.cuentas.injection.annotations.ForActivity;
 import org.rul.domain.interactors.cuenta.get.GetAllCuentasInteractor;
 import org.rul.domain.interactors.cuenta.get.GetAllCuentasInteractorImpl;
 import org.rul.domain.interactors.cuenta.insert.InsertCuentaInteractor;

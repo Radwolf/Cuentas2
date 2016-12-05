@@ -22,7 +22,7 @@ public class InsertCuentaInteractorImpl  extends BaseInteractor implements Inser
     private CuentaRepository cuentaRepository;
 
     @Inject
-    public InsertCuentaInteractorImpl(CuentaRepository carRepository, InteractorExecutor interactorExecutor, MainThread mainThread) {
+    public InsertCuentaInteractorImpl(CuentaRepository cuentaRepository, InteractorExecutor interactorExecutor, MainThread mainThread) {
         super(interactorExecutor, mainThread);
         this.cuentaRepository = cuentaRepository;
     }

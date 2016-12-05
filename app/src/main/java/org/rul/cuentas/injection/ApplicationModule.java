@@ -1,4 +1,4 @@
-package org.rul.cuentas.intection;
+package org.rul.cuentas.injection;
 
 import android.app.Application;
 
@@ -11,13 +11,14 @@ import org.rul.repository.providers.RealmProvider;
 
 import javax.inject.Singleton;
 
+import dagger.Module;
 import dagger.Provides;
 import io.realm.Realm;
 
 /**
  * Created by Rul on 03/12/2016.
  */
-
+@Module
 public class ApplicationModule {
 
     private final Application application;

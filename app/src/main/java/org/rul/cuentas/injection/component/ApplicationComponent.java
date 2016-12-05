@@ -1,8 +1,8 @@
-package org.rul.cuentas.intection.component;
+package org.rul.cuentas.injection.component;
 
 import android.app.Application;
 
-import org.rul.cuentas.intection.ApplicationModule;
+import org.rul.cuentas.injection.ApplicationModule;
 import org.rul.cuentas.view.CuentasApplication;
 import org.rul.domain.threads.InteractorExecutor;
 import org.rul.domain.threads.MainThread;

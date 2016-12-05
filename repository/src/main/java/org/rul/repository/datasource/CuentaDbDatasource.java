@@ -11,5 +11,4 @@ import org.rul.repository.model.CuentaDb;
 public interface CuentaDbDatasource extends DbDatasource<CuentaDb> {
     CuentaDb findByNombre(String nombre);
     void updateSaldo(CuentaDb cuentaDb);
-    void deleteCuenta(String nombre);
 }

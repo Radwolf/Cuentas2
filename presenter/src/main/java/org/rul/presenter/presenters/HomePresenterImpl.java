@@ -27,7 +27,7 @@ public class HomePresenterImpl implements HomePresenter {
 
     @Inject
     public HomePresenterImpl(GetAllCuentasInteractor getAllCuentasInteractor, InsertCuentaInteractor insertCuentaInteractor,
-                             RemoveCuentaInteractor removeCuentaInteractor, CuentaUiMapper carUiMapper) {
+                             RemoveCuentaInteractor removeCuentaInteractor, CuentaUiMapper cuentaUiMapper) {
 
         this.getAllCuentasInteractor = getAllCuentasInteractor;
         this.insertCuentaInteractor = insertCuentaInteractor;
