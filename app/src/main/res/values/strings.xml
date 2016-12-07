@@ -11,4 +11,8 @@
     <string name="error_msg_insert_cuenta">Error al insertar</string>
     <string name="error_msg_remove_cuenta">Se ha producido un error eliminando el elemento.</string>
     <string name="error_msg_fields_needed">Quedan campos sin rellenar</string>
+    <string name="titulo_pos_gen">Posición general</string>
+    <string name="lb_fecha_act_pos_gen">Saldo a</string>
+    <string name="title_activity_dashboard">DashboardActivity</string>
+    <string name="action_settings">Settings</string>
 </resources>
