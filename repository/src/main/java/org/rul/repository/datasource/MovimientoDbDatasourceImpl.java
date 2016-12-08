@@ -3,50 +3,85 @@ package org.rul.repository.datasource;
 
 
 import org.rul.domain.repository.exceptions.RepositoryException;
+import org.rul.repository.model.CuentaDb;
 import org.rul.repository.model.MovimientoDb;
+import org.rul.repository.providers.RealmProvider;
 
 import java.util.Date;
 import java.util.List;
 
+import javax.inject.Inject;
+
 import io.realm.Realm;
+import io.realm.RealmQuery;
 import io.realm.RealmResults;
 
 /**
  * Created by rgonzalez on 06/10/2016.
  */
 
-public class MovimientoRepositoryImpl implements MovimientoDbDatasource {
+public class MovimientoDbDatasourceImpl implements MovimientoDbDatasource {
 
+    private RealmProvider realmProvider;
+
+    @Inject
+    public MovimientoDbDatasourceImpl(RealmProvider realmProvider) {
+        this.realmProvider = realmProvider;
+    }
 
     @Override
-    public RealmResults<MovimientoDb> findAll() {
-        return Realm.getDefaultInstance().where(MovimientoDb.class).findAll();
+    public List<MovimientoDb> findAll() {
+        return getRealm().where(MovimientoDb.class).findAll();
     }
 
     @Override
     public List<MovimientoDb> insertAll(List<MovimientoDb> elementList) throws RepositoryException {
-        return null;
+        getRealm().beginTransaction();
+        List<MovimientoDb> returnedMovimientoDb = null;
+
+        try {
+            returnedMovimientoDb = getRealm().copyToRealm(elementList);
+        } catch (Exception e) {
+            throw new RepositoryException(e);
+        } finally {
+            getRealm().commitTransaction();
+            getRealm().close();
+        }
+
+        return returnedMovimientoDb;
     }
 
     @Override
-    public void remove(MovimientoDb element) {}
+    public void remove(MovimientoDb movimientoDb) {
+        getRealm().beginTransaction();
+        RealmQuery<MovimientoDb> realmQuery = getRealm().where(MovimientoDb.class).equalTo(MovimientoDb.K_MOVIMIENTO_ID, movimientoDb.getId());
+        RealmResults<MovimientoDb> realmResults = realmQuery.findAll();
+        realmResults.deleteAllFromRealm();
+        getRealm().commitTransaction();
+        getRealm().close();
+    }
 
     @Override
-    public void removeAll() {}
+    public void removeAll() {
+        getRealm().beginTransaction();
+        getRealm().delete(MovimientoDb.class);
+        getRealm().commitTransaction();
+        getRealm().close();
+    }
 
     @Override
     public RealmResults<MovimientoDb> findByTipoMovimiento(String tipoMovimiento) {
-        return Realm.getDefaultInstance().where(MovimientoDb.class).equalTo("tipoMovimiento", tipoMovimiento).findAll();
+        return getRealm().where(MovimientoDb.class).equalTo("tipoMovimiento", tipoMovimiento).findAll();
     }
 
     @Override
     public MovimientoDb findById(int id) {
-        return Realm.getDefaultInstance().where(MovimientoDb.class).equalTo("id", id).findFirst();
+        return getRealm().where(MovimientoDb.class).equalTo("id", id).findFirst();
     }
 
     @Override
     public float getTotalGastosPrevistos(Date fechaInicio, Date fechaFin) {
-        return Realm.getDefaultInstance().where(MovimientoDb.class)
+        return getRealm().where(MovimientoDb.class)
             .equalTo("tipoMovimiento", "GASTO")
             .between("fechaPrevista", fechaInicio, fechaFin).findAll()
             .sum("importePrevisto").floatValue();
@@ -54,7 +89,7 @@ public class MovimientoRepositoryImpl implements MovimientoDbDatasource {
 
     @Override
     public float getTotalGastos(Date fechaInicio, Date fechaFin) {
-        return Realm.getDefaultInstance().where(MovimientoDb.class)
+        return getRealm().where(MovimientoDb.class)
                 .equalTo("tipoMovimiento", "GASTO")
                 .between("fechaConfirmacion", fechaInicio, fechaFin).findAll()
                 .sum("importe").floatValue();
@@ -62,7 +97,7 @@ public class MovimientoRepositoryImpl implements MovimientoDbDatasource {
 
     @Override
     public float getTotalIngresosPrevistos(Date fechaInicio, Date fechaFin) {
-        return Realm.getDefaultInstance().where(MovimientoDb.class)
+        return getRealm().where(MovimientoDb.class)
                 .equalTo("tipoMovimiento", "INGRESO")
                 .between("fechaPrevista", fechaInicio, fechaFin).findAll()
                 .sum("importePrevisto").floatValue();
@@ -70,7 +105,7 @@ public class MovimientoRepositoryImpl implements MovimientoDbDatasource {
 
     @Override
     public float getTotalIngresos(Date fechaInicio, Date fechaFin) {
-        return Realm.getDefaultInstance().where(MovimientoDb.class)
+        return getRealm().where(MovimientoDb.class)
                 .equalTo("tipoMovimiento", "INGRESO")
                 .between("fechaConfirmacion", fechaInicio, fechaFin).findAll()
                 .sum("importe").floatValue();
@@ -78,20 +113,20 @@ public class MovimientoRepositoryImpl implements MovimientoDbDatasource {
 
     @Override
     public RealmResults<MovimientoDb> findByCategoria(int idCategoria) {
-        return Realm.getDefaultInstance().where(MovimientoDb.class)
+        return getRealm().where(MovimientoDb.class)
                 .equalTo("categoria.id", idCategoria).findAll();
     }
 
     @Override
     public RealmResults<MovimientoDb> findByCategoriaAndPeriodo(int idCategoria, Date fechaInicio, Date fechaFin) {
-        return Realm.getDefaultInstance().where(MovimientoDb.class)
+        return getRealm().where(MovimientoDb.class)
                 .equalTo("categoria.id", idCategoria)
                 .between("fechaConfirmacion", fechaInicio, fechaFin).findAll();
     }
 
     @Override
     public float getTotalGastosByCuentaPrevistos(Date fechaInicio, Date fechaFin, int idCuenta) {
-        return Realm.getDefaultInstance().where(MovimientoDb.class)
+        return getRealm().where(MovimientoDb.class)
                 .equalTo("tipoMovimiento", "GASTO")
                 .equalTo("cuenta.id", idCuenta)
                 .between("fechaPrevista", fechaInicio, fechaFin).findAll()
@@ -100,7 +135,7 @@ public class MovimientoRepositoryImpl implements MovimientoDbDatasource {
 
     @Override
     public float getTotalGastosByCuenta(Date fechaInicio, Date fechaFin, int idCuenta) {
-        return Realm.getDefaultInstance().where(MovimientoDb.class)
+        return getRealm().where(MovimientoDb.class)
                 .equalTo("tipoMovimiento", "GASTO")
                 .equalTo("cuenta.id", idCuenta)
                 .between("fechaConfirmacion", fechaInicio, fechaFin).findAll()
@@ -109,7 +144,7 @@ public class MovimientoRepositoryImpl implements MovimientoDbDatasource {
 
     @Override
     public float getGastosByCuentaAndCategoria(Date fechaInicio, Date fechaFin, int idCuenta, int idCategoria) {
-        return Realm.getDefaultInstance().where(MovimientoDb.class)
+        return getRealm().where(MovimientoDb.class)
                 .equalTo("tipoMovimiento", "GASTO")
                 .equalTo("cuenta.id", idCuenta)
                 .equalTo("categoria.id", idCategoria)
@@ -119,7 +154,7 @@ public class MovimientoRepositoryImpl implements MovimientoDbDatasource {
 
     @Override
     public float getTotalIngresosByCuentaPrevistos(Date fechaInicio, Date fechaFin, int idCuenta) {
-        return Realm.getDefaultInstance().where(MovimientoDb.class)
+        return getRealm().where(MovimientoDb.class)
                 .equalTo("tipoMovimiento", "INGRESO")
                 .equalTo("cuenta.id", idCuenta)
                 .between("fechaPrevista", fechaInicio, fechaFin).findAll()
@@ -128,7 +163,7 @@ public class MovimientoRepositoryImpl implements MovimientoDbDatasource {
 
     @Override
     public float getTotalIngresosByCuenta(Date fechaInicio, Date fechaFin, int idCuenta) {
-        return Realm.getDefaultInstance().where(MovimientoDb.class)
+        return getRealm().where(MovimientoDb.class)
                 .equalTo("tipoMovimiento", "INGRESO")
                 .equalTo("cuenta.id", idCuenta)
                 .between("fechaConfirmacion", fechaInicio, fechaFin).findAll()
@@ -137,30 +172,40 @@ public class MovimientoRepositoryImpl implements MovimientoDbDatasource {
 
     @Override
     public RealmResults<MovimientoDb> findByCategoriaAndPeriodoAndCuenta(int idCategoria, Date fechaInicio, Date fechaFin, int idCuenta) {
-        return Realm.getDefaultInstance().where(MovimientoDb.class)
+        return getRealm().where(MovimientoDb.class)
                 .equalTo("cuenta.id", idCuenta)
                 .equalTo("categoria.id", idCategoria)
                 .between("fechaConfirmacion", fechaInicio, fechaFin).findAll();
     }
 
     @Override
-    public MovimientoDb insert(final MovimientoDb movimientoDb) {
-        Realm realm = Realm.getDefaultInstance();
-        final int lastId = realm.where(MovimientoDb.class).findAll().max("id").intValue();
-        final MovimientoDb[] movimientoDbs = {null};
-        realm.executeTransaction(new Realm.Transaction() {
-            @Override
-            public void execute(Realm realm) {
-                movimientoDbs[0] = realm.createObject(MovimientoDb.class, lastId + 1);
-            }
-        });
-        realm.close();
-        return movimientoDbs[0];
+    public MovimientoDb insert(final MovimientoDb movimiento) throws RepositoryException {
+        getRealm().beginTransaction();
+        MovimientoDb movimientoDb = null;
+        try{
+            movimientoDb = getRealm().createObject(MovimientoDb.class, getRealm().where(MovimientoDb.class).findAll().max("id").intValue()+1);
+            movimientoDb.setAhorro(movimiento.isAhorro());
+            movimientoDb.setCategoria(movimiento.getCategoria());
+            movimientoDb.setCuentaDb(movimiento.getCuentaDb());
+            movimientoDb.setDescripcion(movimiento.getDescripcion());
+            movimientoDb.setFechaConfirmacion(movimiento.getFechaConfirmacion());
+            movimientoDb.setFechaPrevista(movimiento.getFechaPrevista());
+            movimientoDb.setImporte(movimiento.getImporte());
+            movimientoDb.setImportePrevisto(movimiento.getImportePrevisto());
+            movimientoDb.setTipoMovimiento(movimiento.getTipoMovimiento());
+        } catch (Exception e) {
+            throw new RepositoryException(e);
+        } finally {
+            getRealm().commitTransaction();
+            getRealm().close();
+        }
+
+        return movimientoDb;
     }
 
     @Override
     public void updateMovimiento(MovimientoDb movimientoDb) {
-        Realm.getDefaultInstance().insertOrUpdate(movimientoDb);
+        getRealm().insertOrUpdate(movimientoDb);
     }
 
     @Override
@@ -168,5 +213,8 @@ public class MovimientoRepositoryImpl implements MovimientoDbDatasource {
         updateMovimiento(movimientoDb);
     }
 
+    private Realm getRealm() {
+        return realmProvider.getDatabase();
+    }
 
 }

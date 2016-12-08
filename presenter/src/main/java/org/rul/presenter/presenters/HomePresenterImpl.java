@@ -37,7 +37,6 @@ public class HomePresenterImpl implements HomePresenter {
 
     @Override
     public void getAllCuentas() {
-
         getAllCuentasInteractor.run(new Interactor.Callback<List<CuentaDomain>>() {
             @Override
             public void onSuccess(List<CuentaDomain> object) {
@@ -49,8 +48,6 @@ public class HomePresenterImpl implements HomePresenter {
                 homeView.showGetCuentasError();
             }
         });
-
-
     }
 
     @Override
@@ -60,31 +57,25 @@ public class HomePresenterImpl implements HomePresenter {
 
     @Override
     public void insertCuenta(Cuenta cuenta) {
-
         if (cuenta.getNombre().isEmpty() || cuenta.getSaldo().isEmpty() ) {
             homeView.showFieldsNeededError();
         } else {
-            insertCuentaInteractor.run(
-                    cuentaUiMapper.reverseMap(cuenta),
+            insertCuentaInteractor.run(cuentaUiMapper.reverseMap(cuenta), new Interactor.Callback<CuentaDomain>() {
+                @Override
+                public void onSuccess(CuentaDomain object) {
+                    getAllCuentas();
+                }
 
-                    new Interactor.Callback<CuentaDomain>() {
-                        @Override
-                        public void onSuccess(CuentaDomain object) {
-                            getAllCuentas();
-                        }
-
-                        @Override
-                        public void onError(Throwable throwable) {
-                            homeView.showInsertCuentaError();
-                        }
-                    });
+                @Override
+                public void onError(Throwable throwable) {
+                    homeView.showInsertCuentaError();
+                }
+            });
         }
-
     }
 
     @Override
     public void removeCuenta(Cuenta cuenta) {
-
         removeCuentaInteractor.run(cuentaUiMapper.reverseMap(cuenta), new Interactor.Callback<Boolean>() {
             @Override
             public void onSuccess(Boolean object) {
@@ -96,6 +87,5 @@ public class HomePresenterImpl implements HomePresenter {
                 homeView.showRemoveCuentaError();
             }
         });
-
     }
 }

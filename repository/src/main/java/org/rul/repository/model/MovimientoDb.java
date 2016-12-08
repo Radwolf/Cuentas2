@@ -11,6 +11,8 @@ import io.realm.annotations.PrimaryKey;
 
 public class MovimientoDb extends RealmObject {
 
+    public static final String K_MOVIMIENTO_ID = "id";
+
     @PrimaryKey
     private int id;
     private String descripcion;

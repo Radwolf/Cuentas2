@@ -4,6 +4,7 @@ import org.rul.domain.repository.exceptions.RepositoryException;
 import org.rul.repository.model.CuentaDb;
 import org.rul.repository.providers.RealmProvider;
 
+import java.util.Calendar;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -27,9 +28,7 @@ public class CuentaDbDatasourceImpl implements CuentaDbDatasource {
 
     @Override
     public List<CuentaDb> findAll() {
-        RealmResults<CuentaDb> cuentasDbs = getRealm().where(CuentaDb.class).findAll();
-
-        return cuentasDbs;
+        return getRealm().where(CuentaDb.class).findAll();
     }
 
     @Override
@@ -52,7 +51,6 @@ public class CuentaDbDatasourceImpl implements CuentaDbDatasource {
     @Override
     public void remove(CuentaDb element) {
         getRealm().beginTransaction();
-
         RealmQuery<CuentaDb> realmQuery = getRealm().where(CuentaDb.class).equalTo(CuentaDb.K_CUENTA_NOMBRE, element.getNombre());
         RealmResults<CuentaDb> realmResults = realmQuery.findAll();
         realmResults.deleteAllFromRealm();
@@ -74,21 +72,26 @@ public class CuentaDbDatasourceImpl implements CuentaDbDatasource {
     }
 
     @Override
-    public CuentaDb insert(final CuentaDb cuenta) {
-        final CuentaDb[] cuentas = {null};
-        getRealm().executeTransaction(new Realm.Transaction() {
-            @Override
-            public void execute(Realm realm) {
-                cuentas[0] = realm.createObject(CuentaDb.class, cuenta.getNombre());
-            }
-        });
-        getRealm().close();
-        return cuentas[0];
+    public CuentaDb insert(final CuentaDb cuenta) throws RepositoryException {
+        getRealm().beginTransaction();
+        CuentaDb cuentaDb = null;
+        try{
+            cuentaDb = getRealm().createObject(CuentaDb.class, cuenta.getNombre());
+            cuentaDb.setSaldo(cuenta.getSaldo());
+            cuentaDb.setFechaActualizacion(Calendar.getInstance().getTime());
+        } catch (Exception e) {
+            throw new RepositoryException(e);
+        } finally {
+            getRealm().commitTransaction();
+            getRealm().close();
+        }
+
+        return cuentaDb;
     }
 
     @Override
     public void updateSaldo(CuentaDb cuenta) {
-        Realm.getDefaultInstance().insertOrUpdate(cuenta);
+        getRealm().insertOrUpdate(cuenta);
     }
 
     private Realm getRealm() {
