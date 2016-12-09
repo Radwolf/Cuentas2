@@ -91,7 +91,9 @@ public class CuentaDbDatasourceImpl implements CuentaDbDatasource {
 
     @Override
     public void updateSaldo(CuentaDb cuenta) {
-        getRealm().insertOrUpdate(cuenta);
+        getRealm().beginTransaction();
+        getRealm().copyToRealmOrUpdate(cuenta);
+        getRealm().commitTransaction();
     }
 
     private Realm getRealm() {

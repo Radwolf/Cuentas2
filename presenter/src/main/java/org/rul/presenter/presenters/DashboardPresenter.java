@@ -12,7 +12,7 @@ public interface DashboardPresenter {
 
     void setView(DashboardView dashboardView);
 
-    void getResumenCuentas();
+    void getResumenCuentas(String anyoMes);
 
     //void insertCuenta(Cuenta cuenta);
 

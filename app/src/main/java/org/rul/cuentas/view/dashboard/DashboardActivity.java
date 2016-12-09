@@ -8,8 +8,14 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import org.rul.cuentas.R;
+import org.rul.cuentas.injection.ActivityModule;
+import org.rul.cuentas.injection.component.DaggerDashboardComponent;
+import org.rul.cuentas.injection.component.DashboardComponent;
+import org.rul.cuentas.view.CuentasApplication;
 
 public class DashboardActivity extends AppCompatActivity {
+
+    DashboardComponent dashboardComponent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,4 +34,16 @@ public class DashboardActivity extends AppCompatActivity {
         });
     }
 
+    public DashboardComponent getComponent() {
+        if (dashboardComponent == null ){
+
+            dashboardComponent = DaggerDashboardComponent.builder()
+                    .applicationComponent( ((CuentasApplication)getApplication()).getApplicationComponent() )
+                    .activityModule( new ActivityModule( this ) )
+                    .build();
+
+        }
+
+        return dashboardComponent;
+    }
 }

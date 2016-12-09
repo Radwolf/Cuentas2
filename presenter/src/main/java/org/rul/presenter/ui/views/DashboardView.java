@@ -1,6 +1,6 @@
 package org.rul.presenter.ui.views;
 
-import org.rul.presenter.ui.model.Cuenta;
+import org.rul.presenter.ui.model.ResumenCuenta;
 
 import java.util.List;
 
@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface DashboardView {
 
-    void setCuentas(List<Cuenta> cuentaList);
+    void setResumenesCuentas(List<ResumenCuenta> cuentaList);
 
     void showGetCuentasError();
 

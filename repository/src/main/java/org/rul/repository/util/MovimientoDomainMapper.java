@@ -1,6 +1,7 @@
 package org.rul.repository.util;
 
 import org.rul.domain.model.CuentaDomain;
+import org.rul.domain.model.MovimientoDomain;
 import org.rul.domain.util.Mapper;
 import org.rul.repository.model.CuentaDb;
 import org.rul.repository.model.MovimientoDb;
@@ -18,20 +19,12 @@ public class MovimientoDomainMapper extends Mapper<MovimientoDomain, MovimientoD
     }
 
     @Override
-    public CuentaDomain map(CuentaDb type) {
-        return new CuentaDomain.Builder()
-                .setNombre(type.getNombre())
-                .setSaldo(type.getSaldo())
-                .setFechaActualizacion(type.getFechaActualizacion())
-                .build();
+    public MovimientoDomain map(MovimientoDb type) {
+        return null;
     }
 
     @Override
-    public CuentaDb reverseMap(CuentaDomain type) {
-        return new CuentaDb.Builder()
-                .setFechaActualizacion(type.getFechaActualizacion())
-                .setNombre(type.getNombre())
-                .setSaldo(type.getSaldo())
-                .build();
+    public MovimientoDb reverseMap(MovimientoDomain type) {
+        return null;
     }
 }

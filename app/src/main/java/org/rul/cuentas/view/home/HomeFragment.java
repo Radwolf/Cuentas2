@@ -54,7 +54,6 @@ public class HomeFragment extends Fragment implements HomeView, OnCuentaClickedL
         ( ( HomeActivity )getActivity() ).getComponent().inject( this );
 
         homePresenter.setView( this );
-
         homePresenter.getAllCuentas();
     }
 

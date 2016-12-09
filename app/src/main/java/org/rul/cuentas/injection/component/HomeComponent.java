@@ -53,7 +53,7 @@ public interface HomeComponent {
 
     CuentaRepository cuentaRepository();
 
-    CuentaDbDatasource carDbDatasource();
+    CuentaDbDatasource cuentaDbDatasource();
 
     Mapper<Cuenta, CuentaDomain> cuentaUiMapper();
 

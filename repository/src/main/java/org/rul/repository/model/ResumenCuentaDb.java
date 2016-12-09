@@ -1,32 +1,25 @@
-package org.rul.domain.model;
+package org.rul.repository.model;
+
+import io.realm.RealmObject;
 
 /**
- * Created by rgonzalez on 02/12/2016.
+ * Created by rgonzalez on 09/12/2016.
  */
 
-public class ResumenCuentaDomain {
+public class ResumenCuentaDb extends RealmObject {
 
-
-    private String nombreCuenta;
+    private CuentaDb cuentaDb;
     private String anyoMes;
     private float ingresos;
     private float gastos;
     private float ahorros;
 
-    private ResumenCuentaDomain(Builder builder) {
-        this.nombreCuenta = builder.nombreCuenta;
-        this.anyoMes = builder.anyoMes;
-        this.ingresos = builder.ingresos;
-        this.gastos = builder.gastos;
-        this.ahorros = builder.ahorros;
+    public CuentaDb getCuentaDb() {
+        return cuentaDb;
     }
 
-    public String getNombreCuenta() {
-        return nombreCuenta;
-    }
-
-    public void setNombreCuenta(String nombreCuenta) {
-        this.nombreCuenta = nombreCuenta;
+    public void setCuentaDb(CuentaDb cuentaDb) {
+        this.cuentaDb = cuentaDb;
     }
 
     public String getAnyoMes() {
@@ -61,16 +54,27 @@ public class ResumenCuentaDomain {
         this.ahorros = ahorros;
     }
 
-    public static class Builder{
+    public ResumenCuentaDb() {
+    }
 
-        private String nombreCuenta;
+    public ResumenCuentaDb(Builder builder){
+        this.cuentaDb = builder.cuentaDb;
+        this.anyoMes = builder.anyoMes;
+        this.ahorros = builder.ahorros;
+        this.gastos = builder.gastos;
+        this.ingresos = builder.ingresos;
+    }
+
+    public static class Builder {
+
+        private CuentaDb cuentaDb;
         private String anyoMes;
         private float ingresos;
         private float gastos;
         private float ahorros;
 
-        public Builder setNombreCuenta(String nombreCuenta) {
-            this.nombreCuenta = nombreCuenta;
+        public Builder setCuentaDb(CuentaDb cuentaDb) {
+            this.cuentaDb = cuentaDb;
             return this;
         }
 
@@ -94,9 +98,9 @@ public class ResumenCuentaDomain {
             return this;
         }
 
-        public ResumenCuentaDomain build(){
-            return new ResumenCuentaDomain(this
-            );
+        public ResumenCuentaDb build() {
+            return new ResumenCuentaDb(this);
         }
     }
+
 }

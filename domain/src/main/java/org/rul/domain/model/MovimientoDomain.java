@@ -13,8 +13,8 @@ public class MovimientoDomain {
     private boolean ahorro;
     private float importe;
     private float importePrevisto;
-    private Categoria categoria;
-    private CuentaDb cuentaDb;
+//    private Categoria categoria;
+//    private CuentaDb cuentaDb;
     private Date fechaPrevista;
     private Date fechaConfirmacion;
 

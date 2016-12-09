@@ -1,19 +1,18 @@
-package org.rul.domain.model;
+package org.rul.presenter.ui.model;
 
 /**
- * Created by rgonzalez on 02/12/2016.
+ * Created by Rul on 02/12/2016.
  */
 
-public class ResumenCuentaDomain {
-
+public class ResumenCuenta {
 
     private String nombreCuenta;
     private String anyoMes;
-    private float ingresos;
-    private float gastos;
-    private float ahorros;
+    private String ingresos;
+    private String gastos;
+    private String ahorros;
 
-    private ResumenCuentaDomain(Builder builder) {
+    private ResumenCuenta(Builder builder) {
         this.nombreCuenta = builder.nombreCuenta;
         this.anyoMes = builder.anyoMes;
         this.ingresos = builder.ingresos;
@@ -37,37 +36,37 @@ public class ResumenCuentaDomain {
         this.anyoMes = anyoMes;
     }
 
-    public float getIngresos() {
+    public String getIngresos() {
         return ingresos;
     }
 
-    public void setIngresos(float ingresos) {
+    public void setIngresos(String ingresos) {
         this.ingresos = ingresos;
     }
 
-    public float getGastos() {
+    public String getGastos() {
         return gastos;
     }
 
-    public void setGastos(float gastos) {
+    public void setGastos(String gastos) {
         this.gastos = gastos;
     }
 
-    public float getAhorros() {
+    public String getAhorros() {
         return ahorros;
     }
 
-    public void setAhorros(float ahorros) {
+    public void setAhorros(String ahorros) {
         this.ahorros = ahorros;
     }
 
-    public static class Builder{
+    public static class Builder {
 
         private String nombreCuenta;
         private String anyoMes;
-        private float ingresos;
-        private float gastos;
-        private float ahorros;
+        private String ingresos;
+        private String gastos;
+        private String ahorros;
 
         public Builder setNombreCuenta(String nombreCuenta) {
             this.nombreCuenta = nombreCuenta;
@@ -79,24 +78,23 @@ public class ResumenCuentaDomain {
             return this;
         }
 
-        public Builder setIngresos(float ingresos) {
+        public Builder setIngresos(String ingresos) {
             this.ingresos = ingresos;
             return this;
         }
 
-        public Builder setGastos(float gastos) {
+        public Builder setGastos(String gastos) {
             this.gastos = gastos;
             return this;
         }
 
-        public Builder setAhorros(float ahorros) {
+        public Builder setAhorros(String ahorros) {
             this.ahorros = ahorros;
             return this;
         }
 
-        public ResumenCuentaDomain build(){
-            return new ResumenCuentaDomain(this
-            );
+        public ResumenCuenta build() {
+            return new ResumenCuenta(this);
         }
     }
 }

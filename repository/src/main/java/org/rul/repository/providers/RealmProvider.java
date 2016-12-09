@@ -21,6 +21,7 @@ public class RealmProvider implements DbProvider<Realm> {
         RealmConfiguration realmConfiguration = new RealmConfiguration.Builder()
                 .name("cuentas.realm")
                 .schemaVersion(1)
+                .deleteRealmIfMigrationNeeded()
                 .build();
 
         Realm.setDefaultConfiguration(realmConfiguration);

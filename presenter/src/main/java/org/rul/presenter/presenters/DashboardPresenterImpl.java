@@ -1,16 +1,13 @@
 package org.rul.presenter.presenters;
 
 import org.rul.domain.interactors.base.Interactor;
+import org.rul.domain.interactors.cuenta.get.GetActualResumenCuentasInteractor;
 import org.rul.domain.interactors.cuenta.get.GetAllCuentasInteractor;
-import org.rul.domain.interactors.cuenta.get.GetResumenCuentasInteractor;
-import org.rul.domain.interactors.cuenta.insert.InsertCuentaInteractor;
-import org.rul.domain.interactors.cuenta.remove.RemoveCuentaInteractor;
 import org.rul.domain.model.CuentaDomain;
 import org.rul.domain.model.ResumenCuentaDomain;
 import org.rul.presenter.mappers.CuentaUiMapper;
-import org.rul.presenter.ui.model.Cuenta;
+import org.rul.presenter.mappers.ResumenCuentaUiMapper;
 import org.rul.presenter.ui.views.DashboardView;
-import org.rul.presenter.ui.views.HomeView;
 
 import java.util.List;
 
@@ -23,24 +20,23 @@ import javax.inject.Inject;
 public class DashboardPresenterImpl implements DashboardPresenter {
 
     private DashboardView dashboardView;
-    private GetResumenCuentasInteractor getResumenCuentasInteractor;
-    private CuentaUiMapper cuentaUiMapper;
+    private GetActualResumenCuentasInteractor getActualResumenCuentasInteractor;
+    private ResumenCuentaUiMapper resumenCuentaUiMapper;
 
     @Inject
-    public DashboardPresenterImpl(GetAllCuentasInteractor getAllCuentasInteractor, InsertCuentaInteractor insertCuentaInteractor,
-                                  RemoveCuentaInteractor removeCuentaInteractor, CuentaUiMapper cuentaUiMapper) {
-
-        this.getResumenCuentasInteractor = getResumenCuentasInteractor;
-        this.cuentaUiMapper = cuentaUiMapper;
+    public DashboardPresenterImpl(GetActualResumenCuentasInteractor getActualResumenCuentasInteractor,
+                                  ResumenCuentaUiMapper resumenCuentaUiMapper) {
+        this.getActualResumenCuentasInteractor = getActualResumenCuentasInteractor;
+        this.resumenCuentaUiMapper = resumenCuentaUiMapper;
     }
 
     @Override
-    public void getResumenCuentas() {
+    public void getResumenCuentas(String anyoMes) {
 
-        getResumenCuentasInteractor.run(new Interactor.Callback<List<ResumenCuentaDomain>>() {
+        getActualResumenCuentasInteractor.run(anyoMes, new Interactor.Callback<List<ResumenCuentaDomain>>() {
             @Override
             public void onSuccess(List<ResumenCuentaDomain> object) {
-                dashboardView.setCuentas(cuentaUiMapper.mapList(object));
+                dashboardView.setResumenesCuentas(resumenCuentaUiMapper.mapList(object));
             }
 
             @Override

@@ -29,12 +29,12 @@ public interface MovimientoDbDatasource extends DbDatasource<MovimientoDb> {
     RealmResults<MovimientoDb> findByCategoriaAndPeriodo(int idCategoria, Date fechaInicio, Date fechaFin);
 
     //Movimientos por cuenta
-    float getTotalGastosByCuentaPrevistos(Date fechaInicio, Date fechaFin, int idCuenta);
-    float getTotalGastosByCuenta(Date fechaInicio, Date fechaFin, int idCuenta);
-    float getGastosByCuentaAndCategoria(Date fechaInicio, Date fechaFin, int idCuenta, int idCategoria);
-    float getTotalIngresosByCuentaPrevistos(Date fechaInicio, Date fechaFin, int idCuenta);
-    float getTotalIngresosByCuenta(Date fechaInicio, Date fechaFin, int idCuenta);
-    RealmResults<MovimientoDb> findByCategoriaAndPeriodoAndCuenta(int idCategoria, Date fechaInicio, Date fechaFin, int idCuenta);
+    float getTotalGastosByCuentaPrevistos(Date fechaInicio, Date fechaFin, String nombreCuenta);
+    float getTotalGastosByCuenta(Date fechaInicio, Date fechaFin, String nombreCuenta);
+    float getGastosByCuentaAndCategoria(Date fechaInicio, Date fechaFin, int idCategoria, String nombreCuenta);
+    float getTotalIngresosByCuentaPrevistos(Date fechaInicio, Date fechaFin, String nombreCuenta);
+    float getTotalIngresosByCuenta(Date fechaInicio, Date fechaFin, String nombreCuenta);
+    RealmResults<MovimientoDb> findByCategoriaAndPeriodoAndCuenta(int idCategoria, Date fechaInicio, Date fechaFin, String nombreCuenta);
 
 
     void updateMovimiento (MovimientoDb movimientoDb);

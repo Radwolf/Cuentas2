@@ -125,55 +125,55 @@ public class MovimientoDbDatasourceImpl implements MovimientoDbDatasource {
     }
 
     @Override
-    public float getTotalGastosByCuentaPrevistos(Date fechaInicio, Date fechaFin, int idCuenta) {
+    public float getTotalGastosByCuentaPrevistos(Date fechaInicio, Date fechaFin, String nombreCuenta) {
         return getRealm().where(MovimientoDb.class)
                 .equalTo("tipoMovimiento", "GASTO")
-                .equalTo("cuenta.id", idCuenta)
+                .equalTo("cuentaDb.nombre", nombreCuenta)
                 .between("fechaPrevista", fechaInicio, fechaFin).findAll()
                 .sum("importePrevisto").floatValue();
     }
 
     @Override
-    public float getTotalGastosByCuenta(Date fechaInicio, Date fechaFin, int idCuenta) {
+    public float getTotalGastosByCuenta(Date fechaInicio, Date fechaFin, String nombreCuenta) {
         return getRealm().where(MovimientoDb.class)
                 .equalTo("tipoMovimiento", "GASTO")
-                .equalTo("cuenta.id", idCuenta)
+                .equalTo("cuentaDb.nombre", nombreCuenta)
                 .between("fechaConfirmacion", fechaInicio, fechaFin).findAll()
                 .sum("importe").floatValue();
     }
 
     @Override
-    public float getGastosByCuentaAndCategoria(Date fechaInicio, Date fechaFin, int idCuenta, int idCategoria) {
+    public float getGastosByCuentaAndCategoria(Date fechaInicio, Date fechaFin, int idCategoria,  String nombreCuenta) {
         return getRealm().where(MovimientoDb.class)
                 .equalTo("tipoMovimiento", "GASTO")
-                .equalTo("cuenta.id", idCuenta)
+                .equalTo("cuentaDb.nombre", nombreCuenta)
                 .equalTo("categoria.id", idCategoria)
                 .between("fechaConfirmacion", fechaInicio, fechaFin).findAll()
                 .sum("importe").floatValue();
     }
 
     @Override
-    public float getTotalIngresosByCuentaPrevistos(Date fechaInicio, Date fechaFin, int idCuenta) {
+    public float getTotalIngresosByCuentaPrevistos(Date fechaInicio, Date fechaFin, String nombreCuenta) {
         return getRealm().where(MovimientoDb.class)
                 .equalTo("tipoMovimiento", "INGRESO")
-                .equalTo("cuenta.id", idCuenta)
+                .equalTo("cuentaDb.nombre", nombreCuenta)
                 .between("fechaPrevista", fechaInicio, fechaFin).findAll()
                 .sum("importePrevisto").floatValue();
     }
 
     @Override
-    public float getTotalIngresosByCuenta(Date fechaInicio, Date fechaFin, int idCuenta) {
+    public float getTotalIngresosByCuenta(Date fechaInicio, Date fechaFin, String nombreCuenta) {
         return getRealm().where(MovimientoDb.class)
                 .equalTo("tipoMovimiento", "INGRESO")
-                .equalTo("cuenta.id", idCuenta)
+                .equalTo("cuentaDb.nombre", nombreCuenta)
                 .between("fechaConfirmacion", fechaInicio, fechaFin).findAll()
                 .sum("importe").floatValue();
     }
 
     @Override
-    public RealmResults<MovimientoDb> findByCategoriaAndPeriodoAndCuenta(int idCategoria, Date fechaInicio, Date fechaFin, int idCuenta) {
+    public RealmResults<MovimientoDb> findByCategoriaAndPeriodoAndCuenta(int idCategoria, Date fechaInicio, Date fechaFin, String nombreCuenta) {
         return getRealm().where(MovimientoDb.class)
-                .equalTo("cuenta.id", idCuenta)
+                .equalTo("cuentaDb.nombre", nombreCuenta)
                 .equalTo("categoria.id", idCategoria)
                 .between("fechaConfirmacion", fechaInicio, fechaFin).findAll();
     }
@@ -193,6 +193,7 @@ public class MovimientoDbDatasourceImpl implements MovimientoDbDatasource {
             movimientoDb.setImporte(movimiento.getImporte());
             movimientoDb.setImportePrevisto(movimiento.getImportePrevisto());
             movimientoDb.setTipoMovimiento(movimiento.getTipoMovimiento());
+
         } catch (Exception e) {
             throw new RepositoryException(e);
         } finally {
