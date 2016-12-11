@@ -1,6 +1,6 @@
 package org.rul.cuentas.view.home.adpater;
 
-import org.rul.presenter.ui.model.Cuenta;
+import org.rul.cuentas.ui.model.Cuenta;
 
 /**
  * Created by Rul on 04/12/2016.

@@ -4,9 +4,9 @@ import android.app.Application;
 
 import org.rul.cuentas.injection.ApplicationModule;
 import org.rul.cuentas.view.CuentasApplication;
-import org.rul.domain.threads.InteractorExecutor;
-import org.rul.domain.threads.MainThread;
-import org.rul.repository.providers.DbProvider;
+import org.rul.cuentas.threads.InteractorExecutor;
+import org.rul.cuentas.threads.MainThread;
+import org.rul.cuentas.providers.DbProvider;
 
 import javax.inject.Singleton;
 

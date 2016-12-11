@@ -28,7 +28,9 @@ allprojects {
         libDesign= 'com.android.support:design:23.2.1'
         libAppCompat= 'com.android.support:appcompat-v7:23.2.1'
         libButterknife = 'com.jakewharton:butterknife:7.0.1'
-        libJunit = "junit:junit:4.12"
+        libJunit = 'junit:junit:4.12'
+        libFirebase = 'com.firebase:firebase-client-android:2.3.1+'
+        libGoobleServices = 'com.google.gms:google-services:3.0.0'
 
     }
 

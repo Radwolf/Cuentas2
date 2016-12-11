@@ -10,9 +10,9 @@ import android.widget.TextView;
 
 import org.rul.cuentas.R;
 import org.rul.cuentas.view.home.HomeActivity;
-import org.rul.presenter.presenters.DashboardPresenter;
-import org.rul.presenter.ui.model.ResumenCuenta;
-import org.rul.presenter.ui.views.DashboardView;
+import org.rul.cuentas.presenters.DashboardPresenter;
+import org.rul.cuentas.ui.model.ResumenCuenta;
+import org.rul.cuentas.ui.views.DashboardView;
 
 import java.util.List;
 

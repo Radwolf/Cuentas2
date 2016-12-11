@@ -3,7 +3,7 @@ package org.rul.cuentas.thread;
 import android.os.Handler;
 import android.os.Looper;
 
-import org.rul.domain.threads.MainThread;
+import org.rul.cuentas.threads.MainThread;
 
 import javax.inject.Inject;
 

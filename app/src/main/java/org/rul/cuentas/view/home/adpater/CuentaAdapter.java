@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import org.rul.cuentas.R;
-import org.rul.presenter.ui.model.Cuenta;
+import org.rul.cuentas.ui.model.Cuenta;
 
 import java.util.ArrayList;
 import java.util.List;

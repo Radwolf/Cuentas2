@@ -7,16 +7,16 @@ import org.rul.cuentas.injection.HomeModule;
 import org.rul.cuentas.injection.annotations.ForActivity;
 import org.rul.cuentas.view.home.HomeActivity;
 import org.rul.cuentas.view.home.HomeFragment;
-import org.rul.domain.interactors.cuenta.get.GetAllCuentasInteractor;
-import org.rul.domain.interactors.cuenta.insert.InsertCuentaInteractor;
-import org.rul.domain.interactors.cuenta.remove.RemoveCuentaInteractor;
-import org.rul.domain.model.CuentaDomain;
-import org.rul.domain.repository.CuentaRepository;
-import org.rul.domain.util.Mapper;
-import org.rul.presenter.presenters.HomePresenter;
-import org.rul.presenter.ui.model.Cuenta;
-import org.rul.repository.datasource.CuentaDbDatasource;
-import org.rul.repository.model.CuentaDb;
+import org.rul.cuentas.interactors.cuenta.get.GetAllCuentasInteractor;
+import org.rul.cuentas.interactors.cuenta.insert.InsertCuentaInteractor;
+import org.rul.cuentas.interactors.cuenta.remove.RemoveCuentaInteractor;
+import org.rul.cuentas.model.CuentaDomain;
+import org.rul.cuentas.repository.CuentaRepository;
+import org.rul.cuentas.util.Mapper;
+import org.rul.cuentas.presenters.HomePresenter;
+import org.rul.cuentas.ui.model.Cuenta;
+import org.rul.cuentas.datasource.CuentaDbDatasource;
+import org.rul.cuentas.model.CuentaDb;
 
 import dagger.Component;
 

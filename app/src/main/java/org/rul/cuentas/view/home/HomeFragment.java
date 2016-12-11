@@ -14,9 +14,9 @@ import android.widget.EditText;
 import org.rul.cuentas.R;
 import org.rul.cuentas.view.home.adpater.CuentaAdapter;
 import org.rul.cuentas.view.home.adpater.OnCuentaClickedListener;
-import org.rul.presenter.presenters.HomePresenter;
-import org.rul.presenter.ui.model.Cuenta;
-import org.rul.presenter.ui.views.HomeView;
+import org.rul.cuentas.presenters.HomePresenter;
+import org.rul.cuentas.ui.model.Cuenta;
+import org.rul.cuentas.ui.views.HomeView;
 
 import java.util.List;
 

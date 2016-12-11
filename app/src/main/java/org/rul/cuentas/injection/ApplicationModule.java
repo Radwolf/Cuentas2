@@ -3,11 +3,11 @@ package org.rul.cuentas.injection;
 import android.app.Application;
 
 import org.rul.cuentas.thread.ApplicationMainThread;
-import org.rul.domain.threads.InteractorExecutor;
-import org.rul.domain.threads.MainThread;
-import org.rul.domain.threads.ThreadExecutor;
-import org.rul.repository.providers.DbProvider;
-import org.rul.repository.providers.RealmProvider;
+import org.rul.cuentas.threads.InteractorExecutor;
+import org.rul.cuentas.threads.MainThread;
+import org.rul.cuentas.threads.ThreadExecutor;
+import org.rul.cuentas.providers.DbProvider;
+import org.rul.cuentas.providers.RealmProvider;
 
 import javax.inject.Singleton;
 

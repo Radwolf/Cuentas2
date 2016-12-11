@@ -26,6 +26,8 @@ dependencies {
     })
     testCompile parent.ext.libJunit
     compile parent.ext.libAppCompat
+    compile parent.ext.libFirebase
+    compile parent.ext.libGoobleServices
     provided parent.ext.libAnnotations
 
     compile project(':domain')

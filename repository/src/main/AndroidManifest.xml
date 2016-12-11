@@ -1,4 +1,4 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="org.rul.repository">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="org.rul.cuentas">
 
     <application
         android:allowBackup="true"
