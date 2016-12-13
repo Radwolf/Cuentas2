@@ -1,20 +1,26 @@
 package org.rul.cuentas.injection;
 
+import org.rul.cuentas.repository.DummyRepositoryImpl;
+import org.rul.cuentas.repository.datasource.DummyDbDatasource;
+import org.rul.cuentas.repository.datasource.DummyDbDatasourceImpl;
 import org.rul.cuentas.injection.annotations.ForActivity;
+import org.rul.cuentas.interactors.cuenta.dummy.LoadDummyDatosInteractor;
+import org.rul.cuentas.interactors.cuenta.dummy.LoadDummyDatosInteractorImpl;
 import org.rul.cuentas.interactors.cuenta.get.GetActualResumenCuentasInteractor;
 import org.rul.cuentas.interactors.cuenta.get.GetActualResumenCuentasInteractorImpl;
 import org.rul.cuentas.model.ResumenCuentaDomain;
+import org.rul.cuentas.repository.DummyRepository;
 import org.rul.cuentas.repository.ResumenCuentaRepository;
 import org.rul.cuentas.util.Mapper;
 import org.rul.cuentas.mappers.ResumenCuentaUiMapper;
 import org.rul.cuentas.presenters.DashboardPresenter;
 import org.rul.cuentas.presenters.DashboardPresenterImpl;
 import org.rul.cuentas.ui.model.ResumenCuenta;
-import org.rul.cuentas.ResumenCuentaRepositoryImpl;
-import org.rul.cuentas.datasource.ResumenCuentaDbDatasource;
-import org.rul.cuentas.datasource.ResumenCuentaDbDatasourceImpl;
-import org.rul.cuentas.model.ResumenCuentaDb;
-import org.rul.cuentas.util.ResumenCuentaDomainMapper;
+import org.rul.cuentas.repository.ResumenCuentaRepositoryImpl;
+import org.rul.cuentas.repository.datasource.ResumenCuentaDbDatasource;
+import org.rul.cuentas.repository.datasource.ResumenCuentaDbDatasourceImpl;
+import org.rul.cuentas.repository.model.ResumenCuentaDb;
+import org.rul.cuentas.repository.util.ResumenCuentaDomainMapper;
 
 import dagger.Module;
 import dagger.Provides;
@@ -36,6 +42,12 @@ public class DashboardModule {
     @ForActivity
     public GetActualResumenCuentasInteractor providesGetActualResumenCuentasInteractor(GetActualResumenCuentasInteractorImpl getActualResumenCuentasInteractor){
         return  getActualResumenCuentasInteractor;
+    }
+
+    @Provides
+    @ForActivity
+    public LoadDummyDatosInteractor providesLoadDummyDatosInteractor(LoadDummyDatosInteractorImpl loadDummyDatosInteractor){
+        return  loadDummyDatosInteractor;
     }
 
     @Provides
@@ -62,4 +74,15 @@ public class DashboardModule {
         return resumenCuentaDomainMapper;
     }
 
+    @Provides
+    @ForActivity
+    public DummyRepository providesDummyRepository(DummyRepositoryImpl dummyRepository){
+        return dummyRepository;
+    }
+
+    @Provides
+    @ForActivity
+    public DummyDbDatasource providesDummyDatasource(DummyDbDatasourceImpl dummyDbDatasource){
+        return dummyDbDatasource;
+    }
 }

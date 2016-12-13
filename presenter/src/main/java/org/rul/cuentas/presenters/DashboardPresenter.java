@@ -14,6 +14,8 @@ public interface DashboardPresenter {
 
     void getResumenCuentas(String anyoMes);
 
+    void loadDummyData();
+
     //void insertCuenta(Cuenta cuenta);
 
     //void removeCuenta(Cuenta cuenta);

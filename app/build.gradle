@@ -14,7 +14,6 @@ android {
         targetSdkVersion parent.ext.TARGET_SDK_VERSION
         versionCode 1
         versionName "1.0"
-        enforceUniquePackageName = false
     }
     buildTypes {
         release {

@@ -14,11 +14,11 @@ import org.rul.cuentas.mappers.CuentaUiMapper;
 import org.rul.cuentas.presenters.HomePresenter;
 import org.rul.cuentas.presenters.HomePresenterImpl;
 import org.rul.cuentas.ui.model.Cuenta;
-import org.rul.cuentas.CuentaRepositoryImpl;
-import org.rul.cuentas.datasource.CuentaDbDatasource;
-import org.rul.cuentas.datasource.CuentaDbDatasourceImpl;
-import org.rul.cuentas.model.CuentaDb;
-import org.rul.cuentas.util.CuentaDomainMapper;
+import org.rul.cuentas.repository.CuentaRepositoryImpl;
+import org.rul.cuentas.repository.datasource.CuentaDbDatasource;
+import org.rul.cuentas.repository.datasource.CuentaDbDatasourceImpl;
+import org.rul.cuentas.repository.model.CuentaDb;
+import org.rul.cuentas.repository.util.CuentaDomainMapper;
 
 import dagger.Module;
 import dagger.Provides;

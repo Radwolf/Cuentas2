@@ -6,8 +6,8 @@ import org.rul.cuentas.thread.ApplicationMainThread;
 import org.rul.cuentas.threads.InteractorExecutor;
 import org.rul.cuentas.threads.MainThread;
 import org.rul.cuentas.threads.ThreadExecutor;
-import org.rul.cuentas.providers.DbProvider;
-import org.rul.cuentas.providers.RealmProvider;
+import org.rul.cuentas.repository.providers.DbProvider;
+import org.rul.cuentas.repository.providers.RealmProvider;
 
 import javax.inject.Singleton;
 

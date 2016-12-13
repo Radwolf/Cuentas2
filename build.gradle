@@ -6,6 +6,7 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:2.2.3'
+        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.4'
         classpath "io.realm:realm-gradle-plugin:2.0.0"
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -19,7 +20,7 @@ allprojects {
         COMPILE_SDK_VERSION = 24
         BUILD_TOOLS_VERSION = "24.0.2"
         MIN_SDK_VERSION = 19
-        TARGET_SDK_VERSION = 24
+        TARGET_SDK_VERSION = 23
 
         libDagger = 'com.google.dagger:dagger:2.0'
         libDaggerCompiler = 'com.google.dagger:dagger-compiler:2.0'
@@ -29,8 +30,6 @@ allprojects {
         libAppCompat= 'com.android.support:appcompat-v7:23.2.1'
         libButterknife = 'com.jakewharton:butterknife:7.0.1'
         libJunit = 'junit:junit:4.12'
-        libFirebase = 'com.firebase:firebase-client-android:2.3.1+'
-        libGoobleServices = 'com.google.gms:google-services:3.0.0'
 
     }
 

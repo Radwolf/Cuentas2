@@ -48,6 +48,7 @@ public class DashboardFragment extends Fragment implements DashboardView {
         ( (DashboardActivity)getActivity() ).getComponent().inject( this );
 
         dashboardPresenter.setView( this );
+        dashboardPresenter.loadDummyData();
         dashboardPresenter.getResumenCuentas("201610");
 
     }

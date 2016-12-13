@@ -13,8 +13,8 @@ import org.rul.cuentas.repository.ResumenCuentaRepository;
 import org.rul.cuentas.util.Mapper;
 import org.rul.cuentas.presenters.DashboardPresenter;
 import org.rul.cuentas.ui.model.ResumenCuenta;
-import org.rul.cuentas.datasource.ResumenCuentaDbDatasource;
-import org.rul.cuentas.model.ResumenCuentaDb;
+import org.rul.cuentas.repository.datasource.ResumenCuentaDbDatasource;
+import org.rul.cuentas.repository.model.ResumenCuentaDb;
 
 import dagger.Component;
 

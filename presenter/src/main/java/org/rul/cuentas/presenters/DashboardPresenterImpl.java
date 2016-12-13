@@ -1,6 +1,7 @@
 package org.rul.cuentas.presenters;
 
 import org.rul.cuentas.interactors.base.Interactor;
+import org.rul.cuentas.interactors.cuenta.dummy.LoadDummyDatosInteractor;
 import org.rul.cuentas.interactors.cuenta.get.GetActualResumenCuentasInteractor;
 import org.rul.cuentas.model.ResumenCuentaDomain;
 import org.rul.cuentas.mappers.ResumenCuentaUiMapper;
@@ -18,12 +19,15 @@ public class DashboardPresenterImpl implements DashboardPresenter {
 
     private DashboardView dashboardView;
     private GetActualResumenCuentasInteractor getActualResumenCuentasInteractor;
+    private LoadDummyDatosInteractor loadDummyDatosInteractor;
     private ResumenCuentaUiMapper resumenCuentaUiMapper;
 
     @Inject
     public DashboardPresenterImpl(GetActualResumenCuentasInteractor getActualResumenCuentasInteractor,
+                                  LoadDummyDatosInteractor loadDummyDatosInteractor,
                                   ResumenCuentaUiMapper resumenCuentaUiMapper) {
         this.getActualResumenCuentasInteractor = getActualResumenCuentasInteractor;
+        this.loadDummyDatosInteractor = loadDummyDatosInteractor;
         this.resumenCuentaUiMapper = resumenCuentaUiMapper;
     }
 
@@ -43,6 +47,21 @@ public class DashboardPresenterImpl implements DashboardPresenter {
         });
 
 
+    }
+
+    @Override
+    public void loadDummyData() {
+        loadDummyDatosInteractor.run(new Interactor.Callback<Object>(){
+            @Override
+            public void onSuccess(Object object) {
+
+            }
+
+            @Override
+            public void onError(Throwable throwable) {
+                dashboardView.showGetCuentasError();
+            }
+        });
     }
 
     @Override
