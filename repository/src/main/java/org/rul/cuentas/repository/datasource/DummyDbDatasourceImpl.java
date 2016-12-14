@@ -1,18 +1,34 @@
 package org.rul.cuentas.repository.datasource;
 
+import android.content.res.Resources;
+import android.util.Log;
+
+import com.google.common.base.Strings;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.rul.cuentas.repository.R;
+import org.rul.cuentas.repository.model.Categoria;
 import org.rul.cuentas.repository.model.CuentaDb;
+import org.rul.cuentas.repository.model.MovimientoDb;
+import org.rul.cuentas.repository.model.ResumenCuentaDb;
 import org.rul.cuentas.repository.providers.RealmProvider;
 import org.rul.cuentas.repository.exceptions.RepositoryException;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
+import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.inject.Inject;
 
 import io.realm.Realm;
+
+import static android.R.attr.data;
 
 /**
  * Created by rgonzalez on 03/10/2016.
@@ -28,12 +44,103 @@ public class DummyDbDatasourceImpl implements DummyDbDatasource {
     }
 
     @Override
-    public void loadDummy() {
+    public void loadDummy(InputStream is) {
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        System.out.println(is.toString());
+        //try {
+           // InputStream is = new FileInputStream(new File("cuentas2.json"));
+        //} catch (FileNotFoundException e) {
+          //  System.out.println(e.getMessage());
+        //}
+        BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+        StringBuilder out = new StringBuilder();
+        String line;
         try {
-            InputStream is = new FileInputStream(new File("cuentas2.json"));
-        } catch (FileNotFoundException e) {
-            System.out.println(e.getMessage());
+            while ((line = reader.readLine()) != null) {
+                out.append(line);
+            }
+            System.out.println(out.toString());   //Prints the string content read from input stream
+            reader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+        // make sure the quotes are escaped
+        String str = out.toString();
+        // the object data is inside a "global" JSONObject
+        JSONArray cuentas;
+        JSONArray resumenCuentas;
+        JSONArray movimientos;
+        getRealm().beginTransaction();
+        try {
+            cuentas = new JSONObject(str).getJSONArray("cuenta");
+            /*for (int i = 0; i < cuentas.length(); i++) {
+                JSONObject cuenta = cuentas.getJSONObject(i);
+                CuentaDb cuentaDb = null;
+                cuentaDb = getRealm().createObject(CuentaDb.class, cuenta.getString("nombre"));
+                cuentaDb.setSaldo(Float.parseFloat(cuenta.getString("saldo")));
+                cuentaDb.setFechaActualizacion(Calendar.getInstance().getTime());
+            }*/
+            resumenCuentas = new JSONObject(str).getJSONArray("resumen_cuenta");
+            /*for (int i = 0; i < resumenCuentas.length(); i++) {
+                JSONObject resumenCuenta = resumenCuentas.getJSONObject(i);
+                CuentaDb cuentaDb = getRealm().where(CuentaDb.class).equalTo("nombre", resumenCuenta.getString("cuentaDb")).findFirst();
+                ResumenCuentaDb resumenCuentaDb = null;
+                int lastId = 0;
+                resumenCuentaDb = getRealm().createObject(ResumenCuentaDb.class, i);
+                resumenCuentaDb.setCuentaDb(cuentaDb);
+                resumenCuentaDb.setAnyoMes(resumenCuenta.getString("anyomes"));
+                resumenCuentaDb.setAhorros(Float.parseFloat(resumenCuenta.getString("ahorros")));
+                resumenCuentaDb.setGastos(Float.parseFloat(resumenCuenta.getString("gastos")));
+                resumenCuentaDb.setIngresos(Float.parseFloat(resumenCuenta.getString("ingresos")));
+            }*/
+            movimientos = new JSONObject(str).getJSONArray("movimientos");
+            for (int i = 0; i < movimientos.length(); i++) {
+                JSONObject movimiento = movimientos.getJSONObject(i);
+                MovimientoDb movimientoDb = null;
+                CuentaDb cuentaDb = getRealm().where(CuentaDb.class).equalTo("nombre", movimiento.getString("cuentaDb")).findFirst();
+                /*int lastId = 0;
+                if(getRealm().where(MovimientoDb.class).findAll().max("id") != null){
+                    lastId = getRealm().where(MovimientoDb.class).findAll().max("id").intValue();
+                }*/
+                movimientoDb = getRealm().createObject(MovimientoDb.class, i);
+                movimientoDb.setAhorro(Boolean.parseBoolean(movimiento.getString("es_ahorro")));
+                //movimientoDb.setCategoria(new Categoria());
+                movimientoDb.setCuentaDb(cuentaDb);
+                movimientoDb.setDescripcion(movimiento.getString("descripcion"));
+                movimientoDb.setFechaConfirmacion((!Strings.isNullOrEmpty(movimiento.getString("fecha_confirmacion")))?formatter.parse(movimiento.getString("fecha_confirmacion")):null);
+                movimientoDb.setFechaPrevista((!Strings.isNullOrEmpty(movimiento.getString("fecha_prevista")))?formatter.parse(movimiento.getString("fecha_prevista")):null);
+                float importe = Float.parseFloat(movimiento.getString("importe"));
+                movimientoDb.setImporte(importe);
+                float importePrevisto = Float.parseFloat(movimiento.getString("importe_previsto"));
+
+                movimientoDb.setImportePrevisto(importePrevisto);
+                movimientoDb.setTipoMovimiento(movimiento.getString("tipo_movimiento"));
+
+                String tipoMovimiento = movimiento.getString("tipo_movimiento");
+                if("INGRESO".equals(tipoMovimiento)){
+                    ResumenCuentaDb resumenCuenta = getRealm().where(ResumenCuentaDb.class)
+                            .equalTo("cuentaDb.nombre", movimiento.getString("cuentaDb"))
+                            .findAllSorted("anyoMes").first();
+                    if(importe == 0) {
+                        //incrementariamos ingresos previstos, donde los contabilizamos
+                    }else{
+                        resumenCuenta.setIngresos(importe + resumenCuenta.getIngresos());
+                    }
+                    getRealm().copyToRealmOrUpdate(resumenCuenta);
+                }
+            }
+            //getRealm().delete(CuentaDb.class);
+            //getRealm().delete(ResumenCuentaDb.class);
+            //getRealm().delete(MovimientoDb.class);
+            //getRealm().createAllFromJson(CuentaDb.class, cuentas.toString());
+            //getRealm().createAllFromJson(ResumenCuentaDb.class, resumenCuentas.toString());
+            //getRealm().createAllFromJson(MovimientoDb.class, movimientos.toString());
+            getRealm().commitTransaction();
+        } catch (Exception e) {
+            e.printStackTrace();
+            getRealm().cancelTransaction();
+        }
+
         /*getRealm().beginTransaction();
         try {
             getRealm().createAllFromJson(City.class, is);
@@ -42,7 +149,6 @@ public class DummyDbDatasourceImpl implements DummyDbDatasource {
             getRealm().cancelTransaction();
         }*/
     }
-
 
     private Realm getRealm() {
         return realmProvider.getDatabase();

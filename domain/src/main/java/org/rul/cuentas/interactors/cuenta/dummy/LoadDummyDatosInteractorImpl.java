@@ -1,13 +1,10 @@
 package org.rul.cuentas.interactors.cuenta.dummy;
 
-import org.rul.cuentas.interactors.cuenta.get.GetAllCuentasInteractor;
-import org.rul.cuentas.model.CuentaDomain;
-import org.rul.cuentas.repository.CuentaRepository;
 import org.rul.cuentas.repository.DummyRepository;
 import org.rul.cuentas.threads.InteractorExecutor;
 import org.rul.cuentas.threads.MainThread;
 
-import java.util.List;
+import java.io.InputStream;
 
 import javax.inject.Inject;
 
@@ -18,6 +15,8 @@ import javax.inject.Inject;
 public class LoadDummyDatosInteractorImpl implements LoadDummyDatosInteractor {
 
     private Callback<Object> callback;
+
+    private InputStream is;
 
     private DummyRepository dummyRepository;
 
@@ -36,8 +35,9 @@ public class LoadDummyDatosInteractorImpl implements LoadDummyDatosInteractor {
     }
 
     @Override
-    public void run(Callback<Object> callback) {
+    public void run(InputStream is, Callback<Object> callback) {
 
+        this.is = is;
         this.callback = callback;
         interactorExecutor.executeInteractor( this );
 
@@ -50,7 +50,7 @@ public class LoadDummyDatosInteractorImpl implements LoadDummyDatosInteractor {
 
             @Override
             public void run() {
-                callback.onSuccess( dummyRepository.load() );
+                callback.onSuccess( dummyRepository.load(is) );
             }
 
         });

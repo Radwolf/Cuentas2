@@ -14,6 +14,7 @@ import org.rul.cuentas.presenters.DashboardPresenter;
 import org.rul.cuentas.ui.model.ResumenCuenta;
 import org.rul.cuentas.ui.views.DashboardView;
 
+import java.io.InputStream;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -48,8 +49,9 @@ public class DashboardFragment extends Fragment implements DashboardView {
         ( (DashboardActivity)getActivity() ).getComponent().inject( this );
 
         dashboardPresenter.setView( this );
-        dashboardPresenter.loadDummyData();
-        dashboardPresenter.getResumenCuentas("201610");
+        InputStream is = getResources().openRawResource(R.raw.cuentas2);
+        dashboardPresenter.loadDummyData(is);
+        dashboardPresenter.getResumenCuentas("201612");
 
     }
 

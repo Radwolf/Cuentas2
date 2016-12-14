@@ -7,6 +7,7 @@ import org.rul.cuentas.model.ResumenCuentaDomain;
 import org.rul.cuentas.mappers.ResumenCuentaUiMapper;
 import org.rul.cuentas.ui.views.DashboardView;
 
+import java.io.InputStream;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -50,8 +51,8 @@ public class DashboardPresenterImpl implements DashboardPresenter {
     }
 
     @Override
-    public void loadDummyData() {
-        loadDummyDatosInteractor.run(new Interactor.Callback<Object>(){
+    public void loadDummyData(InputStream is) {
+        loadDummyDatosInteractor.run(is, new Interactor.Callback<Object>(){
             @Override
             public void onSuccess(Object object) {
 

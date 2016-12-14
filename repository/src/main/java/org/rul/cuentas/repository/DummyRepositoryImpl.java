@@ -2,6 +2,8 @@ package org.rul.cuentas.repository;
 
 import org.rul.cuentas.repository.datasource.DummyDbDatasource;
 
+import java.io.InputStream;
+
 import javax.inject.Inject;
 
 /**
@@ -18,8 +20,8 @@ public class DummyRepositoryImpl implements DummyRepository {
     }
 
     @Override
-    public Object load() {
-        dummyDbDatasource.loadDummy();
+    public Object load(InputStream is) {
+        dummyDbDatasource.loadDummy(is);
         return null;
     }
 

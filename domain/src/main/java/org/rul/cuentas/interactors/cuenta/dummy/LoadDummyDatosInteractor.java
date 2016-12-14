@@ -3,6 +3,7 @@ package org.rul.cuentas.interactors.cuenta.dummy;
 import org.rul.cuentas.interactors.base.Interactor;
 import org.rul.cuentas.model.CuentaDomain;
 
+import java.io.InputStream;
 import java.util.List;
 
 /**
@@ -11,6 +12,6 @@ import java.util.List;
 
 public interface LoadDummyDatosInteractor extends Interactor {
 
-    void run(Callback<Object> callback);
+    void run(InputStream is, Callback<Object> callback);
 
 }

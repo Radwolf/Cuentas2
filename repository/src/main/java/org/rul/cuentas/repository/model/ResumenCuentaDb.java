@@ -1,6 +1,7 @@
 package org.rul.cuentas.repository.model;
 
 import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
 
 /**
  * Created by rgonzalez on 09/12/2016.
@@ -8,11 +9,23 @@ import io.realm.RealmObject;
 
 public class ResumenCuentaDb extends RealmObject {
 
+    public static final String K_RESUMEN_CUENTA_ID = "id";
+
+    @PrimaryKey
+    private int id;
     private CuentaDb cuentaDb;
     private String anyoMes;
     private float ingresos;
     private float gastos;
     private float ahorros;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public CuentaDb getCuentaDb() {
         return cuentaDb;

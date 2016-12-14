@@ -1,0 +1,125 @@
+{
+	"cuenta": [{
+		"nombre": "Casa",
+		"saldo": 0.00
+	},
+	{
+		"nombre": "Recibos",
+		"saldo": 0.00
+	}, 
+	{
+		"nombre": "Compras",
+		"saldo": 0.00
+	}],
+	"resumen_cuenta": [{
+		"cuentaDb": "Casa",
+		"anyomes": 201612,
+		"ingresos": 0.00,
+		"gastos": 0.00,
+		"ahorros": 0.00
+	},
+	{
+		"cuentaDb": "Recibos",
+		"anyomes": 201612,
+		"ingresos": 0.00,
+		"gastos": 0.00,
+		"ahorros": 0.00
+	},
+	{
+		"cuentaDb": "Compras",
+		"anyomes": 201612,
+		"ingresos": 0.00,
+		"gastos": 0.00,
+		"ahorros": 0.00
+	}],
+	"movimientos": [{
+		"cuentaDb": "Compras",
+		"descripcion": "Compra carrefour",
+		"tipo_movimiento": "GASTO",
+		"es_ahorro": "false",
+		"es_previsto": "false",
+		"importe": 123.85,
+		"importe_previsto": 0.00,
+		"categoria": {
+		  "principal": "Compras",
+		  "subcategoria": "Comida y varios"
+		},
+		"fecha_confirmacion": "10/12/2016",
+		"fecha_prevista": ""
+	},
+	{
+		"cuentaDb": "Compras",
+		"descripcion": "Compra carrefour",
+		"tipo_movimiento": "GASTO",
+		"es_ahorro": "false",
+		"es_previsto": "false",
+		"importe": 50.85,
+		"importe_previsto": 0.00,
+		"categoria": {
+		  "principal": "Compras",
+		  "subcategoria": "Ropa"
+		},
+		"fecha_confirmacion": "08/12/2016",
+		"fecha_prevista": ""
+	},
+	{
+		"cuentaDb": "Casa",
+		"descripcion": "Nómina",
+		"tipo_movimiento": "INGRESO",
+		"es_ahorro": "false",
+		"es_previsto": "false",
+		"importe": 1450.67,
+		"importe_previsto": 0.00,
+		"categoria": {
+		  "principal": "Nóminas",
+		  "subcategoria": "Mensual"
+		},
+		"fecha_confirmacion": "01/12/2016",
+		"fecha_prevista": ""
+	},
+    {
+		"cuentaDb": "Recibos",
+		"descripcion": "Recibo Luz",
+		"tipo_movimiento": "GASTO",
+		"es_ahorro": "false",
+		"es_previsto": "false",
+		"importe": 32.20,
+		"importe_previsto": 0.00,
+		"categoria": {
+		  "principal": "Recibos",
+		  "subcategoria": "Luz"
+		},
+		"fecha_confirmacion": "10/12/2016",
+		"fecha_prevista": ""
+	},
+	{
+		"cuentaDb": "Recibos",
+		"descripcion": "Recibo Internet",
+		"tipo_movimiento": "GASTO",
+		"es_ahorro": "false",
+		"es_previsto": "true",
+		"importe": 0.00,
+		"importe_previsto": 38.95,
+		"categoria": {
+		  "principal": "Recibos",
+		  "subcategoria": "Internet"
+		},
+		"fecha_confirmacion": "",
+		"fecha_prevista": "14/12/2016"
+	},
+    {
+    	"cuentaDb": "Recibos",
+		"descripcion": "Transferencia",
+		"tipo_movimiento": "INGRESO",
+		"es_ahorro": "false",
+		"es_previsto": "false",
+		"importe": 600.00,
+		"importe_previsto": 0.00,
+		"categoria": {
+		  "principal": "Bancos",
+		  "subcategoria": "Transferencia"
+		},
+		"fecha_confirmacion": "01/12/2016",
+		"fecha_prevista": ""
+	}]
+}
