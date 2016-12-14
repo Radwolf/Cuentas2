@@ -18,6 +18,9 @@ public class ResumenCuentaDb extends RealmObject {
     private float ingresos;
     private float gastos;
     private float ahorros;
+    private float ingresosPrevistos;
+    private float gastosPrevistos;
+    private float ahorrosPrevistos;
 
     public int getId() {
         return id;
@@ -67,6 +70,30 @@ public class ResumenCuentaDb extends RealmObject {
         this.ahorros = ahorros;
     }
 
+    public float getIngresosPrevistos() {
+        return ingresosPrevistos;
+    }
+
+    public void setIngresosPrevistos(float ingresosPrevistos) {
+        this.ingresosPrevistos = ingresosPrevistos;
+    }
+
+    public float getGastosPrevistos() {
+        return gastosPrevistos;
+    }
+
+    public void setGastosPrevistos(float gastosPrevistos) {
+        this.gastosPrevistos = gastosPrevistos;
+    }
+
+    public float getAhorrosPrevistos() {
+        return ahorrosPrevistos;
+    }
+
+    public void setAhorrosPrevistos(float ahorrosPrevistos) {
+        this.ahorrosPrevistos = ahorrosPrevistos;
+    }
+
     public ResumenCuentaDb() {
     }
 
@@ -76,6 +103,9 @@ public class ResumenCuentaDb extends RealmObject {
         this.ahorros = builder.ahorros;
         this.gastos = builder.gastos;
         this.ingresos = builder.ingresos;
+        this.ahorrosPrevistos = builder.ahorrosPrevistos;
+        this.gastosPrevistos = builder.gastosPrevistos;
+        this.ingresosPrevistos = builder.ingresosPrevistos;
     }
 
     public static class Builder {
@@ -85,6 +115,9 @@ public class ResumenCuentaDb extends RealmObject {
         private float ingresos;
         private float gastos;
         private float ahorros;
+        private float ingresosPrevistos;
+        private float gastosPrevistos;
+        private float ahorrosPrevistos;
 
         public Builder setCuentaDb(CuentaDb cuentaDb) {
             this.cuentaDb = cuentaDb;
@@ -108,6 +141,21 @@ public class ResumenCuentaDb extends RealmObject {
 
         public Builder setAhorros(float ahorros) {
             this.ahorros = ahorros;
+            return this;
+        }
+
+        public Builder setIngresosPrevistos(float ingresosPrevistos) {
+            this.ingresosPrevistos = ingresosPrevistos;
+            return this;
+        }
+
+        public Builder setGastosPrevistos(float gastosPrevistos) {
+            this.gastosPrevistos = gastosPrevistos;
+            return this;
+        }
+
+        public Builder setAhorrosPrevistos(float ahorrosPrevistos) {
+            this.ahorrosPrevistos = ahorrosPrevistos;
             return this;
         }
 

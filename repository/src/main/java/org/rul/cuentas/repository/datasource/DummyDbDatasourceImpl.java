@@ -73,15 +73,15 @@ public class DummyDbDatasourceImpl implements DummyDbDatasource {
         getRealm().beginTransaction();
         try {
             cuentas = new JSONObject(str).getJSONArray("cuenta");
-            /*for (int i = 0; i < cuentas.length(); i++) {
+            for (int i = 0; i < cuentas.length(); i++) {
                 JSONObject cuenta = cuentas.getJSONObject(i);
                 CuentaDb cuentaDb = null;
                 cuentaDb = getRealm().createObject(CuentaDb.class, cuenta.getString("nombre"));
                 cuentaDb.setSaldo(Float.parseFloat(cuenta.getString("saldo")));
                 cuentaDb.setFechaActualizacion(Calendar.getInstance().getTime());
-            }*/
+            }
             resumenCuentas = new JSONObject(str).getJSONArray("resumen_cuenta");
-            /*for (int i = 0; i < resumenCuentas.length(); i++) {
+            for (int i = 0; i < resumenCuentas.length(); i++) {
                 JSONObject resumenCuenta = resumenCuentas.getJSONObject(i);
                 CuentaDb cuentaDb = getRealm().where(CuentaDb.class).equalTo("nombre", resumenCuenta.getString("cuentaDb")).findFirst();
                 ResumenCuentaDb resumenCuentaDb = null;
@@ -92,16 +92,12 @@ public class DummyDbDatasourceImpl implements DummyDbDatasource {
                 resumenCuentaDb.setAhorros(Float.parseFloat(resumenCuenta.getString("ahorros")));
                 resumenCuentaDb.setGastos(Float.parseFloat(resumenCuenta.getString("gastos")));
                 resumenCuentaDb.setIngresos(Float.parseFloat(resumenCuenta.getString("ingresos")));
-            }*/
+            }
             movimientos = new JSONObject(str).getJSONArray("movimientos");
             for (int i = 0; i < movimientos.length(); i++) {
                 JSONObject movimiento = movimientos.getJSONObject(i);
                 MovimientoDb movimientoDb = null;
                 CuentaDb cuentaDb = getRealm().where(CuentaDb.class).equalTo("nombre", movimiento.getString("cuentaDb")).findFirst();
-                /*int lastId = 0;
-                if(getRealm().where(MovimientoDb.class).findAll().max("id") != null){
-                    lastId = getRealm().where(MovimientoDb.class).findAll().max("id").intValue();
-                }*/
                 movimientoDb = getRealm().createObject(MovimientoDb.class, i);
                 movimientoDb.setAhorro(Boolean.parseBoolean(movimiento.getString("es_ahorro")));
                 //movimientoDb.setCategoria(new Categoria());
@@ -112,26 +108,39 @@ public class DummyDbDatasourceImpl implements DummyDbDatasource {
                 float importe = Float.parseFloat(movimiento.getString("importe"));
                 movimientoDb.setImporte(importe);
                 float importePrevisto = Float.parseFloat(movimiento.getString("importe_previsto"));
-
                 movimientoDb.setImportePrevisto(importePrevisto);
                 movimientoDb.setTipoMovimiento(movimiento.getString("tipo_movimiento"));
 
                 String tipoMovimiento = movimiento.getString("tipo_movimiento");
+                ResumenCuentaDb resumenCuenta = getRealm().where(ResumenCuentaDb.class)
+                        .equalTo("cuentaDb.nombre", movimiento.getString("cuentaDb"))
+                        .findAllSorted("anyoMes").first();
                 if("INGRESO".equals(tipoMovimiento)){
-                    ResumenCuentaDb resumenCuenta = getRealm().where(ResumenCuentaDb.class)
-                            .equalTo("cuentaDb.nombre", movimiento.getString("cuentaDb"))
-                            .findAllSorted("anyoMes").first();
                     if(importe == 0) {
-                        //incrementariamos ingresos previstos, donde los contabilizamos
+                        resumenCuenta.setIngresosPrevistos(importePrevisto + resumenCuenta.getIngresosPrevistos());
                     }else{
                         resumenCuenta.setIngresos(importe + resumenCuenta.getIngresos());
                     }
-                    getRealm().copyToRealmOrUpdate(resumenCuenta);
                 }
+                if("GASTO".equals(tipoMovimiento)){
+                    if(importe == 0) {
+                        resumenCuenta.setGastosPrevistos(importePrevisto + resumenCuenta.getGastosPrevistos());
+                    }else{
+                        resumenCuenta.setGastos(importe + resumenCuenta.getGastos());
+                    }
+                }
+                if("AHORRO".equals(tipoMovimiento)){
+                    if(importe == 0) {
+                        resumenCuenta.setAhorrosPrevistos(importePrevisto + resumenCuenta.getAhorrosPrevistos());
+                    }else{
+                        resumenCuenta.setAhorros(importe + resumenCuenta.getAhorros());
+                    }
+                }
+                getRealm().copyToRealmOrUpdate(resumenCuenta);
             }
-            //getRealm().delete(CuentaDb.class);
-            //getRealm().delete(ResumenCuentaDb.class);
-            //getRealm().delete(MovimientoDb.class);
+//            getRealm().delete(CuentaDb.class);
+//            getRealm().delete(ResumenCuentaDb.class);
+//            getRealm().delete(MovimientoDb.class);
             //getRealm().createAllFromJson(CuentaDb.class, cuentas.toString());
             //getRealm().createAllFromJson(ResumenCuentaDb.class, resumenCuentas.toString());
             //getRealm().createAllFromJson(MovimientoDb.class, movimientos.toString());
