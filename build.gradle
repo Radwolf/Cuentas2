@@ -8,6 +8,7 @@ buildscript {
         classpath 'com.android.tools.build:gradle:2.2.3'
         classpath 'com.neenbedankt.gradle.plugins:android-apt:1.4'
         classpath "io.realm:realm-gradle-plugin:2.0.0"
+        classpath 'com.google.gms:google-services:3.0.0'
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
@@ -25,9 +26,9 @@ allprojects {
         libDagger = 'com.google.dagger:dagger:2.0'
         libDaggerCompiler = 'com.google.dagger:dagger-compiler:2.0'
         libAnnotations = 'javax.annotation:jsr250-api:1.0'
-        libRecyclerView = 'com.android.support:recyclerview-v7:23.2.1'
-        libDesign= 'com.android.support:design:23.2.1'
-        libAppCompat= 'com.android.support:appcompat-v7:23.2.1'
+        libRecyclerView = 'com.android.support:recyclerview-v7:24.2.0'
+        libDesign= 'com.android.support:design:24.2.0'
+        libAppCompat= 'com.android.support:appcompat-v7:24.2.0'
         libButterknife = 'com.jakewharton:butterknife:7.0.1'
         libJunit = 'junit:junit:4.12'
 
