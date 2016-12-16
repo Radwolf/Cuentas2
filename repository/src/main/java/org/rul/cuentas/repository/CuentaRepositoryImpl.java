@@ -7,6 +7,7 @@ import org.rul.cuentas.repository.firebase.CuentaDbFirebase;
 import org.rul.cuentas.repository.datasource.mapper.CuentaDomainMapper;
 import org.rul.cuentas.repository.firebase.mapper.CuentaDomainMapperFb;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -58,6 +59,6 @@ public class CuentaRepositoryImpl implements CuentaRepository {
 
     @Override
     public List<CuentaDomain> findAllFb() {
-        return cuentaDomainMapperFb.mapList(cuentaDbFirebase.findAll());
+        return new ArrayList<>(); //cuentaDomainMapperFb.mapList(cuentaDbFirebase.findAll());
     }
 }
