@@ -1,8 +1,12 @@
-package org.rul.cuentas.repository.util;
+package org.rul.cuentas.repository.datasource.mapper;
 
-import org.rul.cuentas.repository.model.CuentaDb;
+import org.rul.cuentas.repository.datasource.model.CuentaDb;
 import org.rul.cuentas.model.CuentaDomain;
 import org.rul.cuentas.util.Mapper;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.inject.Inject;
 
@@ -12,8 +16,11 @@ import javax.inject.Inject;
 
 public class CuentaDomainMapper  extends Mapper<CuentaDomain, CuentaDb> {
 
+    private SimpleDateFormat sdf;
+
     @Inject
     public CuentaDomainMapper() {
+        this.sdf = new SimpleDateFormat("dd/MM/yyyy");
     }
 
     @Override
@@ -21,14 +28,20 @@ public class CuentaDomainMapper  extends Mapper<CuentaDomain, CuentaDb> {
         return new CuentaDomain.Builder()
                 .setNombre(type.getNombre())
                 .setSaldo(type.getSaldo())
-                .setFechaActualizacion(type.getFechaActualizacion())
+                .setFechaActualizacion(sdf.format(type.getFechaActualizacion()))
                 .build();
     }
 
     @Override
     public CuentaDb reverseMap(CuentaDomain type) {
+        Date date = new Date();
+        try {
+             date = sdf.parse(type.getFechaActualizacion());
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         return new CuentaDb.Builder()
-                .setFechaActualizacion(type.getFechaActualizacion())
+                .setFechaActualizacion(date)
                 .setNombre(type.getNombre())
                 .setSaldo(type.getSaldo())
                 .build();

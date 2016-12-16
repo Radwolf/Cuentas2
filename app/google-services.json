@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "749292196600",
+    "firebase_url": "https://cuentas-b6e33.firebaseio.com",
+    "project_id": "cuentas-b6e33",
+    "storage_bucket": "cuentas-b6e33.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:749292196600:android:2c2095aec5fb1a0e",
+        "android_client_info": {
+          "package_name": "org.rul.cuentas"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "749292196600-1jvkoo5r01nf32gdm0i68drg5noh3vsc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDqi8xhqN67Hmpd_sZKNswnMhuFE468tp8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

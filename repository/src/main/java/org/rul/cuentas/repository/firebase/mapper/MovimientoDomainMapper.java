@@ -1,7 +1,7 @@
-package org.rul.cuentas.repository.util;
+package org.rul.cuentas.repository.firebase.mapper;
 
-import org.rul.cuentas.repository.model.MovimientoDb;
 import org.rul.cuentas.model.MovimientoDomain;
+import org.rul.cuentas.repository.datasource.model.MovimientoDb;
 import org.rul.cuentas.util.Mapper;
 
 import javax.inject.Inject;

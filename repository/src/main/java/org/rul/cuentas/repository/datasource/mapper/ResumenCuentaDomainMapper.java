@@ -1,7 +1,7 @@
-package org.rul.cuentas.repository.util;
+package org.rul.cuentas.repository.datasource.mapper;
 
-import org.rul.cuentas.repository.model.CuentaDb;
-import org.rul.cuentas.repository.model.ResumenCuentaDb;
+import org.rul.cuentas.repository.datasource.model.CuentaDb;
+import org.rul.cuentas.repository.datasource.model.ResumenCuentaDb;
 import org.rul.cuentas.model.ResumenCuentaDomain;
 import org.rul.cuentas.util.Mapper;
 

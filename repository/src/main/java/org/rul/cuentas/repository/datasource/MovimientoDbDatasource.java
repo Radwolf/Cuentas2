@@ -3,7 +3,7 @@ package org.rul.cuentas.repository.datasource;
 
 
 import org.rul.cuentas.repository.datasource.base.DbDatasource;
-import org.rul.cuentas.repository.model.MovimientoDb;
+import org.rul.cuentas.repository.datasource.model.MovimientoDb;
 
 import java.util.Date;
 

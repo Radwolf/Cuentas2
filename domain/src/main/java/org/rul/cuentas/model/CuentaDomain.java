@@ -9,7 +9,7 @@ import java.util.Date;
 public class CuentaDomain {
 
 
-    private Date fechaActualizacion;
+    private String fechaActualizacion;
     private String nombre;
     private float saldo;
 
@@ -19,11 +19,11 @@ public class CuentaDomain {
         this.saldo = builder.saldo;
     }
 
-    public Date getFechaActualizacion() {
+    public String getFechaActualizacion() {
         return fechaActualizacion;
     }
 
-    public void setFechaActualizacion(Date fechaActualizacion) {
+    public void setFechaActualizacion(String fechaActualizacion) {
         this.fechaActualizacion = fechaActualizacion;
     }
 
@@ -45,7 +45,7 @@ public class CuentaDomain {
 
     public static class Builder{
 
-        private Date fechaActualizacion;
+        private String fechaActualizacion;
         private String nombre;
         private float saldo;
 
@@ -60,7 +60,7 @@ public class CuentaDomain {
             return this;
         }
 
-        public Builder setFechaActualizacion(Date fechaActualizacion) {
+        public Builder setFechaActualizacion(String fechaActualizacion) {
             this.fechaActualizacion = fechaActualizacion;
             return this;
         }

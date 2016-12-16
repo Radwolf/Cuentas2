@@ -3,14 +3,23 @@ package org.rul.cuentas.view.dashboard;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import org.rul.cuentas.R;
-import org.rul.cuentas.view.home.HomeActivity;
+import org.rul.cuentas.repository.firebase.model.CuentaFb;
 import org.rul.cuentas.presenters.DashboardPresenter;
+import org.rul.cuentas.repository.firebase.model.CuentaFb;
 import org.rul.cuentas.ui.model.ResumenCuenta;
 import org.rul.cuentas.ui.views.DashboardView;
 
@@ -26,6 +35,8 @@ import butterknife.ButterKnife;
  * Created by rgonzalez on 07/12/2016.
  */
 public class DashboardFragment extends Fragment implements DashboardView {
+
+    private static final String TAG = "DashboardFragment";
 
     @Inject
     DashboardPresenter dashboardPresenter;
@@ -50,7 +61,7 @@ public class DashboardFragment extends Fragment implements DashboardView {
 
         dashboardPresenter.setView( this );
         InputStream is = getResources().openRawResource(R.raw.cuentas2);
-        dashboardPresenter.loadDummyData(is);
+        //dashboardPresenter.loadDummyData(is);
         dashboardPresenter.getResumenCuentas("201612");
 
     }

@@ -1,4 +1,4 @@
-package org.rul.cuentas.repository.model;
+package org.rul.cuentas.repository.datasource.model;
 
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;

@@ -1,5 +1,8 @@
 package org.rul.cuentas.injection;
 
+import org.rul.cuentas.model.CuentaDomain;
+import org.rul.cuentas.repository.CuentaRepository;
+import org.rul.cuentas.repository.CuentaRepositoryImpl;
 import org.rul.cuentas.repository.DummyRepositoryImpl;
 import org.rul.cuentas.repository.datasource.DummyDbDatasource;
 import org.rul.cuentas.repository.datasource.DummyDbDatasourceImpl;
@@ -11,6 +14,10 @@ import org.rul.cuentas.interactors.cuenta.get.GetActualResumenCuentasInteractorI
 import org.rul.cuentas.model.ResumenCuentaDomain;
 import org.rul.cuentas.repository.DummyRepository;
 import org.rul.cuentas.repository.ResumenCuentaRepository;
+import org.rul.cuentas.repository.firebase.CuentaDbFirebase;
+import org.rul.cuentas.repository.firebase.CuentaDbFirebaseImpl;
+import org.rul.cuentas.repository.firebase.mapper.CuentaDomainMapperFb;
+import org.rul.cuentas.repository.firebase.model.CuentaFb;
 import org.rul.cuentas.util.Mapper;
 import org.rul.cuentas.mappers.ResumenCuentaUiMapper;
 import org.rul.cuentas.presenters.DashboardPresenter;
@@ -19,8 +26,8 @@ import org.rul.cuentas.ui.model.ResumenCuenta;
 import org.rul.cuentas.repository.ResumenCuentaRepositoryImpl;
 import org.rul.cuentas.repository.datasource.ResumenCuentaDbDatasource;
 import org.rul.cuentas.repository.datasource.ResumenCuentaDbDatasourceImpl;
-import org.rul.cuentas.repository.model.ResumenCuentaDb;
-import org.rul.cuentas.repository.util.ResumenCuentaDomainMapper;
+import org.rul.cuentas.repository.datasource.model.ResumenCuentaDb;
+import org.rul.cuentas.repository.datasource.mapper.ResumenCuentaDomainMapper;
 
 import dagger.Module;
 import dagger.Provides;
@@ -58,7 +65,7 @@ public class DashboardModule {
 
     @Provides
     @ForActivity
-    public ResumenCuentaDbDatasource providesCuentaDbDatasource(ResumenCuentaDbDatasourceImpl resumenCuentaDbDatasource){
+    public ResumenCuentaDbDatasource providesResumenCuentaDbDatasource(ResumenCuentaDbDatasourceImpl resumenCuentaDbDatasource){
         return resumenCuentaDbDatasource;
     }
 
@@ -76,6 +83,12 @@ public class DashboardModule {
 
     @Provides
     @ForActivity
+    public Mapper<CuentaDomain, CuentaFb> provideCuentaDomainMapperFb(CuentaDomainMapperFb cuentaDomainMapperFb){
+        return cuentaDomainMapperFb;
+    }
+
+    @Provides
+    @ForActivity
     public DummyRepository providesDummyRepository(DummyRepositoryImpl dummyRepository){
         return dummyRepository;
     }
@@ -84,5 +97,17 @@ public class DashboardModule {
     @ForActivity
     public DummyDbDatasource providesDummyDatasource(DummyDbDatasourceImpl dummyDbDatasource){
         return dummyDbDatasource;
+    }
+
+    @Provides
+    @ForActivity
+    public CuentaRepository providesCuentaRepository(CuentaRepositoryImpl cuentaRepository){
+        return cuentaRepository;
+    }
+
+    @Provides
+    @ForActivity
+    public CuentaDbFirebase providesCuentaDbFirebase(CuentaDbFirebaseImpl cuentaDbFirebase){
+        return cuentaDbFirebase;
     }
 }

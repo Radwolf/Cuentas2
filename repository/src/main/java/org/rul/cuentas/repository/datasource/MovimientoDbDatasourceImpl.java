@@ -1,7 +1,7 @@
 package org.rul.cuentas.repository.datasource;
 
 
-import org.rul.cuentas.repository.model.MovimientoDb;
+import org.rul.cuentas.repository.datasource.model.MovimientoDb;
 import org.rul.cuentas.repository.providers.RealmProvider;
 import org.rul.cuentas.repository.exceptions.RepositoryException;
 

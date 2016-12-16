@@ -17,8 +17,8 @@ import org.rul.cuentas.ui.model.Cuenta;
 import org.rul.cuentas.repository.CuentaRepositoryImpl;
 import org.rul.cuentas.repository.datasource.CuentaDbDatasource;
 import org.rul.cuentas.repository.datasource.CuentaDbDatasourceImpl;
-import org.rul.cuentas.repository.model.CuentaDb;
-import org.rul.cuentas.repository.util.CuentaDomainMapper;
+import org.rul.cuentas.repository.datasource.model.CuentaDb;
+import org.rul.cuentas.repository.datasource.mapper.CuentaDomainMapper;
 
 import dagger.Module;
 import dagger.Provides;

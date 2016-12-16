@@ -1,6 +1,6 @@
 package org.rul.cuentas.repository.datasource;
 
-import org.rul.cuentas.repository.model.ResumenCuentaDb;
+import org.rul.cuentas.repository.datasource.model.ResumenCuentaDb;
 import org.rul.cuentas.repository.providers.RealmProvider;
 import org.rul.cuentas.repository.exceptions.RepositoryException;
 

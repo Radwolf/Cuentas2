@@ -2,21 +2,22 @@ package org.rul.cuentas.injection.component;
 
 import android.app.Activity;
 
+
 import org.rul.cuentas.injection.ActivityModule;
 import org.rul.cuentas.injection.HomeModule;
 import org.rul.cuentas.injection.annotations.ForActivity;
-import org.rul.cuentas.view.home.HomeActivity;
-import org.rul.cuentas.view.home.HomeFragment;
 import org.rul.cuentas.interactors.cuenta.get.GetAllCuentasInteractor;
 import org.rul.cuentas.interactors.cuenta.insert.InsertCuentaInteractor;
 import org.rul.cuentas.interactors.cuenta.remove.RemoveCuentaInteractor;
 import org.rul.cuentas.model.CuentaDomain;
-import org.rul.cuentas.repository.CuentaRepository;
-import org.rul.cuentas.util.Mapper;
 import org.rul.cuentas.presenters.HomePresenter;
-import org.rul.cuentas.ui.model.Cuenta;
+import org.rul.cuentas.repository.CuentaRepository;
 import org.rul.cuentas.repository.datasource.CuentaDbDatasource;
-import org.rul.cuentas.repository.model.CuentaDb;
+import org.rul.cuentas.repository.datasource.model.CuentaDb;
+import org.rul.cuentas.ui.model.Cuenta;
+import org.rul.cuentas.util.Mapper;
+import org.rul.cuentas.view.home.HomeActivity;
+import org.rul.cuentas.view.home.HomeFragment;
 
 import dagger.Component;
 

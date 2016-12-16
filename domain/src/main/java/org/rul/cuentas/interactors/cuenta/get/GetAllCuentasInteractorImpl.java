@@ -48,7 +48,8 @@ public class GetAllCuentasInteractorImpl implements GetAllCuentasInteractor {
 
             @Override
             public void run() {
-                callback.onSuccess( cuentaRepository.findAll() );
+                //callback.onSuccess( cuentaRepository.findAll() );
+                callback.onSuccess( cuentaRepository.findAllFb() );
             }
 
         });

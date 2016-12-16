@@ -39,14 +39,10 @@ public class CuentaUiMapper extends Mapper<Cuenta, CuentaDomain> {
                 .setSaldo(Float.parseFloat(type.getSaldo()))
                 .build();
 
-        try {
-            if( type.getFechaActualizacion() != null ) {
-                cuentaDomain.setFechaActualizacion(sdf.parse( type.getFechaActualizacion() ) );
-            }else{
-                cuentaDomain.setFechaActualizacion( new Date() );
-            }
-        } catch (ParseException e) {
-            e.printStackTrace();
+        if( type.getFechaActualizacion() != null ) {
+            cuentaDomain.setFechaActualizacion( type.getFechaActualizacion() );
+        }else{
+            cuentaDomain.setFechaActualizacion(sdf.format(new Date()));
         }
 
         return cuentaDomain;

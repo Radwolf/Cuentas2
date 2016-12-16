@@ -5,6 +5,14 @@ import android.app.Activity;
 import org.rul.cuentas.injection.ActivityModule;
 import org.rul.cuentas.injection.DashboardModule;
 import org.rul.cuentas.injection.annotations.ForActivity;
+import org.rul.cuentas.model.CuentaDomain;
+import org.rul.cuentas.repository.CuentaRepository;
+import org.rul.cuentas.repository.CuentaRepositoryImpl;
+import org.rul.cuentas.repository.DummyRepository;
+import org.rul.cuentas.repository.datasource.DummyDbDatasource;
+import org.rul.cuentas.repository.firebase.CuentaDbFirebase;
+import org.rul.cuentas.repository.firebase.CuentaDbFirebaseImpl;
+import org.rul.cuentas.repository.firebase.model.CuentaFb;
 import org.rul.cuentas.view.dashboard.DashboardActivity;
 import org.rul.cuentas.view.dashboard.DashboardFragment;
 import org.rul.cuentas.interactors.cuenta.get.GetActualResumenCuentasInteractor;
@@ -14,7 +22,7 @@ import org.rul.cuentas.util.Mapper;
 import org.rul.cuentas.presenters.DashboardPresenter;
 import org.rul.cuentas.ui.model.ResumenCuenta;
 import org.rul.cuentas.repository.datasource.ResumenCuentaDbDatasource;
-import org.rul.cuentas.repository.model.ResumenCuentaDb;
+import org.rul.cuentas.repository.datasource.model.ResumenCuentaDb;
 
 import dagger.Component;
 
@@ -46,11 +54,20 @@ public interface DashboardComponent {
     GetActualResumenCuentasInteractor getActualResumenCuentasInteractor();
 
     ResumenCuentaRepository resumenCuentaRepository();
+    DummyRepository dummyRepository();
+    CuentaRepository cuentaRepository();
 
     ResumenCuentaDbDatasource resumenCuentaDbDatasource();
+    DummyDbDatasource dummyDatasource();
+    CuentaDbFirebase cuentaDbFirebase();
 
     Mapper<ResumenCuenta, ResumenCuentaDomain> resumenCuentaUiMapper();
-
+    Mapper<CuentaDomain, CuentaFb> cuentaDomainMapperFb();
     Mapper<ResumenCuentaDomain, ResumenCuentaDb> resumenCuentaDomainMapper();
+
+
+
+
+
 
 }

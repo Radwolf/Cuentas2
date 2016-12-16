@@ -26,4 +26,5 @@ dependencies {
     provided parent.ext.libAnnotations
 
     compile project(':domain')
+    compile 'com.google.firebase:firebase-database:10.0.1'
 }

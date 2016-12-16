@@ -3,7 +3,7 @@ package org.rul.cuentas.repository;
 import org.rul.cuentas.model.ResumenCuentaDomain;
 import org.rul.cuentas.repository.datasource.ResumenCuentaDbDatasource;
 import org.rul.cuentas.repository.exceptions.RepositoryException;
-import org.rul.cuentas.repository.util.ResumenCuentaDomainMapper;
+import org.rul.cuentas.repository.datasource.mapper.ResumenCuentaDomainMapper;
 
 import java.util.List;
 

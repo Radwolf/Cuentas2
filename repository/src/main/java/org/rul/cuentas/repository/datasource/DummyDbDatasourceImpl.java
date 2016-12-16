@@ -1,18 +1,12 @@
 package org.rul.cuentas.repository.datasource;
 
-import android.content.res.Resources;
-import android.util.Log;
-
 import com.google.common.base.Strings;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
-import org.rul.cuentas.repository.R;
-import org.rul.cuentas.repository.model.Categoria;
-import org.rul.cuentas.repository.model.CuentaDb;
-import org.rul.cuentas.repository.model.MovimientoDb;
-import org.rul.cuentas.repository.model.ResumenCuentaDb;
+import org.rul.cuentas.repository.datasource.model.CuentaDb;
+import org.rul.cuentas.repository.datasource.model.MovimientoDb;
+import org.rul.cuentas.repository.datasource.model.ResumenCuentaDb;
 import org.rul.cuentas.repository.providers.RealmProvider;
 import org.rul.cuentas.repository.exceptions.RepositoryException;
 
@@ -27,8 +21,6 @@ import java.util.List;
 import javax.inject.Inject;
 
 import io.realm.Realm;
-
-import static android.R.attr.data;
 
 /**
  * Created by rgonzalez on 03/10/2016.
