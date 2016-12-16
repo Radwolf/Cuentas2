@@ -104,10 +104,10 @@ public class DashboardModule {
     public CuentaRepository providesCuentaRepository(CuentaRepositoryImpl cuentaRepository){
         return cuentaRepository;
     }
-
+/*
     @Provides
     @ForActivity
     public CuentaDbFirebase providesCuentaDbFirebase(CuentaDbFirebaseImpl cuentaDbFirebase){
         return cuentaDbFirebase;
-    }
+    }*/
 }

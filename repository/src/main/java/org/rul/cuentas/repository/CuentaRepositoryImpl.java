@@ -21,15 +21,15 @@ public class CuentaRepositoryImpl implements CuentaRepository {
     private CuentaDomainMapper cuentaDomainMapper;
     private CuentaDomainMapperFb cuentaDomainMapperFb;
     private CuentaDbDatasource cuentaDbDatasource;
-    private CuentaDbFirebase cuentaDbFirebase;
+    //private CuentaDbFirebase cuentaDbFirebase;
 
     @Inject
     public CuentaRepositoryImpl(CuentaDomainMapper cuentaDomainMapper, CuentaDomainMapperFb cuentaDomainMapperFb,
-                                CuentaDbDatasource cuentaDbDatasource, CuentaDbFirebase cuentaDbFirebase) {
+                                CuentaDbDatasource cuentaDbDatasource/*, CuentaDbFirebase cuentaDbFirebase*/) {
         this.cuentaDomainMapperFb = cuentaDomainMapperFb;
         this.cuentaDomainMapper = cuentaDomainMapper;
         this.cuentaDbDatasource = cuentaDbDatasource;
-        this.cuentaDbFirebase = cuentaDbFirebase;
+        //this.cuentaDbFirebase = cuentaDbFirebase;
     }
 
     @Override

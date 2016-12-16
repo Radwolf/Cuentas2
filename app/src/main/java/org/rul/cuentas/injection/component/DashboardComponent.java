@@ -59,7 +59,7 @@ public interface DashboardComponent {
 
     ResumenCuentaDbDatasource resumenCuentaDbDatasource();
     DummyDbDatasource dummyDatasource();
-    CuentaDbFirebase cuentaDbFirebase();
+    //CuentaDbFirebase cuentaDbFirebase();
 
     Mapper<ResumenCuenta, ResumenCuentaDomain> resumenCuentaUiMapper();
     Mapper<CuentaDomain, CuentaFb> cuentaDomainMapperFb();
