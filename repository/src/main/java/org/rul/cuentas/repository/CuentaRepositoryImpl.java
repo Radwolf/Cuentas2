@@ -19,17 +19,12 @@ import javax.inject.Inject;
 public class CuentaRepositoryImpl implements CuentaRepository {
 
     private CuentaDomainMapper cuentaDomainMapper;
-    private CuentaDomainMapperFb cuentaDomainMapperFb;
     private CuentaDbDatasource cuentaDbDatasource;
-    //private CuentaDbFirebase cuentaDbFirebase;
 
     @Inject
-    public CuentaRepositoryImpl(CuentaDomainMapper cuentaDomainMapper, CuentaDomainMapperFb cuentaDomainMapperFb,
-                                CuentaDbDatasource cuentaDbDatasource/*, CuentaDbFirebase cuentaDbFirebase*/) {
-        this.cuentaDomainMapperFb = cuentaDomainMapperFb;
+    public CuentaRepositoryImpl(CuentaDomainMapper cuentaDomainMapper, CuentaDbDatasource cuentaDbDatasource) {
         this.cuentaDomainMapper = cuentaDomainMapper;
         this.cuentaDbDatasource = cuentaDbDatasource;
-        //this.cuentaDbFirebase = cuentaDbFirebase;
     }
 
     @Override
@@ -57,8 +52,4 @@ public class CuentaRepositoryImpl implements CuentaRepository {
         cuentaDbDatasource.removeAll();
     }
 
-    @Override
-    public List<CuentaDomain> findAllFb() {
-        return new ArrayList<>(); //cuentaDomainMapperFb.mapList(cuentaDbFirebase.findAll());
-    }
 }

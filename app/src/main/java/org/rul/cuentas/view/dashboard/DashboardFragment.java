@@ -63,6 +63,7 @@ public class DashboardFragment extends Fragment implements DashboardView {
         InputStream is = getResources().openRawResource(R.raw.cuentas2);
         //dashboardPresenter.loadDummyData(is);
         dashboardPresenter.getResumenCuentas("201612");
+        dashboardPresenter.getAllCuentas();
 
     }
 

@@ -2,7 +2,6 @@ package org.rul.cuentas.interactors.cuenta.get;
 
 import org.rul.cuentas.model.CuentaDomain;
 import org.rul.cuentas.repository.CuentaFbRepository;
-import org.rul.cuentas.repository.CuentaRepository;
 import org.rul.cuentas.threads.InteractorExecutor;
 import org.rul.cuentas.threads.MainThread;
 
@@ -14,21 +13,21 @@ import javax.inject.Inject;
  * Created by Rul on 02/12/2016.
  */
 
-public class GetAllCuentasInteractorImpl implements GetAllCuentasInteractor {
+public class GetAllCuentasFbInteractorImpl implements GetAllCuentasFbInteractor {
 
     private Callback<List<CuentaDomain>> callback;
 
-    private CuentaRepository cuentaRepository;
+    private CuentaFbRepository cuentaFbRepository;
 
     private MainThread mainThread;
 
     private InteractorExecutor interactorExecutor;
 
     @Inject
-    public GetAllCuentasInteractorImpl(CuentaRepository cuentaRepository, MainThread mainThread,
-                                       InteractorExecutor interactorExecutor) {
+    public GetAllCuentasFbInteractorImpl(CuentaFbRepository cuentaFbRepository, MainThread mainThread,
+                                         InteractorExecutor interactorExecutor) {
 
-        this.cuentaRepository = cuentaRepository;
+        this.cuentaFbRepository = cuentaFbRepository;
         this.mainThread = mainThread;
         this.interactorExecutor = interactorExecutor;
 
@@ -49,7 +48,7 @@ public class GetAllCuentasInteractorImpl implements GetAllCuentasInteractor {
 
             @Override
             public void run() {
-                callback.onSuccess( cuentaRepository.findAll() );
+                callback.onSuccess( cuentaFbRepository.findAll() );
             }
 
         });

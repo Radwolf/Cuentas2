@@ -18,6 +18,8 @@ public interface DashboardPresenter {
 
     void loadDummyData(InputStream is);
 
+    void getAllCuentas();
+
     //void insertCuenta(Cuenta cuenta);
 
     //void removeCuenta(Cuenta cuenta);

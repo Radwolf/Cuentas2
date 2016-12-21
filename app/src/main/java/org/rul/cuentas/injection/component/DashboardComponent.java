@@ -5,7 +5,10 @@ import android.app.Activity;
 import org.rul.cuentas.injection.ActivityModule;
 import org.rul.cuentas.injection.DashboardModule;
 import org.rul.cuentas.injection.annotations.ForActivity;
+import org.rul.cuentas.interactors.cuenta.get.GetAllCuentasFbInteractor;
+import org.rul.cuentas.interactors.cuenta.get.GetAllCuentasInteractor;
 import org.rul.cuentas.model.CuentaDomain;
+import org.rul.cuentas.repository.CuentaFbRepository;
 import org.rul.cuentas.repository.CuentaRepository;
 import org.rul.cuentas.repository.CuentaRepositoryImpl;
 import org.rul.cuentas.repository.DummyRepository;
@@ -52,14 +55,15 @@ public interface DashboardComponent {
     DashboardPresenter presenter();
 
     GetActualResumenCuentasInteractor getActualResumenCuentasInteractor();
+    GetAllCuentasFbInteractor getAllCuentasFbInteractor();
 
     ResumenCuentaRepository resumenCuentaRepository();
     DummyRepository dummyRepository();
-    CuentaRepository cuentaRepository();
+    CuentaFbRepository cuentaFbRepository();
 
     ResumenCuentaDbDatasource resumenCuentaDbDatasource();
     DummyDbDatasource dummyDatasource();
-    //CuentaDbFirebase cuentaDbFirebase();
+    CuentaDbFirebase cuentaDbFirebase();
 
     Mapper<ResumenCuenta, ResumenCuentaDomain> resumenCuentaUiMapper();
     Mapper<CuentaDomain, CuentaFb> cuentaDomainMapperFb();

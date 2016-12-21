@@ -8,6 +8,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 
+import org.rul.cuentas.repository.datasource.CuentaDbDatasource;
 import org.rul.cuentas.repository.datasource.model.CuentaDb;
 import org.rul.cuentas.repository.exceptions.RepositoryException;
 import org.rul.cuentas.repository.firebase.model.CuentaFb;

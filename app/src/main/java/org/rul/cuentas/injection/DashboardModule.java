@@ -1,6 +1,12 @@
 package org.rul.cuentas.injection;
 
+import org.rul.cuentas.interactors.cuenta.get.GetAllCuentasFbInteractor;
+import org.rul.cuentas.interactors.cuenta.get.GetAllCuentasFbInteractorImpl;
+import org.rul.cuentas.interactors.cuenta.get.GetAllCuentasInteractor;
+import org.rul.cuentas.interactors.cuenta.get.GetAllCuentasInteractorImpl;
 import org.rul.cuentas.model.CuentaDomain;
+import org.rul.cuentas.repository.CuentaFbRepository;
+import org.rul.cuentas.repository.CuentaFbRepositoryImpl;
 import org.rul.cuentas.repository.CuentaRepository;
 import org.rul.cuentas.repository.CuentaRepositoryImpl;
 import org.rul.cuentas.repository.DummyRepositoryImpl;
@@ -101,13 +107,19 @@ public class DashboardModule {
 
     @Provides
     @ForActivity
-    public CuentaRepository providesCuentaRepository(CuentaRepositoryImpl cuentaRepository){
-        return cuentaRepository;
+    public CuentaFbRepository providesCuentaFbRepository(CuentaFbRepositoryImpl cuentaFbRepository){
+        return cuentaFbRepository;
     }
-/*
+
     @Provides
     @ForActivity
     public CuentaDbFirebase providesCuentaDbFirebase(CuentaDbFirebaseImpl cuentaDbFirebase){
         return cuentaDbFirebase;
-    }*/
+    }
+
+    @Provides
+    @ForActivity
+    public GetAllCuentasFbInteractor providesGetAllCuentasFbInteractor(GetAllCuentasFbInteractorImpl getAllCuentasFbInteractor){
+        return getAllCuentasFbInteractor;
+    }
 }
