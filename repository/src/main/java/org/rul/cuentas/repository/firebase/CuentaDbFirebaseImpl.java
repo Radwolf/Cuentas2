@@ -49,19 +49,17 @@ public class CuentaDbFirebaseImpl implements CuentaDbFirebase {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     // Get user value
-                    CuentaFb cuenta = dataSnapshot.getValue(CuentaFb.class);
+                    List<CuentaFb> cuentas = (List<CuentaFb>) dataSnapshot.getValue();
 
                     // [START_EXCLUDE]
-                    if (cuenta == null) {
+                    if (cuentas == null) {
                         // User is null, error out
                         Log.e(TAG, "Cuenta 1 is unexpectedly null");
                     } else {
                         // Write new post
-                        cuentaFbs.add(cuenta);
-                        Log.d(TAG, cuenta.getNombre() + " " + cuenta.getSaldo() + " " + cuenta.getFechaActualizacion());
+                        cuentaFbs.addAll(cuentas);
+                        //Log.d(TAG, cuentas.get(0).getNombre() + " " + cuentas.get(0).getSaldo() + " " + cuentas.get(0).getFechaActualizacion());
                     }
-
-
                 }
 
                 @Override

@@ -3,6 +3,8 @@ package org.rul.cuentas.view.dashboard;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,6 +24,9 @@ import org.rul.cuentas.presenters.DashboardPresenter;
 import org.rul.cuentas.repository.firebase.model.CuentaFb;
 import org.rul.cuentas.ui.model.ResumenCuenta;
 import org.rul.cuentas.ui.views.DashboardView;
+import org.rul.cuentas.view.dashboard.adapater.CardResumenAdapter;
+import org.rul.cuentas.view.dashboard.adapater.OnCardResumenClickedListener;
+import org.rul.cuentas.view.home.adapater.CuentaAdapter;
 
 import java.io.InputStream;
 import java.util.List;
@@ -34,23 +39,16 @@ import butterknife.ButterKnife;
 /**
  * Created by rgonzalez on 07/12/2016.
  */
-public class DashboardFragment extends Fragment implements DashboardView {
+public class DashboardFragment extends Fragment implements DashboardView, OnCardResumenClickedListener {
 
     private static final String TAG = "DashboardFragment";
 
     @Inject
     DashboardPresenter dashboardPresenter;
+    @Bind(R.id.rv_posicion_cuentas)
+    RecyclerView rvPosicionCuentas;
 
-    @Bind(R.id.titulo_pos_gen)
-    TextView tvTituloPosGen;
-    @Bind(R.id.saldo_pos_gen)
-    TextView tvSaldoPosGen;
-    @Bind(R.id.pg_total_ingresos)
-    TextView tvTotalIngresos;
-    @Bind(R.id.pg_total_gastos)
-    TextView tvTotalGastos;
-    @Bind(R.id.pg_total_ahorro)
-    TextView tvTotalAhorro;
+    private CardResumenAdapter cardResumenAdapter;
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
@@ -64,7 +62,6 @@ public class DashboardFragment extends Fragment implements DashboardView {
         //dashboardPresenter.loadDummyData(is);
         dashboardPresenter.getResumenCuentas("201612");
         dashboardPresenter.getAllCuentas();
-
     }
 
     @Nullable
@@ -72,21 +69,20 @@ public class DashboardFragment extends Fragment implements DashboardView {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_dashboard, container, false);
-
         ButterKnife.bind(this, view);
+
+        rvPosicionCuentas.setLayoutManager( new LinearLayoutManager( getActivity() ) );
+        cardResumenAdapter = new CardResumenAdapter( this );
+        rvPosicionCuentas.setAdapter( cardResumenAdapter );
+
         return view;
     }
 
     @Override
-    public void setResumenesCuentas(List<ResumenCuenta> cuentaList) {
-        if(cuentaList.size() > 0){
-            tvTituloPosGen.setText(cuentaList.get(0).getNombreCuenta());
-            float saldo = Float.valueOf(cuentaList.get(0).getIngresos()) - Float.valueOf(cuentaList.get(0).getGastos());
-            tvSaldoPosGen.setText(String.valueOf(saldo));
-            tvTotalIngresos.setText(cuentaList.get(0).getIngresos());
-            tvTotalGastos.setText(cuentaList.get(0).getGastos());
-            tvTotalAhorro.setText(cuentaList.get(0).getAhorros());
-        }
+    public void setResumenesCuentas(List<ResumenCuenta> resumenCuentaList) {
+        cardResumenAdapter.setResumenCuentasList( resumenCuentaList );
+
+        cardResumenAdapter.notifyDataSetChanged();
     }
 
     @Override
@@ -107,5 +103,10 @@ public class DashboardFragment extends Fragment implements DashboardView {
     @Override
     public void showFieldsNeededError() {
 
+    }
+
+    @Override
+    public void onCardResumenCliked(ResumenCuenta resumenCuenta) {
+        Toast.makeText(getContext(), "He clicado", Toast.LENGTH_SHORT);
     }
 }

@@ -1,4 +1,4 @@
-package org.rul.cuentas.view.home.adpater;
+package org.rul.cuentas.view.home.adapater;
 
 import org.rul.cuentas.ui.model.Cuenta;
 

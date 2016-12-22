@@ -1,4 +1,4 @@
-package org.rul.cuentas.view.home.adpater;
+package org.rul.cuentas.view.home.adapater;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
