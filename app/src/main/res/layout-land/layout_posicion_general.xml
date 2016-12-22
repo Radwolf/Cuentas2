@@ -30,7 +30,6 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
                     android:text="@string/titulo_pos_gen"
-                    android:fontFamily="@string/font_family_regular"
                     android:textSize="24sp"/>
                 <LinearLayout
                     android:layout_width="0px"
@@ -55,10 +54,10 @@
             </LinearLayout>
             <TextView
                 android:id="@+id/saldo_pos_gen"
-                android:layout_width="342dp"
+                android:layout_width="322dp"
                 android:layout_height="wrap_content"
                 android:textSize="36sp"
-                fontPath="fonts/RobotoCondensed-Italic.ttf"
+                android:textStyle="bold"
                 android:paddingLeft="100px"
                 android:paddingTop="16px"
                 android:paddingBottom="16px"

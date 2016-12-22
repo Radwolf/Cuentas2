@@ -1,5 +1,6 @@
 package org.rul.cuentas.view.dashboard;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.AppBarLayout;
@@ -23,6 +24,8 @@ import org.rul.cuentas.injection.ActivityModule;
 import org.rul.cuentas.injection.component.DaggerDashboardComponent;
 import org.rul.cuentas.injection.component.DashboardComponent;
 import org.rul.cuentas.view.CuentasApplication;
+
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class DashboardActivity extends AppCompatActivity {
 
@@ -174,5 +177,10 @@ public class DashboardActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
     }
 }
