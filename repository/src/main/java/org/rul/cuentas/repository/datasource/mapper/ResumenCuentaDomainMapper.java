@@ -25,6 +25,9 @@ public class ResumenCuentaDomainMapper extends Mapper<ResumenCuentaDomain, Resum
                 .setIngresos(type.getIngresos())
                 .setGastos(type.getGastos())
                 .setAhorros(type.getAhorros())
+                .setIngresosPrevistos(type.getIngresosPrevistos())
+                .setGastosPrevistos(type.getGastosPrevistos())
+                .setAhorrosPrevistos(type.getAhorrosPrevistos())
                 .build();
     }
 
@@ -40,6 +43,9 @@ public class ResumenCuentaDomainMapper extends Mapper<ResumenCuentaDomain, Resum
                 .setIngresos(type.getIngresos())
                 .setGastos(type.getGastos())
                 .setAhorros(type.getAhorros())
+                .setIngresosPrevistos(type.getIngresosPrevistos())
+                .setGastosPrevistos(type.getGastosPrevistos())
+                .setAhorrosPrevistos(type.getAhorrosPrevistos())
                 .build();
     }
 }

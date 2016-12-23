@@ -59,12 +59,20 @@ public class CardResumenAdapter extends RecyclerView.Adapter<CardResumenAdapter.
         TextView tvTituloPosGen;
         @Bind(R.id.saldo_pos_gen)
         TextView tvSaldoPosGen;
+        @Bind(R.id.saldo_prev_pos_gen)
+        TextView tvSaldoPrevPosGen;
         @Bind(R.id.pg_total_ingresos)
         TextView tvTotalIngresos;
         @Bind(R.id.pg_total_gastos)
         TextView tvTotalGastos;
         @Bind(R.id.pg_total_ahorro)
         TextView tvTotalAhorro;
+        @Bind(R.id.pg_prev_ingresos)
+        TextView tvPrevIngresos;
+        @Bind(R.id.pg_prev_gastos)
+        TextView tvPrevGastos;
+        @Bind(R.id.pg_prev_ahorro)
+        TextView tvPrevAhorro;
 
         public ResumenCuentaViewHolder(View itemView) {
             super(itemView);
@@ -75,9 +83,14 @@ public class CardResumenAdapter extends RecyclerView.Adapter<CardResumenAdapter.
             tvTituloPosGen.setText(resumenCuenta.getNombreCuenta());
             float saldo = Float.valueOf(resumenCuenta.getIngresos()) - Float.valueOf(resumenCuenta.getGastos());
             tvSaldoPosGen.setText(String.valueOf(saldo));
+            float saldoPrev = Float.valueOf(resumenCuenta.getIngresosPrevistos()) - Float.valueOf(resumenCuenta.getGastosPrevistos());
+            tvSaldoPrevPosGen.setText(String.format("(%s)", saldoPrev));
             tvTotalIngresos.setText(resumenCuenta.getIngresos());
             tvTotalGastos.setText(resumenCuenta.getGastos());
             tvTotalAhorro.setText(resumenCuenta.getAhorros());
+            tvPrevIngresos.setText(String.format("(%s)", resumenCuenta.getIngresosPrevistos()));
+            tvPrevGastos.setText(String.format("(%s)", resumenCuenta.getGastosPrevistos()));
+            tvPrevAhorro.setText(String.format("(%s)", resumenCuenta.getAhorrosPrevistos()));
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

@@ -27,7 +27,7 @@ public class CuentasApplication extends Application {
 
         CalligraphyConfig.initDefault(
                 new CalligraphyConfig.Builder()
-                        .setDefaultFontPath("fonts/RobotoCondensed-Italic.ttf")
+                        .setDefaultFontPath("fonts/Roboto-Regular.ttf")
                         .setFontAttrId(R.attr.fontPath)
                         .build()
         );

@@ -11,6 +11,10 @@ public class ResumenCuenta {
     private String ingresos;
     private String gastos;
     private String ahorros;
+    private String ingresosPrevistos;
+    private String gastosPrevistos;
+    private String ahorrosPrevistos;
+
 
     private ResumenCuenta(Builder builder) {
         this.nombreCuenta = builder.nombreCuenta;
@@ -18,6 +22,9 @@ public class ResumenCuenta {
         this.ingresos = builder.ingresos;
         this.gastos = builder.gastos;
         this.ahorros = builder.ahorros;
+        this.ingresosPrevistos = builder.ingresosPrevistos;
+        this.gastosPrevistos = builder.gastosPrevistos;
+        this.ahorrosPrevistos = builder.ahorrosPrevistos;
     }
 
     public String getNombreCuenta() {
@@ -60,6 +67,30 @@ public class ResumenCuenta {
         this.ahorros = ahorros;
     }
 
+    public String getIngresosPrevistos() {
+        return ingresosPrevistos;
+    }
+
+    public void setIngresosPrevistos(String ingresosPrevistos) {
+        this.ingresosPrevistos = ingresosPrevistos;
+    }
+
+    public String getGastosPrevistos() {
+        return gastosPrevistos;
+    }
+
+    public void setGastosPrevistos(String gastosPrevistos) {
+        this.gastosPrevistos = gastosPrevistos;
+    }
+
+    public String getAhorrosPrevistos() {
+        return ahorrosPrevistos;
+    }
+
+    public void setAhorrosPrevistos(String ahorrosPrevistos) {
+        this.ahorrosPrevistos = ahorrosPrevistos;
+    }
+
     public static class Builder {
 
         private String nombreCuenta;
@@ -67,6 +98,9 @@ public class ResumenCuenta {
         private String ingresos;
         private String gastos;
         private String ahorros;
+        private String ingresosPrevistos;
+        private String gastosPrevistos;
+        private String ahorrosPrevistos;
 
         public Builder setNombreCuenta(String nombreCuenta) {
             this.nombreCuenta = nombreCuenta;
@@ -90,6 +124,21 @@ public class ResumenCuenta {
 
         public Builder setAhorros(String ahorros) {
             this.ahorros = ahorros;
+            return this;
+        }
+
+        public Builder setIngresosPrevistos(String ingresosPrevistos) {
+            this.ingresosPrevistos = ingresosPrevistos;
+            return this;
+        }
+
+        public Builder setGastosPrevistos(String gastosPrevistos) {
+            this.gastosPrevistos = gastosPrevistos;
+            return this;
+        }
+
+        public Builder setAhorrosPrevistos(String ahorrosPrevistos) {
+            this.ahorrosPrevistos = ahorrosPrevistos;
             return this;
         }
 

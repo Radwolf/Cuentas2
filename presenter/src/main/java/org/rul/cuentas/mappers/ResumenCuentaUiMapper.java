@@ -29,6 +29,9 @@ public class ResumenCuentaUiMapper extends Mapper<ResumenCuenta, ResumenCuentaDo
                 .setAhorros(String.valueOf(type.getAhorros()))
                 .setGastos(String.valueOf(type.getGastos()))
                 .setIngresos(String.valueOf(type.getIngresos()))
+                .setIngresosPrevistos(String.valueOf(type.getIngresosPrevistos()))
+                .setGastosPrevistos(String.valueOf(type.getGastosPrevistos()))
+                .setAhorrosPrevistos(String.valueOf(type.getAhorrosPrevistos()))
                 .build();
     }
 
@@ -40,6 +43,9 @@ public class ResumenCuentaUiMapper extends Mapper<ResumenCuenta, ResumenCuentaDo
                 .setAhorros(Float.parseFloat(type.getAhorros()))
                 .setIngresos(Float.parseFloat(type.getIngresos()))
                 .setGastos(Float.parseFloat(type.getGastos()))
+                .setIngresosPrevistos(Float.parseFloat(type.getIngresosPrevistos()))
+                .setGastosPrevistos(Float.parseFloat(type.getGastosPrevistos()))
+                .setAhorrosPrevistos(Float.parseFloat(type.getAhorrosPrevistos()))
                 .build();
         return resumenCuentaDomain;
     }
