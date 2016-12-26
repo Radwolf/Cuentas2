@@ -46,16 +46,18 @@ dependencies {
 
     provided parent.ext.libAnnotations
 
-    compile project (':presenter')
+    compile project(':presenter')
 
-    compile project (':repository')
-    compile 'com.android.support:cardview-v7:24.2.0'
+    compile project(':repository')
 
+
+    compile 'com.android.support:cardview-v7:24.2.1'
     compile 'com.firebaseui:firebase-ui-database:1.0.0'
     compile 'com.google.firebase:firebase-auth:10.0.1'
     compile 'com.google.firebase:firebase-database:10.0.1'
-
     compile 'uk.co.chrisjenx:calligraphy:2.2.0'
+    compile 'com.android.support:support-v4:24.2.1'
 }
+
 
 apply plugin: 'com.google.gms.google-services'

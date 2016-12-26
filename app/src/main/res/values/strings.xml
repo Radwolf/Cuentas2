@@ -19,4 +19,7 @@
     <string name="backdrop_subtitle">23/12/2016</string>
     <string name="collapsing_saldo">1253.56</string>
     <string name="collapsing_prox_mov">(1423.56)</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
