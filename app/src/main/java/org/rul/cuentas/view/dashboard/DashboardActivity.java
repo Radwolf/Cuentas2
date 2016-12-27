@@ -1,6 +1,7 @@
 package org.rul.cuentas.view.dashboard;
 
 import android.content.Context;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.AppBarLayout;
@@ -21,18 +22,30 @@ import com.google.firebase.auth.FirebaseUser;
 
 import org.rul.cuentas.R;
 import org.rul.cuentas.injection.ActivityModule;
+import org.rul.cuentas.injection.DashboardModule;
 import org.rul.cuentas.injection.component.DaggerDashboardComponent;
 import org.rul.cuentas.injection.component.DashboardComponent;
+import org.rul.cuentas.presenters.DashboardPresenter;
+import org.rul.cuentas.view.BaseActivity;
 import org.rul.cuentas.view.CuentasApplication;
+import org.rul.cuentas.view.cuenta.AddCuentaFragment;
 
+import javax.inject.Inject;
+
+import butterknife.Bind;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
-public class DashboardActivity extends AppCompatActivity {
+public class DashboardActivity extends BaseActivity {
 
     DashboardComponent dashboardComponent;
+    @Inject
+    DashboardPresenter dashboardPresenter;
 
     private static final String TAG = "DashboardActivity";
-
+    @Bind(R.id.toolbar)
+    Toolbar toolbar;
     // [START declare_auth]
     private FirebaseAuth mAuth;
     // [END declare_auth]
@@ -42,20 +55,21 @@ public class DashboardActivity extends AppCompatActivity {
     // [END declare_auth_listener]
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        ButterKnife.bind(this);
         setSupportActionBar(toolbar);
         initCollapsingToolbar();
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        getComponent().inject(this);
+        /*FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
-        });
+        });*/
 
         // [START initialize_auth]
         mAuth = FirebaseAuth.getInstance();
@@ -83,11 +97,16 @@ public class DashboardActivity extends AppCompatActivity {
         signInAnonymously();
     }
 
+    @Override
+    protected Object getModule() {
+        return new DashboardModule();
+    }
+
     public DashboardComponent getComponent() {
         if (dashboardComponent == null ){
 
             dashboardComponent = DaggerDashboardComponent.builder()
-                    .applicationComponent( ((CuentasApplication)getApplication()).getApplicationComponent() )
+                    .applicationComponent( ((CuentasApplication)getApplication()).getApplicationComponent(this) )
                     .activityModule( new ActivityModule( this ) )
                     .build();
 
@@ -183,4 +202,10 @@ public class DashboardActivity extends AppCompatActivity {
     protected void attachBaseContext(Context newBase) {
         super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
     }
+
+    @OnClick(R.id.fab)
+    public void onAddNewCuentaClick() {
+        dashboardPresenter.onAddNewCuentaClick();
+    }
+
 }

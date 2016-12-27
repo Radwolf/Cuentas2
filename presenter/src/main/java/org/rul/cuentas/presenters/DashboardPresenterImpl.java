@@ -20,11 +20,13 @@ import javax.inject.Inject;
 
 public class DashboardPresenterImpl implements DashboardPresenter {
 
-    private DashboardView dashboardView;
+    private DashboardView dashboardView = new DashboardView.EmptyDashboardView();
     private GetActualResumenCuentasInteractor getActualResumenCuentasInteractor;
     private LoadDummyDatosInteractor loadDummyDatosInteractor;
     private ResumenCuentaUiMapper resumenCuentaUiMapper;
     private GetAllCuentasFbInteractor getAllCuentasFbInteractor;
+
+    private boolean resumenesCuentaWereShown = false;
 
     @Inject
     public DashboardPresenterImpl(GetActualResumenCuentasInteractor getActualResumenCuentasInteractor,
@@ -38,12 +40,22 @@ public class DashboardPresenterImpl implements DashboardPresenter {
     }
 
     @Override
-    public void getResumenCuentas(String anyoMes) {
+    public void clearView() {
+        dashboardView = new DashboardView.EmptyDashboardView();
+    }
+
+    @Override
+    public void onAddNewCuentaClick() {
+        dashboardView.showAddCuentaView();
+    }
+
+    @Override
+    public void showResumenCuentas(String anyoMes) {
 
         getActualResumenCuentasInteractor.run(anyoMes, new Interactor.Callback<List<ResumenCuentaDomain>>() {
             @Override
             public void onSuccess(List<ResumenCuentaDomain> object) {
-                dashboardView.setResumenesCuentas(resumenCuentaUiMapper.mapList(object));
+                dashboardView.showResumenesCuentas(resumenCuentaUiMapper.mapList(object));
             }
 
             @Override
@@ -90,4 +102,10 @@ public class DashboardPresenterImpl implements DashboardPresenter {
         this.dashboardView = dashboardView;
     }
 
+ /*   private void showResumenesCuentaIfNeeded() {
+        if(!resumenesCuentaWereShown) {
+            showResumenCuentas(dashboardView.);
+            resumenesCuentaWereShown = true;
+        }
+    }*/
 }

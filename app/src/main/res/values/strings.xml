@@ -2,9 +2,6 @@
     <string name="app_name">Cuentas</string>
     <string name="clean_up">Limpiar</string>
     <string name="label">Etiqueta</string>
-    <string name="nombre">Nombre</string>
-    <string name="saldo">Saldo</string>
-    <string name="insert_cuenta">Añadir cuenta</string>
     <string name="error_msg_get_cuentas">Error obteniendo las cuentas</string>
     <string name="progress_title">Acción en curso</string>
     <string name="progress_description">Se está realizado la petición. ¡Espera!</string>
@@ -21,5 +18,8 @@
     <string name="collapsing_prox_mov">(1423.56)</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_add_cuenta">Añadir cuenta</string>
+    <string name="nombre">Nombre</string>
+    <string name="saldo">Saldo</string>
+    <string name="insert_cuenta">Añadir cuenta</string>
 </resources>

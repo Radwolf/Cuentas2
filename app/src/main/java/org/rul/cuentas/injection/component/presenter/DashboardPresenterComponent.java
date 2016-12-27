@@ -1,4 +1,4 @@
-package org.rul.cuentas.injection.component.repository;
+package org.rul.cuentas.injection.component.presenter;
 
 import org.rul.cuentas.model.ResumenCuentaDomain;
 import org.rul.cuentas.presenters.DashboardPresenter;
@@ -10,7 +10,6 @@ import org.rul.cuentas.util.Mapper;
  */
 
 public interface DashboardPresenterComponent {
-
     DashboardPresenter presenter();
     Mapper<ResumenCuenta, ResumenCuentaDomain> resumenCuentaUiMapper();
 }

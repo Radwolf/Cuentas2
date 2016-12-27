@@ -20,4 +20,32 @@ public interface HomeView {
 
     void showFieldsNeededError();
 
+    class EmptyHomeView implements HomeView{
+
+        @Override
+        public void setCuentas(List<Cuenta> cuentaList) {
+
+        }
+
+        @Override
+        public void showGetCuentasError() {
+
+        }
+
+        @Override
+        public void showInsertCuentaError() {
+
+        }
+
+        @Override
+        public void showRemoveCuentaError() {
+
+        }
+
+        @Override
+        public void showFieldsNeededError() {
+
+        }
+    }
+
 }

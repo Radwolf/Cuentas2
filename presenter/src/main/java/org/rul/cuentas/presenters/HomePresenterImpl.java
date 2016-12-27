@@ -19,7 +19,7 @@ import javax.inject.Inject;
 
 public class HomePresenterImpl implements HomePresenter {
 
-    private HomeView homeView;
+    private HomeView homeView = new HomeView.EmptyHomeView();
     private GetAllCuentasInteractor getAllCuentasInteractor;
     private InsertCuentaInteractor insertCuentaInteractor;
     private RemoveCuentaInteractor removeCuentaInteractor;
@@ -53,6 +53,11 @@ public class HomePresenterImpl implements HomePresenter {
     @Override
     public void setView(HomeView homeView) {
         this.homeView = homeView;
+    }
+
+    @Override
+    public void clearView() {
+        homeView = new HomeView.EmptyHomeView();
     }
 
     @Override

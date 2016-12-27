@@ -1,32 +1,25 @@
 package org.rul.cuentas.view.dashboard;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-
 import org.rul.cuentas.R;
-import org.rul.cuentas.repository.firebase.model.CuentaFb;
 import org.rul.cuentas.presenters.DashboardPresenter;
-import org.rul.cuentas.repository.firebase.model.CuentaFb;
 import org.rul.cuentas.ui.model.ResumenCuenta;
 import org.rul.cuentas.ui.views.DashboardView;
+import org.rul.cuentas.view.cuenta.AddCuentaActivity;
+import org.rul.cuentas.view.cuenta.AddCuentaFragment;
 import org.rul.cuentas.view.dashboard.adapater.CardResumenAdapter;
 import org.rul.cuentas.view.dashboard.adapater.OnCardResumenClickedListener;
-import org.rul.cuentas.view.home.adapater.CuentaAdapter;
 
 import java.io.InputStream;
 import java.util.List;
@@ -60,7 +53,7 @@ public class DashboardFragment extends Fragment implements DashboardView, OnCard
         dashboardPresenter.setView( this );
         InputStream is = getResources().openRawResource(R.raw.cuentas2);
         //dashboardPresenter.loadDummyData(is);
-        dashboardPresenter.getResumenCuentas("201612");
+        dashboardPresenter.showResumenCuentas("201612");
         dashboardPresenter.getAllCuentas();
     }
 
@@ -79,10 +72,15 @@ public class DashboardFragment extends Fragment implements DashboardView, OnCard
     }
 
     @Override
-    public void setResumenesCuentas(List<ResumenCuenta> resumenCuentaList) {
+    public void showResumenesCuentas(List<ResumenCuenta> resumenCuentaList) {
         cardResumenAdapter.setResumenCuentasList( resumenCuentaList );
 
         cardResumenAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void showAddCuentaView() {
+        startActivity(new Intent(getActivity(), AddCuentaActivity.class));
     }
 
     @Override
@@ -107,6 +105,8 @@ public class DashboardFragment extends Fragment implements DashboardView, OnCard
 
     @Override
     public void onCardResumenCliked(ResumenCuenta resumenCuenta) {
-        Toast.makeText(getContext(), "He clicado", Toast.LENGTH_SHORT);
+        Toast.makeText(getActivity(), "He clicado", Toast.LENGTH_SHORT);
     }
+
+
 }

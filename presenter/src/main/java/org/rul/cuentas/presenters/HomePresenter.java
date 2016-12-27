@@ -7,9 +7,7 @@ import org.rul.cuentas.ui.views.HomeView;
  * Created by Rul on 02/12/2016.
  */
 
-public interface HomePresenter {
-
-    void setView(HomeView homeView);
+public interface HomePresenter extends BasePresenter<HomeView>{
 
     void getAllCuentas();
 

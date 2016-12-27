@@ -10,17 +10,14 @@ import java.io.InputStream;
  * Created by Rul on 02/12/2016.
  */
 
-public interface DashboardPresenter {
+public interface DashboardPresenter extends BasePresenter<DashboardView> {
 
-    void setView(DashboardView dashboardView);
+    void onAddNewCuentaClick();
 
-    void getResumenCuentas(String anyoMes);
+    void showResumenCuentas(String anyoMes);
 
     void loadDummyData(InputStream is);
 
     void getAllCuentas();
 
-    //void insertCuenta(Cuenta cuenta);
-
-    //void removeCuenta(Cuenta cuenta);
 }

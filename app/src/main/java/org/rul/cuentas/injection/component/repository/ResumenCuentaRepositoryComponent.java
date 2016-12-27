@@ -1,4 +1,4 @@
-package org.rul.cuentas.injection.component.presenter;
+package org.rul.cuentas.injection.component.repository;
 
 import org.rul.cuentas.model.ResumenCuentaDomain;
 import org.rul.cuentas.repository.ResumenCuentaRepository;

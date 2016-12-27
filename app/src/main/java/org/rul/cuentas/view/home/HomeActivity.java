@@ -30,7 +30,7 @@ public class HomeActivity extends AppCompatActivity {
         if (homeComponent == null ){
 
             homeComponent = DaggerHomeComponent.builder()
-                    .applicationComponent( ((CuentasApplication)getApplication()).getApplicationComponent() )
+                    .applicationComponent( ((CuentasApplication)getApplication()).getApplicationComponent(this) )
                     .activityModule( new ActivityModule( this ) )
                     .build();
 

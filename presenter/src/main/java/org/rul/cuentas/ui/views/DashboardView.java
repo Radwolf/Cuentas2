@@ -10,7 +10,9 @@ import java.util.List;
 
 public interface DashboardView {
 
-    void setResumenesCuentas(List<ResumenCuenta> cuentaList);
+    void showResumenesCuentas(List<ResumenCuenta> cuentaList);
+
+    void showAddCuentaView();
 
     void showGetCuentasError();
 
@@ -20,4 +22,36 @@ public interface DashboardView {
 
     void showFieldsNeededError();
 
+    class EmptyDashboardView implements DashboardView {
+
+        @Override
+        public void showResumenesCuentas(List<ResumenCuenta> cuentaList) {
+
+        }
+
+        @Override
+        public void showAddCuentaView() {
+
+        }
+
+        @Override
+        public void showGetCuentasError() {
+
+        }
+
+        @Override
+        public void showInsertCuentaError() {
+
+        }
+
+        @Override
+        public void showRemoveCuentaError() {
+
+        }
+
+        @Override
+        public void showFieldsNeededError() {
+
+        }
+    }
 }
