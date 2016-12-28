@@ -12,16 +12,18 @@ public interface AddCuentaView {
 
     void finish();
     void showInsertCuentaError();
+    void showDashboardView();
 
     class EmptyAddCuentaView implements AddCuentaView {
 
         @Override
-        public void finish() {
-
-        }
+        public void finish() {}
 
         @Override
-        public void showInsertCuentaError() {
+        public void showInsertCuentaError() {}
+
+        @Override
+        public void showDashboardView() {
 
         }
     }

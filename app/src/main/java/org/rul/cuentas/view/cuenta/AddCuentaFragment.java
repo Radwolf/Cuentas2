@@ -1,5 +1,6 @@
 package org.rul.cuentas.view.cuenta;
 
+import android.content.Intent;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
@@ -13,6 +14,7 @@ import org.rul.cuentas.presenters.AddCuentaPresenter;
 import org.rul.cuentas.presenters.DashboardPresenter;
 import org.rul.cuentas.ui.model.Cuenta;
 import org.rul.cuentas.ui.views.AddCuentaView;
+import org.rul.cuentas.view.dashboard.DashboardActivity;
 
 import javax.inject.Inject;
 
@@ -36,11 +38,8 @@ public class AddCuentaFragment extends Fragment implements AddCuentaView {
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-
         super.onActivityCreated(savedInstanceState);
-
         ( (AddCuentaActivity)getActivity() ).getComponent().inject( this );
-
         addCuentaPresenter.setView( this );
     }
 
@@ -69,5 +68,10 @@ public class AddCuentaFragment extends Fragment implements AddCuentaView {
     @Override
     public void showInsertCuentaError() {
 
+    }
+
+    @Override
+    public void showDashboardView() {
+        startActivity(new Intent(getActivity(), CuentasActivity.class));
     }
 }

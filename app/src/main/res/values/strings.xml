@@ -22,4 +22,8 @@
     <string name="nombre">Nombre</string>
     <string name="saldo">Saldo</string>
     <string name="insert_cuenta">Añadir cuenta</string>
+    <string name="title_activity_cuentas">Cuentas</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
 </resources>

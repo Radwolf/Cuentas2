@@ -44,6 +44,7 @@ public class AddCuentaPresenterImpl implements AddCuentaPresenter {
             public void onSuccess(CuentaDomain object) {
                 //dashboardView.showResumenesCuentas(resumenCuentaUiMapper.mapList(object));
                 System.out.println(String.format("Cuenta %s insertadada.", object.getNombre()));
+                addCuentaView.showDashboardView();
             }
 
             @Override

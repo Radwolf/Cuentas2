@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import org.rul.cuentas.R;
-import org.rul.cuentas.ui.model.Cuenta;
 import org.rul.cuentas.ui.model.ResumenCuenta;
 
 import java.util.ArrayList;
@@ -43,7 +42,7 @@ public class CardResumenAdapter extends RecyclerView.Adapter<CardResumenAdapter.
 
     @Override
     public ResumenCuentaViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_posicion_general, null);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_resumen_cuenta, null);
         return new ResumenCuentaViewHolder(view);
     }
 

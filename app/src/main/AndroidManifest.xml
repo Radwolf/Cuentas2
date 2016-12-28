@@ -33,12 +33,17 @@
         <activity
             android:name=".view.cuenta.AddCuentaActivity"
             android:label="@string/title_activity_add_cuenta"
-            android:parentActivityName=".view.dashboard.DashboardActivity"
+            android:parentActivityName=".view.cuenta.CuentasActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="org.rul.cuentas.view.dashboard.DashboardActivity" />
         </activity>
+        <activity
+            android:name=".view.cuenta.CuentasActivity"
+            android:label="@string/title_activity_cuentas"
+            android:parentActivityName=".view.dashboard.DashboardActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

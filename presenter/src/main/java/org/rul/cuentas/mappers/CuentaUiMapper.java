@@ -28,7 +28,7 @@ public class CuentaUiMapper extends Mapper<Cuenta, CuentaDomain> {
         return new Cuenta.Builder()
                 .setNombre(type.getNombre())
                 .setSaldo(String.valueOf(type.getSaldo()))
-                .setFechaActualizacion((type.getFechaActualizacion() != null)?sdf.format(type.getFechaActualizacion()):null)
+                .setFechaActualizacion(type.getFechaActualizacion())
                 .build();
     }
 

@@ -63,6 +63,11 @@ public class DummyDbDatasourceImpl implements DummyDbDatasource {
         JSONArray resumenCuentas;
         JSONArray movimientos;
         getRealm().beginTransaction();
+        //Para Borrar las tablas OJO comentarlo
+        //getRealm().delete(CuentaDb.class);
+        //getRealm().delete(ResumenCuentaDb.class);
+        //getRealm().delete(MovimientoDb.class);
+
         try {
             cuentas = new JSONObject(str).getJSONArray("cuenta");
             for (int i = 0; i < cuentas.length(); i++) {
@@ -130,9 +135,7 @@ public class DummyDbDatasourceImpl implements DummyDbDatasource {
                 }
                 getRealm().copyToRealmOrUpdate(resumenCuenta);
             }
-//            getRealm().delete(CuentaDb.class);
-//            getRealm().delete(ResumenCuentaDb.class);
-//            getRealm().delete(MovimientoDb.class);
+            //Para hacerlo desde el JSON directamente
             //getRealm().createAllFromJson(CuentaDb.class, cuentas.toString());
             //getRealm().createAllFromJson(ResumenCuentaDb.class, resumenCuentas.toString());
             //getRealm().createAllFromJson(MovimientoDb.class, movimientos.toString());

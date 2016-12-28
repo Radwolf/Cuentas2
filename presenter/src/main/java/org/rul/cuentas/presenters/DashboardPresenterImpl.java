@@ -26,8 +26,6 @@ public class DashboardPresenterImpl implements DashboardPresenter {
     private ResumenCuentaUiMapper resumenCuentaUiMapper;
     private GetAllCuentasFbInteractor getAllCuentasFbInteractor;
 
-    private boolean resumenesCuentaWereShown = false;
-
     @Inject
     public DashboardPresenterImpl(GetActualResumenCuentasInteractor getActualResumenCuentasInteractor,
                                   LoadDummyDatosInteractor loadDummyDatosInteractor,
