@@ -2,7 +2,10 @@ package org.rul.cuentas.injection.component.repository;
 
 import org.rul.cuentas.model.CuentaDomain;
 import org.rul.cuentas.repository.CuentaRepository;
+import org.rul.cuentas.repository.datasource.CategoriaDbDatasource;
 import org.rul.cuentas.repository.datasource.CuentaDbDatasource;
+import org.rul.cuentas.repository.datasource.MovimientoDbDatasource;
+import org.rul.cuentas.repository.datasource.ResumenCuentaDbDatasource;
 import org.rul.cuentas.repository.datasource.model.CuentaDb;
 import org.rul.cuentas.util.Mapper;
 
@@ -12,8 +15,11 @@ import org.rul.cuentas.util.Mapper;
 
 public interface CuentaRepositoryComponent {
 
-    Mapper<CuentaDomain, CuentaDb> cuentaDomainMapper();
     CuentaRepository cuentaRepository();
-    CuentaDbDatasource cuentaDbDatasource();
 
+    Mapper<CuentaDomain, CuentaDb> cuentaDomainMapper();
+    CuentaDbDatasource cuentaDbDatasource();
+    CategoriaDbDatasource categoriaDbDatasource();
+    MovimientoDbDatasource movimientoDbDatasource();
+    ResumenCuentaDbDatasource resumenCuentaDbDatasource();
 }

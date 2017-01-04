@@ -56,6 +56,8 @@ public class CardResumenAdapter extends RecyclerView.Adapter<CardResumenAdapter.
 
         @Bind(R.id.titulo_pos_gen)
         TextView tvTituloPosGen;
+        @Bind(R.id.fecha_act_pos_gen)
+        TextView tvFechaActPosGen;
         @Bind(R.id.saldo_pos_gen)
         TextView tvSaldoPosGen;
         @Bind(R.id.saldo_prev_pos_gen)
@@ -80,6 +82,7 @@ public class CardResumenAdapter extends RecyclerView.Adapter<CardResumenAdapter.
 
         public void bind(final ResumenCuenta resumenCuenta, final OnCardResumenClickedListener onCardResumenClickedListener) {
             tvTituloPosGen.setText(resumenCuenta.getNombreCuenta());
+            tvFechaActPosGen.setText(resumenCuenta.getFechaUltimaActualizacion());
             float saldo = Float.valueOf(resumenCuenta.getIngresos()) - Float.valueOf(resumenCuenta.getGastos());
             tvSaldoPosGen.setText(String.valueOf(saldo));
             float saldoPrev = Float.valueOf(resumenCuenta.getIngresosPrevistos()) - Float.valueOf(resumenCuenta.getGastosPrevistos());

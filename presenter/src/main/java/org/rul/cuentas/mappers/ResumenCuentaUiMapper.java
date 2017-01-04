@@ -4,7 +4,9 @@ import org.rul.cuentas.model.ResumenCuentaDomain;
 import org.rul.cuentas.util.Mapper;
 import org.rul.cuentas.ui.model.ResumenCuenta;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.inject.Inject;
 
@@ -23,7 +25,7 @@ public class ResumenCuentaUiMapper extends Mapper<ResumenCuenta, ResumenCuentaDo
 
     @Override
     public ResumenCuenta map(ResumenCuentaDomain type) {
-        return new ResumenCuenta.Builder()
+        ResumenCuenta resumenCuenta = new ResumenCuenta.Builder()
                 .setNombreCuenta(type.getNombreCuenta())
                 .setAnyoMes(type.getAnyoMes())
                 .setAhorros(String.valueOf(type.getAhorros()))
@@ -33,11 +35,21 @@ public class ResumenCuentaUiMapper extends Mapper<ResumenCuenta, ResumenCuentaDo
                 .setGastosPrevistos(String.valueOf(type.getGastosPrevistos()))
                 .setAhorrosPrevistos(String.valueOf(type.getAhorrosPrevistos()))
                 .build();
+
+        if( type.getFechaUltimaActualizacion() != null ) {
+            resumenCuenta.setFechaUltimaActualizacion( type.getFechaUltimaActualizacion() );
+        }else{
+            resumenCuenta.setFechaUltimaActualizacion(sdf.format(new Date()));
+        }
+
+        return resumenCuenta;
     }
 
     @Override
     public ResumenCuentaDomain reverseMap(ResumenCuenta type) {
-        ResumenCuentaDomain resumenCuentaDomain = new ResumenCuentaDomain.Builder()
+        ResumenCuentaDomain resumenCuentaDomain = null;
+        resumenCuentaDomain = new ResumenCuentaDomain.Builder()
+                .setFechaUltimaActualizacion(type.getFechaUltimaActualizacion())
                 .setNombreCuenta(type.getNombreCuenta())
                 .setAnyoMes(type.getAnyoMes())
                 .setAhorros(Float.parseFloat(type.getAhorros()))
@@ -49,4 +61,5 @@ public class ResumenCuentaUiMapper extends Mapper<ResumenCuenta, ResumenCuentaDo
                 .build();
         return resumenCuentaDomain;
     }
+
 }

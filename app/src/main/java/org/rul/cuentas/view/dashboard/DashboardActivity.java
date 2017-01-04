@@ -1,20 +1,15 @@
 package org.rul.cuentas.view.dashboard;
 
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.View;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -31,7 +26,6 @@ import org.rul.cuentas.injection.component.DashboardComponent;
 import org.rul.cuentas.presenters.DashboardPresenter;
 import org.rul.cuentas.view.BaseActivity;
 import org.rul.cuentas.view.CuentasApplication;
-import org.rul.cuentas.view.cuenta.AddCuentaFragment;
 
 import javax.inject.Inject;
 
@@ -101,7 +95,8 @@ public class DashboardActivity extends BaseActivity {
         signInAnonymously();
     }
 
-    private void initNavigationDrawer() {
+    @Override
+    public void initNavigationDrawer() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);

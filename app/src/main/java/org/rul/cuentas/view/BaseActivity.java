@@ -86,6 +86,8 @@ public abstract class BaseActivity extends AppCompatActivity
         return true;
     }
 
+    public void initNavigationDrawer(){}
+
     protected abstract Object getModule();
     //protected abstract void closeRealm();
 }

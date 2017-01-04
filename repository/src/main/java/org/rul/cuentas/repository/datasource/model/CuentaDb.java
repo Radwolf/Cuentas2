@@ -16,6 +16,7 @@ public class CuentaDb extends RealmObject {
     @PrimaryKey
     private String nombre;
     private float saldo;
+    private float saldoPrevisto;
     private Date fechaActualizacion;
 
     public String getNombre() {
@@ -42,6 +43,14 @@ public class CuentaDb extends RealmObject {
         this.fechaActualizacion = fechaActualizacion;
     }
 
+    public float getSaldoPrevisto() {
+        return saldoPrevisto;
+    }
+
+    public void setSaldoPrevisto(float saldoPrevisto) {
+        this.saldoPrevisto = saldoPrevisto;
+    }
+
     public CuentaDb() {
     }
 
@@ -49,6 +58,7 @@ public class CuentaDb extends RealmObject {
         this.fechaActualizacion = builder.fechaActualizacion;
         this.nombre = builder.nombre;
         this.saldo = builder.saldo;
+        this.saldoPrevisto = builder.saldoPrevisto;
     }
 
     public static class Builder {
@@ -56,6 +66,7 @@ public class CuentaDb extends RealmObject {
         private Date fechaActualizacion;
         private String nombre;
         private float saldo;
+        private float saldoPrevisto;
 
         public Builder setNombre(String nombre) {
             this.nombre = nombre;
@@ -69,6 +80,11 @@ public class CuentaDb extends RealmObject {
 
         public Builder setFechaActualizacion(Date fechaActualizacion) {
             this.fechaActualizacion = fechaActualizacion;
+            return this;
+        }
+
+        public Builder setSaldoPrevisto(float saldoPrevisto) {
+            this.saldoPrevisto = saldoPrevisto;
             return this;
         }
 

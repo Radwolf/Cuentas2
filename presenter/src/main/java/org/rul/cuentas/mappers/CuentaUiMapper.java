@@ -28,6 +28,7 @@ public class CuentaUiMapper extends Mapper<Cuenta, CuentaDomain> {
         return new Cuenta.Builder()
                 .setNombre(type.getNombre())
                 .setSaldo(String.valueOf(type.getSaldo()))
+                .setSaldoPrevisto(String.valueOf(type.getSaldoPrevisto()))
                 .setFechaActualizacion(type.getFechaActualizacion())
                 .build();
     }
@@ -37,6 +38,7 @@ public class CuentaUiMapper extends Mapper<Cuenta, CuentaDomain> {
         CuentaDomain cuentaDomain = new CuentaDomain.Builder()
                 .setNombre(type.getNombre())
                 .setSaldo(Float.parseFloat(type.getSaldo()))
+                .setSaldoPrevisto(Float.parseFloat((type.getSaldoPrevisto()==null)?"0":type.getSaldoPrevisto()))
                 .build();
 
         if( type.getFechaActualizacion() != null ) {

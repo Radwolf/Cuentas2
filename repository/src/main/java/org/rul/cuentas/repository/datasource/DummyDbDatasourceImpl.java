@@ -4,6 +4,7 @@ import com.google.common.base.Strings;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.rul.cuentas.repository.datasource.model.CategoriaDb;
 import org.rul.cuentas.repository.datasource.model.CuentaDb;
 import org.rul.cuentas.repository.datasource.model.MovimientoDb;
 import org.rul.cuentas.repository.datasource.model.ResumenCuentaDb;
@@ -59,16 +60,25 @@ public class DummyDbDatasourceImpl implements DummyDbDatasource {
         // make sure the quotes are escaped
         String str = out.toString();
         // the object data is inside a "global" JSONObject
+        JSONArray categorias;
         JSONArray cuentas;
         JSONArray resumenCuentas;
         JSONArray movimientos;
         getRealm().beginTransaction();
         //Para Borrar las tablas OJO comentarlo
-        //getRealm().delete(CuentaDb.class);
-        //getRealm().delete(ResumenCuentaDb.class);
-        //getRealm().delete(MovimientoDb.class);
+        getRealm().delete(CategoriaDb.class);
+        getRealm().delete(CuentaDb.class);
+        getRealm().delete(ResumenCuentaDb.class);
+        getRealm().delete(MovimientoDb.class);
 
         try {
+            categorias = new JSONObject(str).getJSONArray("categoria");
+            for (int i = 0; i < categorias.length(); i++) {
+                JSONObject categoria = categorias.getJSONObject(i);
+                CategoriaDb categoriaDb = null;
+                categoriaDb = getRealm().createObject(CategoriaDb.class, i);
+                categoriaDb.setNombre(categoria.getString("nombre"));
+            }
             cuentas = new JSONObject(str).getJSONArray("cuenta");
             for (int i = 0; i < cuentas.length(); i++) {
                 JSONObject cuenta = cuentas.getJSONObject(i);

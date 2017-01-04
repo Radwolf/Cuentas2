@@ -9,8 +9,14 @@ import org.rul.cuentas.presenters.AddCuentaPresenter;
 import org.rul.cuentas.presenters.AddCuentaPresenterImpl;
 import org.rul.cuentas.repository.CuentaRepository;
 import org.rul.cuentas.repository.CuentaRepositoryImpl;
+import org.rul.cuentas.repository.datasource.CategoriaDbDatasource;
+import org.rul.cuentas.repository.datasource.CategoriaDbDatasourceImpl;
 import org.rul.cuentas.repository.datasource.CuentaDbDatasource;
 import org.rul.cuentas.repository.datasource.CuentaDbDatasourceImpl;
+import org.rul.cuentas.repository.datasource.MovimientoDbDatasource;
+import org.rul.cuentas.repository.datasource.MovimientoDbDatasourceImpl;
+import org.rul.cuentas.repository.datasource.ResumenCuentaDbDatasource;
+import org.rul.cuentas.repository.datasource.ResumenCuentaDbDatasourceImpl;
 import org.rul.cuentas.repository.datasource.mapper.CuentaDomainMapper;
 import org.rul.cuentas.repository.datasource.model.CuentaDb;
 import org.rul.cuentas.ui.model.Cuenta;
@@ -54,6 +60,24 @@ public class AddCuentaModule {
     @ForActivity
     public CuentaDbDatasource providesCuentaDbDatasource(CuentaDbDatasourceImpl cuentaDbDatasource){
         return cuentaDbDatasource;
+    }
+
+    @Provides
+    @ForActivity
+    public CategoriaDbDatasource providesCategoriaDbDatasource(CategoriaDbDatasourceImpl categoriaDbDatasource){
+        return categoriaDbDatasource;
+    }
+
+    @Provides
+    @ForActivity
+    public MovimientoDbDatasource providesMovimientoDbDatasource(MovimientoDbDatasourceImpl movimientoDbDatasource){
+        return movimientoDbDatasource;
+    }
+
+    @Provides
+    @ForActivity
+    public ResumenCuentaDbDatasource providesResumenCuentaDbDatasource(ResumenCuentaDbDatasourceImpl resumenCuentaDbDatasource){
+        return resumenCuentaDbDatasource;
     }
 
     @Provides

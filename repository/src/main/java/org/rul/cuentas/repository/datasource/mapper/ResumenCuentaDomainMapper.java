@@ -5,6 +5,8 @@ import org.rul.cuentas.repository.datasource.model.ResumenCuentaDb;
 import org.rul.cuentas.model.ResumenCuentaDomain;
 import org.rul.cuentas.util.Mapper;
 
+import java.text.SimpleDateFormat;
+
 import javax.inject.Inject;
 
 /**
@@ -13,13 +15,17 @@ import javax.inject.Inject;
 
 public class ResumenCuentaDomainMapper extends Mapper<ResumenCuentaDomain, ResumenCuentaDb> {
 
+    private SimpleDateFormat sdf;
+
     @Inject
     public ResumenCuentaDomainMapper() {
+        this.sdf = new SimpleDateFormat("dd/MM/yyyy");
     }
 
     @Override
     public ResumenCuentaDomain map(ResumenCuentaDb type) {
         return new ResumenCuentaDomain.Builder()
+                .setFechaUltimaActualizacion(sdf.format(type.getCuentaDb().getFechaActualizacion()))
                 .setNombreCuenta(type.getCuentaDb().getNombre())
                 .setAnyoMes(type.getAnyoMes())
                 .setIngresos(type.getIngresos())

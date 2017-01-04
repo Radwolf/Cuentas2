@@ -9,11 +9,13 @@ public class Cuenta {
     private String fechaActualizacion;
     private String nombre;
     private String saldo;
+    private String saldoPrevisto;
 
     private Cuenta(Builder builder) {
         this.fechaActualizacion = builder.fechaActualizacion;
         this.nombre = builder.nombre;
         this.saldo = builder.saldo;
+        this.saldoPrevisto = builder.saldoPrevisto;
     }
 
     public String getFechaActualizacion() {
@@ -40,11 +42,20 @@ public class Cuenta {
         this.saldo = saldo;
     }
 
+    public String getSaldoPrevisto() {
+        return saldoPrevisto;
+    }
+
+    public void setSaldoPrevisto(String saldoPrevisto) {
+        this.saldoPrevisto = saldoPrevisto;
+    }
+
     public static class Builder {
 
         private String fechaActualizacion;
         private String nombre;
         private String saldo;
+        private String saldoPrevisto;
 
         public Builder setNombre(String nombre) {
             this.nombre = nombre;
@@ -58,6 +69,11 @@ public class Cuenta {
 
         public Builder setFechaActualizacion(String fechaActualizacion) {
             this.fechaActualizacion = fechaActualizacion;
+            return this;
+        }
+
+        public Builder setSaldoPrevisto(String saldoPrevisto) {
+            this.saldoPrevisto = saldoPrevisto;
             return this;
         }
 

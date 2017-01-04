@@ -1,33 +1,60 @@
 {
+	"categoria": [{
+		"nombre": "Luz"
+	},
+	{
+		"nombre": "Agua"
+	},
+	{
+		"nombre": "Gas"
+	},
+	{
+		"nombre": "Internet"
+	},
+	{
+		"nombre": "Nómina"
+	},
+	{
+		"nombre": "Hipoteca"
+	},
+	{
+		"nombre": "Compras"
+	},
+	{
+		"nombre": "Transferencia"
+	},
+	{
+		"nombre": "Ingreso"
+	}],
 	"cuenta": [{
 		"nombre": "Casa",
-		"saldo": 0.00
+		"saldo": 1245.65
 	},
 	{
 		"nombre": "Recibos",
-		"saldo": 0.00
+		"saldo": 857.21
 	}, 
 	{
 		"nombre": "Compras",
-		"saldo": 0.00
+		"saldo": 378.54
 	}],
 	"resumen_cuenta": [{
 		"cuentaDb": "Casa",
-		"anyomes": 201612,
+		"anyomes": 201701,
 		"ingresos": 0.00,
 		"gastos": 0.00,
 		"ahorros": 0.00
 	},
 	{
 		"cuentaDb": "Recibos",
-		"anyomes": 201612,
+		"anyomes": 201701,
 		"ingresos": 0.00,
 		"gastos": 0.00,
 		"ahorros": 0.00
 	},
 	{
 		"cuentaDb": "Compras",
-		"anyomes": 201612,
+		"anyomes": 201701,
 		"ingresos": 0.00,
 		"gastos": 0.00,
 		"ahorros": 0.00
@@ -40,11 +67,8 @@
 		"es_previsto": "false",
 		"importe": 123.85,
 		"importe_previsto": 0.00,
-		"categoria": {
-		  "principal": "Compras",
-		  "subcategoria": "Comida y varios"
-		},
-		"fecha_confirmacion": "10/12/2016",
+		"categoria": "Compras",
+		"fecha_confirmacion": "10/01/2017",
 		"fecha_prevista": ""
 	},
 	{
@@ -55,11 +79,8 @@
 		"es_previsto": "false",
 		"importe": 50.85,
 		"importe_previsto": 0.00,
-		"categoria": {
-		  "principal": "Compras",
-		  "subcategoria": "Ropa"
-		},
-		"fecha_confirmacion": "08/12/2016",
+		"categoria": "Compras",
+		"fecha_confirmacion": "08/01/2017",
 		"fecha_prevista": ""
 	},
 	{
@@ -70,11 +91,8 @@
 		"es_previsto": "false",
 		"importe": 1450.67,
 		"importe_previsto": 0.00,
-		"categoria": {
-		  "principal": "Nóminas",
-		  "subcategoria": "Mensual"
-		},
-		"fecha_confirmacion": "01/12/2016",
+		"categoria": "Nómina",
+		"fecha_confirmacion": "01/01/2017",
 		"fecha_prevista": ""
 	},
     {
@@ -85,11 +103,8 @@
 		"es_previsto": "false",
 		"importe": 32.20,
 		"importe_previsto": 0.00,
-		"categoria": {
-		  "principal": "Recibos",
-		  "subcategoria": "Luz"
-		},
-		"fecha_confirmacion": "10/12/2016",
+		"categoria": "Luz",
+		"fecha_confirmacion": "10/01/2017",
 		"fecha_prevista": ""
 	},
 	{
@@ -100,12 +115,9 @@
 		"es_previsto": "true",
 		"importe": 0.00,
 		"importe_previsto": 38.95,
-		"categoria": {
-		  "principal": "Recibos",
-		  "subcategoria": "Internet"
-		},
+		"categoria": "Internet",
 		"fecha_confirmacion": "",
-		"fecha_prevista": "14/12/2016"
+		"fecha_prevista": "14/01/2017"
 	},
     {
     	"cuentaDb": "Recibos",
@@ -115,11 +127,8 @@
 		"es_previsto": "false",
 		"importe": 600.00,
 		"importe_previsto": 0.00,
-		"categoria": {
-		  "principal": "Bancos",
-		  "subcategoria": "Transferencia"
-		},
-		"fecha_confirmacion": "01/12/2016",
+		"categoria": "Transferencia",
+		"fecha_confirmacion": "01/01/2017",
 		"fecha_prevista": ""
 	}]
 }

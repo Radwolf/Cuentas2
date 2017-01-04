@@ -20,7 +20,7 @@ public class MovimientoDb extends RealmObject {
     private boolean ahorro;
     private float importe;
     private float importePrevisto;
-    private Categoria categoria;
+    private CategoriaDb categoriaDb;
     private CuentaDb cuentaDb;
     private Date fechaPrevista;
     private Date fechaConfirmacion;
@@ -73,12 +73,12 @@ public class MovimientoDb extends RealmObject {
         this.importePrevisto = importePrevisto;
     }
 
-    public Categoria getCategoria() {
-        return categoria;
+    public CategoriaDb getCategoriaDb() {
+        return categoriaDb;
     }
 
-    public void setCategoria(Categoria categoria) {
-        this.categoria = categoria;
+    public void setCategoriaDb(CategoriaDb categoriaDb) {
+        this.categoriaDb = categoriaDb;
     }
 
     public CuentaDb getCuentaDb() {
@@ -103,5 +103,89 @@ public class MovimientoDb extends RealmObject {
 
     public void setFechaConfirmacion(Date fechaConfirmacion) {
         this.fechaConfirmacion = fechaConfirmacion;
+    }
+
+    public MovimientoDb() {
+    }
+
+    private MovimientoDb(Builder builder) {
+        this.id = builder.id;
+        this.categoriaDb = builder.categoriaDb;
+        this.cuentaDb = builder.cuentaDb;
+        this.descripcion = builder.descripcion;
+        this.fechaConfirmacion = builder.fechaConfirmacion;
+        this.fechaPrevista = builder.fechaConfirmacion;
+        this.ahorro = builder.ahorro;
+        this.importe = builder.importe;
+        this.importePrevisto = builder.importePrevisto;
+        this.tipoMovimiento = builder.tipoMovimiento;
+    }
+
+    public static class Builder {
+
+        private int id;
+        private String descripcion;
+        private String tipoMovimiento;
+        private boolean ahorro;
+        private float importe;
+        private float importePrevisto;
+        private CategoriaDb categoriaDb;
+        private CuentaDb cuentaDb;
+        private Date fechaPrevista;
+        private Date fechaConfirmacion;
+
+        public Builder setId(int id) {
+            this.id = id;
+            return this;
+        }
+
+        public Builder setDescripcion(String descripcion) {
+            this.descripcion = descripcion;
+            return this;
+        }
+
+        public Builder setTipoMovimiento(String tipoMovimiento) {
+            this.tipoMovimiento = tipoMovimiento;
+            return this;
+        }
+
+        public Builder setAhorro(boolean ahorro) {
+            this.ahorro = ahorro;
+            return this;
+        }
+
+        public Builder setImporte(float importe) {
+            this.importe = importe;
+            return this;
+        }
+
+        public Builder setImportePrevisto(float importePrevisto) {
+            this.importePrevisto = importePrevisto;
+            return this;
+        }
+
+        public Builder setCategoriaDb(CategoriaDb categoriaDb) {
+            this.categoriaDb = categoriaDb;
+            return this;
+        }
+
+        public Builder setCuentaDb(CuentaDb cuentaDb) {
+            this.cuentaDb = cuentaDb;
+            return this;
+        }
+
+        public Builder setFechaPrevista(Date fechaPrevista) {
+            this.fechaPrevista = fechaPrevista;
+            return this;
+        }
+
+        public Builder setFechaConfirmacion(Date fechaConfirmacion) {
+            this.fechaConfirmacion = fechaConfirmacion;
+            return this;
+        }
+
+        public MovimientoDb build() {
+            return new MovimientoDb(this);
+        }
     }
 }

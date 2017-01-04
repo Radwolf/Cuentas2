@@ -1,6 +1,9 @@
 package org.rul.cuentas.repository.datasource;
 
+import org.rul.cuentas.repository.datasource.model.CategoriaDb;
 import org.rul.cuentas.repository.datasource.model.CuentaDb;
+import org.rul.cuentas.repository.datasource.model.MovimientoDb;
+import org.rul.cuentas.repository.datasource.model.ResumenCuentaDb;
 import org.rul.cuentas.repository.providers.RealmProvider;
 import org.rul.cuentas.repository.exceptions.RepositoryException;
 
@@ -12,6 +15,7 @@ import javax.inject.Inject;
 import io.realm.Realm;
 import io.realm.RealmQuery;
 import io.realm.RealmResults;
+import io.realm.Sort;
 
 /**
  * Created by rgonzalez on 03/10/2016.
@@ -20,10 +24,18 @@ import io.realm.RealmResults;
 public class CuentaDbDatasourceImpl implements CuentaDbDatasource {
 
     private RealmProvider realmProvider;
+    private CategoriaDbDatasource categoriaDbDatasource;
+    private MovimientoDbDatasource movimientoDbDatasource;
+    private ResumenCuentaDbDatasource resumenCuentaDbDatasource;
 
     @Inject
-    public CuentaDbDatasourceImpl(RealmProvider realmProvider) {
+    public CuentaDbDatasourceImpl(RealmProvider realmProvider, CategoriaDbDatasource categoriaDbDatasource,
+                                  MovimientoDbDatasource movimientoDbDatasource,
+                                  ResumenCuentaDbDatasource resumenCuentaDbDatasource) {
         this.realmProvider = realmProvider;
+        this.categoriaDbDatasource = categoriaDbDatasource;
+        this.movimientoDbDatasource = movimientoDbDatasource;
+        this.resumenCuentaDbDatasource = resumenCuentaDbDatasource;
     }
 
     @Override
@@ -75,10 +87,58 @@ public class CuentaDbDatasourceImpl implements CuentaDbDatasource {
     public CuentaDb insert(final CuentaDb cuenta) throws RepositoryException {
         getRealm().beginTransaction();
         CuentaDb cuentaDb = null;
+        Calendar calendar = Calendar.getInstance();
+        int month = calendar.get(Calendar.MONTH) + 1;
+        int year = calendar.get(Calendar.YEAR);
         try{
             cuentaDb = getRealm().createObject(CuentaDb.class, cuenta.getNombre());
             cuentaDb.setSaldo(cuenta.getSaldo());
             cuentaDb.setFechaActualizacion(Calendar.getInstance().getTime());
+
+            int idResumen = getRealm().where(ResumenCuentaDb.class).findAll().max("id").intValue()+1;
+
+            ResumenCuentaDb resumenCuentaDb = new ResumenCuentaDb.Builder()
+                    .setId(idResumen)
+                    .setCuentaDb(cuentaDb)
+                    .setAnyoMes(calculaSiguienteAnyoMes(year, month))
+                    .setAhorros(0)
+                    .setGastos(0)
+                    .setIngresos(cuenta.getSaldo())
+                    .setAhorrosPrevistos(0)
+                    .setGastosPrevistos(0)
+                    .setIngresosPrevistos(0).build();
+
+            this.resumenCuentaDbDatasource.insert(resumenCuentaDb);
+
+            CategoriaDb categoriaDb = this.categoriaDbDatasource.findByNombre("Ingreso"); // getRealm().where(CategoriaDb.class).equalTo("nombre", "Ingreso").findFirst();
+
+            int idMovimiento = getRealm().where(MovimientoDb.class).findAll().max("id").intValue()+1;
+            MovimientoDb movimientoDb = new MovimientoDb.Builder()
+                    .setId(idMovimiento)
+                    .setAhorro(false)
+                    .setImporte(cuenta.getSaldo())
+                    .setDescripcion("Saldo inicial")
+                    .setTipoMovimiento("INGRESO")
+                    .setFechaConfirmacion(Calendar.getInstance().getTime())
+                    .setCuentaDb(cuentaDb)
+                    .setCategoriaDb(categoriaDb).build();
+
+            this.movimientoDbDatasource.insert(movimientoDb);
+
+            for(int i = month+1; i <= 12; i++){
+                idResumen++;
+                resumenCuentaDb = new ResumenCuentaDb.Builder()
+                        .setId(idResumen)
+                        .setCuentaDb(cuentaDb)
+                        .setAnyoMes(calculaSiguienteAnyoMes(year, i))
+                        .setAhorros(0)
+                        .setGastos(0)
+                        .setIngresos(0)
+                        .setAhorrosPrevistos(0)
+                        .setGastosPrevistos(0)
+                        .setIngresosPrevistos(0).build();
+                this.resumenCuentaDbDatasource.insert(resumenCuentaDb);
+            }
         } catch (Exception e) {
             throw new RepositoryException(e);
         } finally {
@@ -87,6 +147,14 @@ public class CuentaDbDatasourceImpl implements CuentaDbDatasource {
         }
 
         return cuentaDb;
+    }
+
+    private String calculaSiguienteAnyoMes(int anyo, int mes) {
+        if(mes+1 < 10){
+            return String.format("%d0%d", anyo, mes);
+        }else{
+            return String.format("%d%d", anyo, mes);
+        }
     }
 
     @Override

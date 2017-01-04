@@ -11,6 +11,7 @@ import javax.inject.Inject;
 import io.realm.Realm;
 import io.realm.RealmQuery;
 import io.realm.RealmResults;
+import io.realm.Sort;
 
 /**
  * Created by rgonzalez on 03/10/2016.
@@ -69,24 +70,32 @@ public class ResumenCuentaDbDatasourceImpl implements ResumenCuentaDbDatasource 
 
     @Override
     public ResumenCuentaDb insert(final ResumenCuentaDb resumenCuenta) throws RepositoryException {
-        getRealm().beginTransaction();
+        boolean inTransaction = false;
+        if(getRealm().isInTransaction()){
+            inTransaction = true;
+        }
+        if(!inTransaction) {
+            getRealm().beginTransaction();
+        }
         ResumenCuentaDb resumenCuentaDb = null;
         try{
-            ResumenCuentaDb resumenCuentaAnterior = getRealm().where(ResumenCuentaDb.class)
-                    .equalTo("cuentaDb.nombre", resumenCuenta.getCuentaDb().getNombre())
-                    .findAllSorted("anyoMes").first();
-            String anyoMes = calculaSiguienteAnyoMes(resumenCuentaAnterior.getAnyoMes());
-            resumenCuentaDb = getRealm().createObject(ResumenCuentaDb.class);
+            ResumenCuentaDb resumenCuentaDbLast = getRealm().where(ResumenCuentaDb.class).findAllSorted("id", Sort.DESCENDING).first();
+            resumenCuentaDb = getRealm().createObject(ResumenCuentaDb.class, resumenCuentaDbLast.getId()+1);
             resumenCuentaDb.setCuentaDb(resumenCuenta.getCuentaDb());
-            resumenCuentaDb.setAnyoMes(anyoMes);
-            resumenCuentaDb.setAhorros(resumenCuentaAnterior.getAhorros());
-            resumenCuentaDb.setGastos(resumenCuentaAnterior.getGastos());
-            resumenCuentaDb.setIngresos(resumenCuentaAnterior.getIngresos());
+            resumenCuentaDb.setAnyoMes(resumenCuenta.getAnyoMes());
+            resumenCuentaDb.setAhorros(resumenCuenta.getAhorros());
+            resumenCuentaDb.setGastos(resumenCuenta.getGastos());
+            resumenCuentaDb.setIngresos(resumenCuenta.getIngresos());
+            resumenCuentaDb.setAhorrosPrevistos(resumenCuenta.getAhorrosPrevistos());
+            resumenCuentaDb.setGastosPrevistos(resumenCuenta.getGastosPrevistos());
+            resumenCuentaDb.setIngresosPrevistos(resumenCuenta.getIngresosPrevistos());
         } catch (Exception e) {
             throw new RepositoryException(e);
         } finally {
-            getRealm().commitTransaction();
-            getRealm().close();
+            if(!inTransaction) {
+                getRealm().commitTransaction();
+                getRealm().close();
+            }
         }
 
         return resumenCuentaDb;

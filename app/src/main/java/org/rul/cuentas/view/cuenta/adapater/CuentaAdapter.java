@@ -60,23 +60,22 @@ public class CuentaAdapter extends RecyclerView.Adapter<CuentaAdapter.CuentaView
         @Bind(R.id.tv_cuenta_saldo)
         TextView tvCuentaSaldo;
 
+        @Bind(R.id.tv_cuenta_saldo_previsto)
+        TextView tvCuentaSaldoPrevisto;
+
         @Bind(R.id.tv_cuenta_fecha_actualizacion)
         TextView tvCuentaFechaActualizacion;
 
         public CuentaViewHolder(View itemView) {
-
             super(itemView);
-
             ButterKnife.bind( this, itemView );
-
         }
 
         public void bind(final Cuenta cuenta, final OnCuentaClickedListener onCuentaClickedListener) {
 
             tvCuentaNombre.setText( cuenta.getNombre() );
-
             tvCuentaSaldo.setText( cuenta.getSaldo() );
-
+            tvCuentaSaldoPrevisto.setText(cuenta.getSaldoPrevisto());
             tvCuentaFechaActualizacion.setText( cuenta.getFechaActualizacion() );
 
             itemView.setOnClickListener(new View.OnClickListener() {

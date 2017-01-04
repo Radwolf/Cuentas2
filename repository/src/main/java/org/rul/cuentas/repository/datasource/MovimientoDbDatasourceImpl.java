@@ -178,12 +178,18 @@ public class MovimientoDbDatasourceImpl implements MovimientoDbDatasource {
 
     @Override
     public MovimientoDb insert(final MovimientoDb movimiento) throws RepositoryException {
-        getRealm().beginTransaction();
+        boolean inTransaction = false;
+        if(getRealm().isInTransaction()){
+            inTransaction = true;
+        }
+        if(!inTransaction) {
+            getRealm().beginTransaction();
+        }
         MovimientoDb movimientoDb = null;
         try{
-            movimientoDb = getRealm().createObject(MovimientoDb.class, getRealm().where(MovimientoDb.class).findAll().max("id").intValue()+1);
+            movimientoDb = getRealm().createObject(MovimientoDb.class, movimiento.getId());
             movimientoDb.setAhorro(movimiento.isAhorro());
-            movimientoDb.setCategoria(movimiento.getCategoria());
+            movimientoDb.setCategoriaDb(movimiento.getCategoriaDb());
             movimientoDb.setCuentaDb(movimiento.getCuentaDb());
             movimientoDb.setDescripcion(movimiento.getDescripcion());
             movimientoDb.setFechaConfirmacion(movimiento.getFechaConfirmacion());
@@ -195,8 +201,10 @@ public class MovimientoDbDatasourceImpl implements MovimientoDbDatasource {
         } catch (Exception e) {
             throw new RepositoryException(e);
         } finally {
-            getRealm().commitTransaction();
-            getRealm().close();
+            if(!inTransaction) {
+                getRealm().commitTransaction();
+                getRealm().close();
+            }
         }
 
         return movimientoDb;

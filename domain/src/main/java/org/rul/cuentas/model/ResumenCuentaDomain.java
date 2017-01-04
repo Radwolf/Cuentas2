@@ -1,5 +1,7 @@
 package org.rul.cuentas.model;
 
+import java.util.Date;
+
 /**
  * Created by rgonzalez on 02/12/2016.
  */
@@ -15,6 +17,7 @@ public class ResumenCuentaDomain {
     private float ingresosPrevistos;
     private float gastosPrevistos;
     private float ahorrosPrevistos;
+    private String fechaUltimaActualizacion;
 
 
     private ResumenCuentaDomain(Builder builder) {
@@ -26,6 +29,7 @@ public class ResumenCuentaDomain {
         this.ingresosPrevistos = builder.ingresosPrevistos;
         this.gastosPrevistos = gastosPrevistos;
         this.ahorrosPrevistos = ahorrosPrevistos;
+        this.fechaUltimaActualizacion = fechaUltimaActualizacion;
     }
 
     public String getNombreCuenta() {
@@ -92,6 +96,14 @@ public class ResumenCuentaDomain {
         this.ahorrosPrevistos = ahorrosPrevistos;
     }
 
+    public String getFechaUltimaActualizacion() {
+        return fechaUltimaActualizacion;
+    }
+
+    public void setFechaUltimaActualizacion(String fechaUltimaActualizacion) {
+        this.fechaUltimaActualizacion = fechaUltimaActualizacion;
+    }
+
     public static class Builder{
 
         private String nombreCuenta;
@@ -102,7 +114,7 @@ public class ResumenCuentaDomain {
         private float ingresosPrevistos;
         private float gastosPrevistos;
         private float ahorrosPrevistos;
-
+        private String fechaUltimaActualizacion;
 
         public Builder setNombreCuenta(String nombreCuenta) {
             this.nombreCuenta = nombreCuenta;
@@ -141,6 +153,11 @@ public class ResumenCuentaDomain {
 
         public Builder setAhorrosPrevistos(float ahorrosPrevistos) {
             this.ahorrosPrevistos = ahorrosPrevistos;
+            return this;
+        }
+
+        public Builder setFechaUltimaActualizacion(String fechaUltimaActualizacion) {
+            this.fechaUltimaActualizacion = fechaUltimaActualizacion;
             return this;
         }
 

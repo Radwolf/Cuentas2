@@ -7,12 +7,12 @@ import io.realm.annotations.PrimaryKey;
  * Created by rgonzalez on 03/10/2016.
  */
 
-public class Categoria extends RealmObject {
+public class CategoriaDb extends RealmObject {
 
     @PrimaryKey
     private int id;
     private String nombre;
-    private Categoria categoriaPadre;
+    //private Categoria categoriaPadre;
 
     public int getId() {
         return id;
@@ -30,11 +30,11 @@ public class Categoria extends RealmObject {
         this.nombre = nombre;
     }
 
-    public Categoria getCategoriaPadre() {
-        return categoriaPadre;
-    }
-
-    public void setCategoriaPadre(Categoria categoriaPadre) {
-        this.categoriaPadre = categoriaPadre;
-    }
+//    public Categoria getCategoriaPadre() {
+//        return categoriaPadre;
+//    }
+//
+//    public void setCategoriaPadre(Categoria categoriaPadre) {
+//        this.categoriaPadre = categoriaPadre;
+//    }
 }

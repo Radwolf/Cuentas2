@@ -44,6 +44,4 @@ public interface AddCuentaComponent extends AddCuentaPresenterComponent, CuentaR
     void inject(AddCuentaActivity addCuentaActivity);
     void inject(AddCuentaFragment addCuentaFragment);
 
-    InsertCuentaInteractor insertCuentaInteractor();
-
 }

@@ -14,6 +14,7 @@ public class ResumenCuenta {
     private String ingresosPrevistos;
     private String gastosPrevistos;
     private String ahorrosPrevistos;
+    private String fechaUltimaActualizacion;
 
 
     private ResumenCuenta(Builder builder) {
@@ -25,6 +26,7 @@ public class ResumenCuenta {
         this.ingresosPrevistos = builder.ingresosPrevistos;
         this.gastosPrevistos = builder.gastosPrevistos;
         this.ahorrosPrevistos = builder.ahorrosPrevistos;
+        this.fechaUltimaActualizacion = builder.fechaUltimaActualizacion;
     }
 
     public String getNombreCuenta() {
@@ -91,6 +93,14 @@ public class ResumenCuenta {
         this.ahorrosPrevistos = ahorrosPrevistos;
     }
 
+    public String getFechaUltimaActualizacion() {
+        return fechaUltimaActualizacion;
+    }
+
+    public void setFechaUltimaActualizacion(String fechaUltimaActualizacion) {
+        this.fechaUltimaActualizacion = fechaUltimaActualizacion;
+    }
+
     public static class Builder {
 
         private String nombreCuenta;
@@ -101,6 +111,7 @@ public class ResumenCuenta {
         private String ingresosPrevistos;
         private String gastosPrevistos;
         private String ahorrosPrevistos;
+        private String fechaUltimaActualizacion;
 
         public Builder setNombreCuenta(String nombreCuenta) {
             this.nombreCuenta = nombreCuenta;
@@ -139,6 +150,11 @@ public class ResumenCuenta {
 
         public Builder setAhorrosPrevistos(String ahorrosPrevistos) {
             this.ahorrosPrevistos = ahorrosPrevistos;
+            return this;
+        }
+
+        public Builder setFechaUltimaActualizacion(String fechaUltimaActualizacion){
+            this.fechaUltimaActualizacion = fechaUltimaActualizacion;
             return this;
         }
 

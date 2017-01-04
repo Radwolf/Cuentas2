@@ -12,11 +12,13 @@ public class CuentaDomain {
     private String fechaActualizacion;
     private String nombre;
     private float saldo;
+    private float saldoPrevisto;
 
     private CuentaDomain(Builder builder) {
         this.fechaActualizacion = builder.fechaActualizacion;
         this.nombre = builder.nombre;
         this.saldo = builder.saldo;
+        this.saldoPrevisto = builder.saldoPrevisto;
     }
 
     public String getFechaActualizacion() {
@@ -43,12 +45,20 @@ public class CuentaDomain {
         this.saldo = saldo;
     }
 
+    public float getSaldoPrevisto() {
+        return saldoPrevisto;
+    }
+
+    public void setSaldoPrevisto(float saldoPrevisto) {
+        this.saldoPrevisto = saldoPrevisto;
+    }
+
     public static class Builder{
 
         private String fechaActualizacion;
         private String nombre;
         private float saldo;
-
+        private float saldoPrevisto;
 
         public Builder setNombre(String nombre) {
             this.nombre = nombre;
@@ -65,6 +75,10 @@ public class CuentaDomain {
             return this;
         }
 
+        public Builder setSaldoPrevisto(float saldoPrevisto) {
+            this.saldoPrevisto = saldoPrevisto;
+            return this;
+        }
 
         public CuentaDomain build(){
             return new CuentaDomain(this

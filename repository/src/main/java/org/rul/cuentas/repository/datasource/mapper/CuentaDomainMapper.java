@@ -29,6 +29,7 @@ public class CuentaDomainMapper  extends Mapper<CuentaDomain, CuentaDb> {
                 .setNombre(type.getNombre())
                 .setSaldo(type.getSaldo())
                 .setFechaActualizacion(sdf.format(type.getFechaActualizacion()))
+                .setSaldoPrevisto(type.getSaldoPrevisto())
                 .build();
     }
 
@@ -44,6 +45,7 @@ public class CuentaDomainMapper  extends Mapper<CuentaDomain, CuentaDb> {
                 .setFechaActualizacion(date)
                 .setNombre(type.getNombre())
                 .setSaldo(type.getSaldo())
+                .setSaldoPrevisto(type.getSaldoPrevisto())
                 .build();
     }
 }
