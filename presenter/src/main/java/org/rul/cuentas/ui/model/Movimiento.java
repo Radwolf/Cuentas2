@@ -1,24 +1,25 @@
-package org.rul.cuentas.model;
+package org.rul.cuentas.ui.model;
 
 import java.util.Date;
 
 /**
- * Created by rgonzalez on 02/12/2016.
+ * Created by Rul on 02/12/2016.
  */
-public class MovimientoDomain {
 
-    private int id;
+public class Movimiento {
+
+    private String id;
     private String descripcion;
     private String tipoMovimiento;
-    private boolean ahorro;
-    private float importe;
-    private float importePrevisto;
-    private int idCategoria;
+    private String ahorro;
+    private String importe;
+    private String importePrevisto;
+    private String idCategoria;
     private String nombreCuenta;
     private String fechaPrevista;
     private String fechaConfirmacion;
 
-    private MovimientoDomain(Builder builder) {
+    private Movimiento(Builder builder) {
         this.id = builder.id;
         this.descripcion = builder.descripcion;
         this.tipoMovimiento = builder.tipoMovimiento;
@@ -31,11 +32,11 @@ public class MovimientoDomain {
         this.fechaConfirmacion = builder.fechaConfirmacion;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -55,35 +56,35 @@ public class MovimientoDomain {
         this.tipoMovimiento = tipoMovimiento;
     }
 
-    public boolean isAhorro() {
+    public String getAhorro() {
         return ahorro;
     }
 
-    public void setAhorro(boolean ahorro) {
+    public void setAhorro(String ahorro) {
         this.ahorro = ahorro;
     }
 
-    public float getImporte() {
+    public String getImporte() {
         return importe;
     }
 
-    public void setImporte(float importe) {
+    public void setImporte(String importe) {
         this.importe = importe;
     }
 
-    public float getImportePrevisto() {
+    public String getImportePrevisto() {
         return importePrevisto;
     }
 
-    public void setImportePrevisto(float importePrevisto) {
+    public void setImportePrevisto(String importePrevisto) {
         this.importePrevisto = importePrevisto;
     }
 
-    public int getIdCategoria() {
+    public String getIdCategoria() {
         return idCategoria;
     }
 
-    public void setIdCategoria(int idCategoria) {
+    public void setIdCategoria(String idCategoria) {
         this.idCategoria = idCategoria;
     }
 
@@ -111,20 +112,20 @@ public class MovimientoDomain {
         this.fechaConfirmacion = fechaConfirmacion;
     }
 
-    public static class Builder{
+    public static class Builder {
 
-        private int id;
+        private String id;
         private String descripcion;
         private String tipoMovimiento;
-        private boolean ahorro;
-        private float importe;
-        private float importePrevisto;
-        private int idCategoria;
+        private String ahorro;
+        private String importe;
+        private String importePrevisto;
+        private String idCategoria;
         private String nombreCuenta;
         private String fechaPrevista;
         private String fechaConfirmacion;
 
-        public Builder setId(int id) {
+        public Builder setId(String id) {
             this.id = id;
             return this;
         }
@@ -139,22 +140,22 @@ public class MovimientoDomain {
             return this;
         }
 
-        public Builder setAhorro(boolean ahorro) {
+        public Builder setAhorro(String ahorro) {
             this.ahorro = ahorro;
             return this;
         }
 
-        public Builder setImporte(float importe) {
+        public Builder setImporte(String importe) {
             this.importe = importe;
             return this;
         }
 
-        public Builder setImportePrevisto(float importePrevisto) {
+        public Builder setImportePrevisto(String importePrevisto) {
             this.importePrevisto = importePrevisto;
             return this;
         }
 
-        public Builder setIdCategoria(int idCategoria) {
+        public Builder setIdCategoria(String idCategoria) {
             this.idCategoria = idCategoria;
             return this;
         }
@@ -174,9 +175,8 @@ public class MovimientoDomain {
             return this;
         }
 
-        public MovimientoDomain build(){
-            return new MovimientoDomain(this
-            );
+        public Movimiento build() {
+            return new Movimiento(this);
         }
     }
 }

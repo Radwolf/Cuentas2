@@ -1,10 +1,13 @@
-package org.rul.cuentas.interactors.cuenta.remove;
+package org.rul.cuentas.interactors.movimiento.remove;
 
 import org.rul.cuentas.interactors.base.BaseInteractor;
-import org.rul.cuentas.model.CuentaDomain;
-import org.rul.cuentas.repository.CuentaRepository;
+import org.rul.cuentas.interactors.base.Interactor;
+import org.rul.cuentas.model.MovimientoDomain;
+import org.rul.cuentas.repository.MovimientoRepository;
 import org.rul.cuentas.threads.InteractorExecutor;
 import org.rul.cuentas.threads.MainThread;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -12,26 +15,28 @@ import javax.inject.Inject;
  * Created by Rul on 02/12/2016.
  */
 
-public class RemoveCuentaInteractorImpl extends BaseInteractor implements RemoveCuentaInteractor {
+public class RemoveMovimientoInteractorImpl extends BaseInteractor implements RemoveMovimientoInteractor {
 
-    private CuentaRepository cuentaRepository;
+    private MovimientoRepository movimientoRepository;
 
-    private CuentaDomain cuentaDomain;
+    private MovimientoDomain movimientoDomain;
 
     private Callback<Boolean> callback;
 
-
     @Inject
-    public RemoveCuentaInteractorImpl(InteractorExecutor interactorExecutor, MainThread mainThread, CuentaRepository cuentaRepository) {
+    public RemoveMovimientoInteractorImpl(MovimientoRepository movimientoRepository, MainThread mainThread,
+                                          InteractorExecutor interactorExecutor) {
         super(interactorExecutor, mainThread);
-        this.cuentaRepository = cuentaRepository;
+        this.movimientoRepository = movimientoRepository;
+
     }
+
 
     @Override
     public void execute() {
 
         try {
-            cuentaRepository.remove(cuentaDomain);
+            movimientoRepository.remove(movimientoDomain);
             getMainThread().post(new Runnable() {
                 @Override
                 public void run() {
@@ -45,16 +50,16 @@ public class RemoveCuentaInteractorImpl extends BaseInteractor implements Remove
                     callback.onError( e );
                 }
             });
+
         }
     }
 
     @Override
-    public void run(CuentaDomain cuentaDomain, Callback<Boolean> callback){
+    public void run(MovimientoDomain movimientoDomain, Callback<Boolean> callback){
 
-        this.cuentaDomain = cuentaDomain;
+        this.movimientoDomain = movimientoDomain;
         this.callback = callback;
         getInteractorExecutor().executeInteractor( this );
 
     }
-
 }
