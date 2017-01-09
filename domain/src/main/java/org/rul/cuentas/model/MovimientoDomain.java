@@ -14,7 +14,8 @@ public class MovimientoDomain {
     private float importe;
     private float importePrevisto;
     private int idCategoria;
-    private String nombreCuenta;
+    private String nombreCategoria;
+    private int idResumenCuenta;
     private String fechaPrevista;
     private String fechaConfirmacion;
 
@@ -26,7 +27,8 @@ public class MovimientoDomain {
         this.importe = builder.importe;
         this.importePrevisto = builder.importePrevisto;
         this.idCategoria = builder.idCategoria;
-        this.nombreCuenta = builder.nombreCuenta;
+        this.nombreCategoria =  builder.nombreCategoria;
+        this.idResumenCuenta = builder.idResumenCuenta;
         this.fechaPrevista = builder.fechaPrevista;
         this.fechaConfirmacion = builder.fechaConfirmacion;
     }
@@ -87,12 +89,20 @@ public class MovimientoDomain {
         this.idCategoria = idCategoria;
     }
 
-    public String getNombreCuenta() {
-        return nombreCuenta;
+    public String getNombreCategoria() {
+        return nombreCategoria;
     }
 
-    public void setNombreCuenta(String nombreCuenta) {
-        this.nombreCuenta = nombreCuenta;
+    public void setNombreCategoria(String nombreCategoria) {
+        this.nombreCategoria = nombreCategoria;
+    }
+
+    public int getIdResumenCuenta() {
+        return idResumenCuenta;
+    }
+
+    public void setIdResumenCuenta(int idResumenCuenta) {
+        this.idResumenCuenta = idResumenCuenta;
     }
 
     public String getFechaPrevista() {
@@ -120,7 +130,8 @@ public class MovimientoDomain {
         private float importe;
         private float importePrevisto;
         private int idCategoria;
-        private String nombreCuenta;
+        private String nombreCategoria;
+        private int idResumenCuenta;
         private String fechaPrevista;
         private String fechaConfirmacion;
 
@@ -159,8 +170,13 @@ public class MovimientoDomain {
             return this;
         }
 
-        public Builder setNombreCuenta(String nombreCuenta) {
-            this.nombreCuenta = nombreCuenta;
+        public Builder setNombreCategoria(String nombreCategoria) {
+            this.nombreCategoria = nombreCategoria;
+            return this;
+        }
+
+        public Builder setIdResumenCuenta(int idResumenCuenta) {
+            this.idResumenCuenta = idResumenCuenta;
             return this;
         }
 

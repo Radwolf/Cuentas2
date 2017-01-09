@@ -120,7 +120,7 @@ public class CuentaDbDatasourceImpl implements CuentaDbDatasource {
                     .setDescripcion("Saldo inicial")
                     .setTipoMovimiento("INGRESO")
                     .setFechaConfirmacion(Calendar.getInstance().getTime())
-                    .setCuentaDb(cuentaDb)
+                    .setResumenCuentaDb(resumenCuentaDb)
                     .setCategoriaDb(categoriaDb).build();
 
             this.movimientoDbDatasource.insert(movimientoDb);

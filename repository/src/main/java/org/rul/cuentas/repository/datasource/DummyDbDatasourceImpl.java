@@ -92,8 +92,7 @@ public class DummyDbDatasourceImpl implements DummyDbDatasource {
                 JSONObject resumenCuenta = resumenCuentas.getJSONObject(i);
                 CuentaDb cuentaDb = getRealm().where(CuentaDb.class).equalTo("nombre", resumenCuenta.getString("cuentaDb")).findFirst();
                 ResumenCuentaDb resumenCuentaDb = null;
-                int lastId = 0;
-                resumenCuentaDb = getRealm().createObject(ResumenCuentaDb.class, i);
+                resumenCuentaDb = getRealm().createObject(ResumenCuentaDb.class, i+1);
                 resumenCuentaDb.setCuentaDb(cuentaDb);
                 resumenCuentaDb.setAnyoMes(resumenCuenta.getString("anyomes"));
                 resumenCuentaDb.setAhorros(Float.parseFloat(resumenCuenta.getString("ahorros")));
@@ -104,11 +103,11 @@ public class DummyDbDatasourceImpl implements DummyDbDatasource {
             for (int i = 0; i < movimientos.length(); i++) {
                 JSONObject movimiento = movimientos.getJSONObject(i);
                 MovimientoDb movimientoDb = null;
-                CuentaDb cuentaDb = getRealm().where(CuentaDb.class).equalTo("nombre", movimiento.getString("cuentaDb")).findFirst();
-                movimientoDb = getRealm().createObject(MovimientoDb.class, i);
+                ResumenCuentaDb resumenCuentaDb = getRealm().where(ResumenCuentaDb.class).equalTo("id", movimiento.getInt("resumenCuentaDb")).findFirst();
+                movimientoDb = getRealm().createObject(MovimientoDb.class, i+1);
                 movimientoDb.setAhorro(Boolean.parseBoolean(movimiento.getString("es_ahorro")));
                 //movimientoDb.setCategoria(new Categoria());
-                movimientoDb.setCuentaDb(cuentaDb);
+                movimientoDb.setResumenCuentaDb(resumenCuentaDb);
                 movimientoDb.setDescripcion(movimiento.getString("descripcion"));
                 movimientoDb.setFechaConfirmacion((!Strings.isNullOrEmpty(movimiento.getString("fecha_confirmacion")))?formatter.parse(movimiento.getString("fecha_confirmacion")):null);
                 movimientoDb.setFechaPrevista((!Strings.isNullOrEmpty(movimiento.getString("fecha_prevista")))?formatter.parse(movimiento.getString("fecha_prevista")):null);

@@ -33,7 +33,7 @@ public class MovimientoUiMapper extends Mapper<Movimiento, MovimientoDomain> {
                 .setId(String.valueOf(type.getId()))
                 .setImporte(String.valueOf(type.getImporte()))
                 .setImportePrevisto(String.valueOf(type.getImportePrevisto()))
-                .setNombreCuenta(type.getNombreCuenta())
+                .setIdResumenCuenta(String.valueOf(type.getIdResumenCuenta()))
                 .setTipoMovimiento(type.getTipoMovimiento())
                 .build();
         if(type.getFechaConfirmacion() != null){
@@ -58,7 +58,7 @@ public class MovimientoUiMapper extends Mapper<Movimiento, MovimientoDomain> {
                 .setIdCategoria(Integer.parseInt(type.getIdCategoria()))
                 .setImporte(Float.parseFloat((type.getImporte()==null)?"0":type.getImporte()))
                 .setImportePrevisto(Float.parseFloat((type.getImporte()==null)?"0":type.getImportePrevisto()))
-                .setNombreCuenta(type.getNombreCuenta())
+                .setIdResumenCuenta(Integer.parseInt(type.getIdResumenCuenta()))
                 .setTipoMovimiento(type.getTipoMovimiento())
                 .setFechaConfirmacion(type.getFechaConfirmacion())
                 .setFechaPrevista(type.getFechaPrevista())

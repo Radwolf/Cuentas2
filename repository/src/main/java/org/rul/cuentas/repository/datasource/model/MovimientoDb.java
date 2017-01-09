@@ -21,7 +21,7 @@ public class MovimientoDb extends RealmObject {
     private float importe;
     private float importePrevisto;
     private CategoriaDb categoriaDb;
-    private CuentaDb cuentaDb;
+    private ResumenCuentaDb resumenCuentaDb;
     private Date fechaPrevista;
     private Date fechaConfirmacion;
 
@@ -81,12 +81,12 @@ public class MovimientoDb extends RealmObject {
         this.categoriaDb = categoriaDb;
     }
 
-    public CuentaDb getCuentaDb() {
-        return cuentaDb;
+    public ResumenCuentaDb getResumenCuentaDb() {
+        return resumenCuentaDb;
     }
 
-    public void setCuentaDb(CuentaDb cuentaDb) {
-        this.cuentaDb = cuentaDb;
+    public void setResumenCuentaDb(ResumenCuentaDb resumenCuentaDb) {
+        this.resumenCuentaDb = resumenCuentaDb;
     }
 
     public Date getFechaPrevista() {
@@ -111,7 +111,7 @@ public class MovimientoDb extends RealmObject {
     private MovimientoDb(Builder builder) {
         this.id = builder.id;
         this.categoriaDb = builder.categoriaDb;
-        this.cuentaDb = builder.cuentaDb;
+        this.resumenCuentaDb = builder.resumenCuentaDb;
         this.descripcion = builder.descripcion;
         this.fechaConfirmacion = builder.fechaConfirmacion;
         this.fechaPrevista = builder.fechaConfirmacion;
@@ -130,7 +130,7 @@ public class MovimientoDb extends RealmObject {
         private float importe;
         private float importePrevisto;
         private CategoriaDb categoriaDb;
-        private CuentaDb cuentaDb;
+        private ResumenCuentaDb resumenCuentaDb;
         private Date fechaPrevista;
         private Date fechaConfirmacion;
 
@@ -169,8 +169,8 @@ public class MovimientoDb extends RealmObject {
             return this;
         }
 
-        public Builder setCuentaDb(CuentaDb cuentaDb) {
-            this.cuentaDb = cuentaDb;
+        public Builder setResumenCuentaDb(ResumenCuentaDb resumenCuentaDb) {
+            this.resumenCuentaDb = resumenCuentaDb;
             return this;
         }
 

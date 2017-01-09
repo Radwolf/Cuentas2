@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import org.rul.cuentas.R;
 import org.rul.cuentas.view.cuenta.CuentasActivity;
 import org.rul.cuentas.view.dashboard.DashboardActivity;
+import org.rul.cuentas.view.movimiento.MovimientosActivity;
 
 public abstract class BaseActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener  {
@@ -71,8 +72,8 @@ public abstract class BaseActivity extends AppCompatActivity
             startActivity(new Intent(this, DashboardActivity.class));
         } else if (id == R.id.nav_cuentas) {
             startActivity(new Intent(this, CuentasActivity.class));
-        } else if (id == R.id.nav_slideshow) {
-
+        } else if (id == R.id.nav_movimientos) {
+            startActivity(new Intent(this, MovimientosActivity.class));
         } else if (id == R.id.nav_manage) {
 
         } else if (id == R.id.nav_share) {

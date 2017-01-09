@@ -47,8 +47,7 @@ public class ResumenCuentaUiMapper extends Mapper<ResumenCuenta, ResumenCuentaDo
 
     @Override
     public ResumenCuentaDomain reverseMap(ResumenCuenta type) {
-        ResumenCuentaDomain resumenCuentaDomain = null;
-        resumenCuentaDomain = new ResumenCuentaDomain.Builder()
+        ResumenCuentaDomain resumenCuentaDomain = new ResumenCuentaDomain.Builder()
                 .setFechaUltimaActualizacion(type.getFechaUltimaActualizacion())
                 .setNombreCuenta(type.getNombreCuenta())
                 .setAnyoMes(type.getAnyoMes())

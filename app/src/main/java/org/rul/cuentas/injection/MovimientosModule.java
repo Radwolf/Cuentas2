@@ -10,7 +10,9 @@ import org.rul.cuentas.interactors.movimiento.get.GetAllMovimientosInteractorImp
 import org.rul.cuentas.interactors.movimiento.remove.RemoveMovimientoInteractor;
 import org.rul.cuentas.interactors.movimiento.remove.RemoveMovimientoInteractorImpl;
 import org.rul.cuentas.mappers.CuentaUiMapper;
+import org.rul.cuentas.mappers.MovimientoUiMapper;
 import org.rul.cuentas.model.CuentaDomain;
+import org.rul.cuentas.model.MovimientoDomain;
 import org.rul.cuentas.presenters.CuentasPresenter;
 import org.rul.cuentas.presenters.CuentasPresenterImpl;
 import org.rul.cuentas.presenters.MovimientosPresenter;
@@ -28,8 +30,11 @@ import org.rul.cuentas.repository.datasource.MovimientoDbDatasourceImpl;
 import org.rul.cuentas.repository.datasource.ResumenCuentaDbDatasource;
 import org.rul.cuentas.repository.datasource.ResumenCuentaDbDatasourceImpl;
 import org.rul.cuentas.repository.datasource.mapper.CuentaDomainMapper;
+import org.rul.cuentas.repository.datasource.mapper.MovimientoDomainMapper;
 import org.rul.cuentas.repository.datasource.model.CuentaDb;
+import org.rul.cuentas.repository.datasource.model.MovimientoDb;
 import org.rul.cuentas.ui.model.Cuenta;
+import org.rul.cuentas.ui.model.Movimiento;
 import org.rul.cuentas.util.Mapper;
 
 import dagger.Module;
@@ -80,14 +85,14 @@ public class MovimientosModule {
 
     @Provides
     @ForActivity
-    public Mapper<Cuenta, CuentaDomain> providesCuentaUiMapper(CuentaUiMapper cuentaUiMapper){
-        return cuentaUiMapper;
+    public Mapper<Movimiento, MovimientoDomain> providesMovimientoUiMapper(MovimientoUiMapper movimientoUiMapper){
+        return movimientoUiMapper;
     }
 
     @Provides
     @ForActivity
-    public Mapper<CuentaDomain, CuentaDb> provideCuentaDomainMapper(CuentaDomainMapper cuentaDomainMapper){
-        return cuentaDomainMapper;
+    public Mapper<MovimientoDomain, MovimientoDb> provideMovimientoDomainMapper(MovimientoDomainMapper movimientoDomainMapper){
+        return movimientoDomainMapper;
     }
 
 }

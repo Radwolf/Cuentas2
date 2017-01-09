@@ -15,7 +15,7 @@ public class Movimiento {
     private String importe;
     private String importePrevisto;
     private String idCategoria;
-    private String nombreCuenta;
+    private String idResumenCuenta;
     private String fechaPrevista;
     private String fechaConfirmacion;
 
@@ -27,7 +27,7 @@ public class Movimiento {
         this.importe = builder.importe;
         this.importePrevisto = builder.importePrevisto;
         this.idCategoria = builder.idCategoria;
-        this.nombreCuenta = builder.nombreCuenta;
+        this.idResumenCuenta = builder.idResumenCuenta;
         this.fechaPrevista = builder.fechaPrevista;
         this.fechaConfirmacion = builder.fechaConfirmacion;
     }
@@ -88,12 +88,12 @@ public class Movimiento {
         this.idCategoria = idCategoria;
     }
 
-    public String getNombreCuenta() {
-        return nombreCuenta;
+    public String getIdResumenCuenta() {
+        return idResumenCuenta;
     }
 
-    public void setNombreCuenta(String nombreCuenta) {
-        this.nombreCuenta = nombreCuenta;
+    public void setIdResumenCuenta(String idResumenCuenta) {
+        this.idResumenCuenta = idResumenCuenta;
     }
 
     public String getFechaPrevista() {
@@ -121,7 +121,7 @@ public class Movimiento {
         private String importe;
         private String importePrevisto;
         private String idCategoria;
-        private String nombreCuenta;
+        private String idResumenCuenta;
         private String fechaPrevista;
         private String fechaConfirmacion;
 
@@ -160,8 +160,8 @@ public class Movimiento {
             return this;
         }
 
-        public Builder setNombreCuenta(String nombreCuenta) {
-            this.nombreCuenta = nombreCuenta;
+        public Builder setIdResumenCuenta(String idResumenCuenta) {
+            this.idResumenCuenta = idResumenCuenta;
             return this;
         }
 

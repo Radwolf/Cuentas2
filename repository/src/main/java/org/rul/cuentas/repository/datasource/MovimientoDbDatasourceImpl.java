@@ -190,7 +190,7 @@ public class MovimientoDbDatasourceImpl implements MovimientoDbDatasource {
             movimientoDb = getRealm().createObject(MovimientoDb.class, movimiento.getId());
             movimientoDb.setAhorro(movimiento.isAhorro());
             movimientoDb.setCategoriaDb(movimiento.getCategoriaDb());
-            movimientoDb.setCuentaDb(movimiento.getCuentaDb());
+            movimientoDb.setResumenCuentaDb(movimiento.getResumenCuentaDb());
             movimientoDb.setDescripcion(movimiento.getDescripcion());
             movimientoDb.setFechaConfirmacion(movimiento.getFechaConfirmacion());
             movimientoDb.setFechaPrevista(movimiento.getFechaPrevista());

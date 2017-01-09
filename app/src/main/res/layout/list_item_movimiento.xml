@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/card_view_movimiento"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/card_margin"
+        android:elevation="5dp"
+        card_view:cardCornerRadius="@dimen/card_album_radius">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/tv_mv_descripcion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_headline"
+                fontPath="fonts/Roboto-Medium.ttf"
+                android:text="Endesa"/>
+
+            <TextView
+                android:id="@+id/tv_mv_categoria"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Recibo Luz"
+                android:textSize="@dimen/text_subheading"
+                android:layout_below="@id/tv_cuenta_nombre"/>
+
+            <TextView
+                android:id="@+id/tv_mv_fecha"
+                android:gravity="right"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="12/12/16"
+                android:layout_alignBaseline="@+id/tv_cuenta_nombre"
+                android:layout_alignBottom="@+id/tv_cuenta_nombre"
+                android:layout_alignParentEnd="true" />
+
+            <TextView
+                android:id="@+id/tv_mv_importe"
+                android:gravity="right"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="(1254.95)"
+                android:paddingLeft="16dp"
+                android:textSize="@dimen/text_caption"
+                android:textColor="@color/colorPrimaryDark"
+                android:layout_alignBaseline="@+id/tv_cuenta_saldo"
+                android:layout_alignBottom="@+id/tv_cuenta_saldo"
+                android:layout_alignParentEnd="true" />
+
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+</LinearLayout>

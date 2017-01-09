@@ -23,50 +23,50 @@ import butterknife.ButterKnife;
 
 public class MovimientoAdapter extends RecyclerView.Adapter<MovimientoAdapter.MovimientoViewHolder> {
 
-    private List<Cuenta> cuentaList;
+    private List<Movimiento> movimientoList;
 
-    private OnCuentaClickedListener onCuentaClickedListener;
+    private OnMovimientoClickedListener onMovimientoClickedListener;
 
-    public MovimientoAdapter(OnCuentaClickedListener onCuentaClickedListener) {
-        this.onCuentaClickedListener = onCuentaClickedListener;
-        this.cuentaList = new ArrayList<>();
+    public MovimientoAdapter(OnMovimientoClickedListener onMovimientoClickedListener) {
+        this.onMovimientoClickedListener = onMovimientoClickedListener;
+        this.movimientoList = new ArrayList<>();
     }
 
-    public MovimientoAdapter setCuentasList(List<Cuenta> cuentaList) {
-        this.cuentaList = cuentaList;
+    public MovimientoAdapter setCuentasList(List<Movimiento> movimientoList) {
+        this.movimientoList = movimientoList;
         return this;
     }
 
     @Override
     public int getItemCount() {
-        return cuentaList.size();
+        return movimientoList.size();
     }
 
     @Override
-    public CuentaViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_cuenta, null);
-        return new CuentaViewHolder(view);
+    public MovimientoViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_movimiento, null);
+        return new MovimientoViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(MovimientoViewHolder holder, int position) {
-        holder.bind(cuentaList.get(position), onCuentaClickedListener);
+        holder.bind(movimientoList.get(position), onMovimientoClickedListener);
     }
 
 
     static class MovimientoViewHolder extends RecyclerView.ViewHolder {
 
-        @Bind(R.id.tv_cuenta_nombre)
-        TextView tvCuentaNombre;
+        @Bind(R.id.tv_mv_descripcion)
+        TextView tvMvDescripcion;
 
-        @Bind(R.id.tv_cuenta_saldo)
-        TextView tvCuentaSaldo;
+        @Bind(R.id.tv_mv_categoria)
+        TextView tvMvCategoria;
 
-        @Bind(R.id.tv_cuenta_saldo_previsto)
-        TextView tvCuentaSaldoPrevisto;
+        @Bind(R.id.tv_mv_fecha)
+        TextView tvMvFecha;
 
-        @Bind(R.id.tv_cuenta_fecha_actualizacion)
-        TextView tvCuentaFechaActualizacion;
+        @Bind(R.id.tv_mv_importe)
+        TextView tvMvImporte;
 
         public MovimientoViewHolder(View itemView) {
             super(itemView);
@@ -75,10 +75,10 @@ public class MovimientoAdapter extends RecyclerView.Adapter<MovimientoAdapter.Mo
 
         public void bind(final Movimiento movimiento, final OnMovimientoClickedListener onMovimientoClickedListener) {
 
-            tvCuentaNombre.setText( cuenta.getNombre() );
-            tvCuentaSaldo.setText( cuenta.getSaldo() );
-            tvCuentaSaldoPrevisto.setText(cuenta.getSaldoPrevisto());
-            tvCuentaFechaActualizacion.setText( cuenta.getFechaActualizacion() );
+            tvMvDescripcion.setText( movimiento.getDescripcion() );
+            tvMvCategoria.setText( movimiento.getIdCategoria() );
+            tvMvFecha.setText(movimiento.getFechaConfirmacion());
+            tvMvImporte.setText( movimiento.getImporte() );
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

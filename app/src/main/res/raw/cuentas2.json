@@ -60,7 +60,7 @@
 		"ahorros": 0.00
 	}],
 	"movimientos": [{
-		"cuentaDb": "Compras",
+		"resumenCuentaDb": "3",
 		"descripcion": "Compra carrefour",
 		"tipo_movimiento": "GASTO",
 		"es_ahorro": "false",
@@ -72,7 +72,7 @@
 		"fecha_prevista": ""
 	},
 	{
-		"cuentaDb": "Compras",
+		"resumenCuentaDb": "3",
 		"descripcion": "Compra carrefour",
 		"tipo_movimiento": "GASTO",
 		"es_ahorro": "false",
@@ -84,7 +84,7 @@
 		"fecha_prevista": ""
 	},
 	{
-		"cuentaDb": "Casa",
+		"resumenCuentaDb": "1",
 		"descripcion": "Nómina",
 		"tipo_movimiento": "INGRESO",
 		"es_ahorro": "false",
@@ -96,7 +96,7 @@
 		"fecha_prevista": ""
 	},
     {
-		"cuentaDb": "Recibos",
+		"resumenCuentaDb": "2",
 		"descripcion": "Recibo Luz",
 		"tipo_movimiento": "GASTO",
 		"es_ahorro": "false",
@@ -108,7 +108,7 @@
 		"fecha_prevista": ""
 	},
 	{
-		"cuentaDb": "Recibos",
+		"resumenCuentaDb": "2",
 		"descripcion": "Recibo Internet",
 		"tipo_movimiento": "GASTO",
 		"es_ahorro": "false",
@@ -120,7 +120,7 @@
 		"fecha_prevista": "14/01/2017"
 	},
     {
-    	"cuentaDb": "Recibos",
+    	"resumenCuentaDb": "2",
 		"descripcion": "Transferencia",
 		"tipo_movimiento": "INGRESO",
 		"es_ahorro": "false",

@@ -4,6 +4,7 @@ import android.app.Activity;
 
 import org.rul.cuentas.injection.ActivityModule;
 import org.rul.cuentas.injection.CuentasModule;
+import org.rul.cuentas.injection.MovimientosModule;
 import org.rul.cuentas.injection.annotations.ForActivity;
 import org.rul.cuentas.injection.component.presenter.CuentasPresenterComponent;
 import org.rul.cuentas.injection.component.presenter.MovimientosPresenterComponent;
@@ -31,7 +32,7 @@ import dagger.Component;
         },
         modules = {
                 ActivityModule.class,
-                CuentasModule.class,
+                MovimientosModule.class,
         }
 
 )
