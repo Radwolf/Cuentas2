@@ -37,9 +37,9 @@ public class MovimientoUiMapper extends Mapper<Movimiento, MovimientoDomain> {
                 .setImportePrevisto(String.valueOf(type.getImportePrevisto()))
                 .setIdResumenCuenta(String.valueOf(type.getIdResumenCuenta()))
                 .setTipoMovimiento(type.getTipoMovimiento())
-                .setFechaConfirmacion(sdf.format(type.getFechaConfirmacion()))
-                .setFechaPrevista(sdf.format(type.getFechaPrevista()))
-                .setFechaPrevista(sdf.format(type.getFechaPrevista()))
+                .setFechaConfirmacion(type.getFechaConfirmacion()!=null?sdf.format(type.getFechaConfirmacion()):null)
+                .setFechaPrevista(type.getFechaPrevista()!=null?sdf.format(type.getFechaPrevista()):null)
+                .setFechaPrevista(type.getFechaPrevista()!=null?sdf.format(type.getFechaPrevista()):null)
                 .build();
 
         return movimiento;
