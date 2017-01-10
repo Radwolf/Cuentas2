@@ -51,7 +51,9 @@ public class GetAllMovimientosInteractorImpl implements GetAllMovimientosInterac
 
             @Override
             public void run() {
-                callback.onSuccess( movimientoRepository.findAllFechaBorradoIsNull() );
+                callback.onSuccess(
+                        movimientoRepository.findAllFechaBorradoIsNull()
+                );
             }
 
         });

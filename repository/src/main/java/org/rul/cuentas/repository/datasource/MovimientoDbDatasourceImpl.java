@@ -225,10 +225,20 @@ public class MovimientoDbDatasourceImpl implements MovimientoDbDatasource {
 
     @Override
     public void logicRemoveMovimiento(int id, Date fechaRemove) {
+        boolean inTransaction = false;
+        if(getRealm().isInTransaction()){
+            inTransaction = true;
+        }
+        if(!inTransaction) {
+            getRealm().beginTransaction();
+        }
         MovimientoDb movimientoDb = getRealm().where(MovimientoDb.class)
                 .equalTo(MovimientoDb.K_MOVIMIENTO_ID, id).findFirst();
         movimientoDb.setFechaBorrado(fechaRemove);
-        updateMovimiento(movimientoDb);
+        if(!inTransaction) {
+            getRealm().commitTransaction();
+            getRealm().close();
+        }
     }
 
     public void updateMovimiento(MovimientoDb movimientoDb) {
