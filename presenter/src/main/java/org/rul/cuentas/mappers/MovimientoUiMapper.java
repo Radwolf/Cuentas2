@@ -6,6 +6,7 @@ import org.rul.cuentas.ui.model.Cuenta;
 import org.rul.cuentas.ui.model.Movimiento;
 import org.rul.cuentas.util.Mapper;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -30,22 +31,17 @@ public class MovimientoUiMapper extends Mapper<Movimiento, MovimientoDomain> {
                 .setAhorro(String.valueOf(type.isAhorro()))
                 .setDescripcion(type.getDescripcion())
                 .setIdCategoria(String.valueOf(type.getIdCategoria()))
+                .setNombreCategoria(type.getNombreCategoria())
                 .setId(String.valueOf(type.getId()))
                 .setImporte(String.valueOf(type.getImporte()))
                 .setImportePrevisto(String.valueOf(type.getImportePrevisto()))
                 .setIdResumenCuenta(String.valueOf(type.getIdResumenCuenta()))
                 .setTipoMovimiento(type.getTipoMovimiento())
+                .setFechaConfirmacion(sdf.format(type.getFechaConfirmacion()))
+                .setFechaPrevista(sdf.format(type.getFechaPrevista()))
+                .setFechaPrevista(sdf.format(type.getFechaPrevista()))
                 .build();
-        if(type.getFechaConfirmacion() != null){
-            movimiento.setFechaConfirmacion(type.getFechaConfirmacion());
-        }else{
-            movimiento.setFechaConfirmacion(sdf.format(new Date()));
-        }
-        if(type.getFechaPrevista() != null){
-            movimiento.setFechaPrevista(type.getFechaPrevista());
-        }else{
-            movimiento.setFechaPrevista(sdf.format(new Date()));
-        }
+
         return movimiento;
     }
 
@@ -60,9 +56,15 @@ public class MovimientoUiMapper extends Mapper<Movimiento, MovimientoDomain> {
                 .setImportePrevisto(Float.parseFloat((type.getImporte()==null)?"0":type.getImportePrevisto()))
                 .setIdResumenCuenta(Integer.parseInt(type.getIdResumenCuenta()))
                 .setTipoMovimiento(type.getTipoMovimiento())
-                .setFechaConfirmacion(type.getFechaConfirmacion())
-                .setFechaPrevista(type.getFechaPrevista())
                 .build();
+
+        try {
+            movimientoDomain.setFechaPrevista(type.getFechaPrevista()!=null?sdf.parse(type.getFechaPrevista()):null);
+            movimientoDomain.setFechaConfirmacion(type.getFechaConfirmacion()!=null?sdf.parse(type.getFechaConfirmacion()):null);
+            movimientoDomain.setFechaBorrado(type.getFechaBorrado()!=null?sdf.parse(type.getFechaBorrado()):null);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
 
         return movimientoDomain;
     }

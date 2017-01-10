@@ -24,6 +24,7 @@ public class MovimientoDb extends RealmObject {
     private ResumenCuentaDb resumenCuentaDb;
     private Date fechaPrevista;
     private Date fechaConfirmacion;
+    private Date fechaBorrado;
 
     public int getId() {
         return id;
@@ -105,6 +106,14 @@ public class MovimientoDb extends RealmObject {
         this.fechaConfirmacion = fechaConfirmacion;
     }
 
+    public Date getFechaBorrado() {
+        return fechaBorrado;
+    }
+
+    public void setFechaBorrado(Date fechaBorrado) {
+        this.fechaBorrado = fechaBorrado;
+    }
+
     public MovimientoDb() {
     }
 
@@ -119,6 +128,7 @@ public class MovimientoDb extends RealmObject {
         this.importe = builder.importe;
         this.importePrevisto = builder.importePrevisto;
         this.tipoMovimiento = builder.tipoMovimiento;
+        this.fechaBorrado = builder.fechaBorrado;
     }
 
     public static class Builder {
@@ -133,6 +143,7 @@ public class MovimientoDb extends RealmObject {
         private ResumenCuentaDb resumenCuentaDb;
         private Date fechaPrevista;
         private Date fechaConfirmacion;
+        private Date fechaBorrado;
 
         public Builder setId(int id) {
             this.id = id;
@@ -181,6 +192,11 @@ public class MovimientoDb extends RealmObject {
 
         public Builder setFechaConfirmacion(Date fechaConfirmacion) {
             this.fechaConfirmacion = fechaConfirmacion;
+            return this;
+        }
+
+        public Builder setFechaBorrado(Date fechaBorrado){
+            this.fechaBorrado =  fechaBorrado;
             return this;
         }
 

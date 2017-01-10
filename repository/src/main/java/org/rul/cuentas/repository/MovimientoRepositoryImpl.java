@@ -8,6 +8,7 @@ import org.rul.cuentas.repository.datasource.mapper.CuentaDomainMapper;
 import org.rul.cuentas.repository.datasource.mapper.MovimientoDomainMapper;
 import org.rul.cuentas.repository.exceptions.RepositoryException;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -33,6 +34,11 @@ public class MovimientoRepositoryImpl implements MovimientoRepository {
     }
 
     @Override
+    public List<MovimientoDomain> findAllFechaBorradoIsNull() {
+        return movimientoDomainMapper.mapList(movimientoDbDatasource.findAllFechaBorradoIsNull());
+    }
+
+    @Override
     public MovimientoDomain insert(MovimientoDomain element) throws RepositoryException {
         return movimientoDomainMapper.map(movimientoDbDatasource.insert(movimientoDomainMapper.reverseMap(element)));
     }
@@ -40,6 +46,11 @@ public class MovimientoRepositoryImpl implements MovimientoRepository {
     @Override
     public List<MovimientoDomain> insertAll(List<MovimientoDomain> elementList) throws RepositoryException {
         return movimientoDomainMapper.mapList(movimientoDbDatasource.insertAll(movimientoDomainMapper.reverseMapList(elementList)));
+    }
+
+    @Override
+    public void logicRemoveMovimiento(int id, Date fechaBorrado) {
+        movimientoDbDatasource.logicRemoveMovimiento(id, fechaBorrado);
     }
 
     @Override

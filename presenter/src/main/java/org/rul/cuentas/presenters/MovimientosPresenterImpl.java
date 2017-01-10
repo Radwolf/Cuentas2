@@ -4,6 +4,7 @@ import org.rul.cuentas.interactors.base.Interactor;
 import org.rul.cuentas.interactors.cuenta.get.GetAllCuentasInteractor;
 import org.rul.cuentas.interactors.cuenta.remove.RemoveCuentaInteractor;
 import org.rul.cuentas.interactors.movimiento.get.GetAllMovimientosInteractor;
+import org.rul.cuentas.interactors.movimiento.remove.LogicRemoveMovimientoInteractor;
 import org.rul.cuentas.interactors.movimiento.remove.RemoveMovimientoInteractor;
 import org.rul.cuentas.mappers.CuentaUiMapper;
 import org.rul.cuentas.mappers.MovimientoUiMapper;
@@ -27,13 +28,18 @@ public class MovimientosPresenterImpl implements MovimientosPresenter {
     private MovimientosView movimientosView = new MovimientosView.EmptyMovimientosView();
     private GetAllMovimientosInteractor getAllMovimientosInteractor;
     private RemoveMovimientoInteractor removeMovimientoInteractor;
+    private LogicRemoveMovimientoInteractor logicRemoveMovimientoInteractor;
     private MovimientoUiMapper movimientoUiMapper;
 
     @Inject
-    public MovimientosPresenterImpl(GetAllMovimientosInteractor getAllMovimientosInteractor, RemoveMovimientoInteractor removeMovimientoInteractor, MovimientoUiMapper movimientoUiMapper) {
+    public MovimientosPresenterImpl(GetAllMovimientosInteractor getAllMovimientosInteractor,
+                                    RemoveMovimientoInteractor removeMovimientoInteractor,
+                                    LogicRemoveMovimientoInteractor logicRemoveMovimientoInteractor,
+                                    MovimientoUiMapper movimientoUiMapper) {
 
         this.getAllMovimientosInteractor = getAllMovimientosInteractor;
         this.removeMovimientoInteractor = removeMovimientoInteractor;
+        this.logicRemoveMovimientoInteractor = logicRemoveMovimientoInteractor;
         this.movimientoUiMapper = movimientoUiMapper;
     }
 
@@ -66,6 +72,21 @@ public class MovimientosPresenterImpl implements MovimientosPresenter {
     @Override
     public void removeMovimiento(Movimiento movimiento) {
         removeMovimientoInteractor.run(movimientoUiMapper.reverseMap(movimiento), new Interactor.Callback<Boolean>() {
+            @Override
+            public void onSuccess(Boolean object) {
+                showAllMovimientos();
+            }
+
+            @Override
+            public void onError(Throwable throwable) {
+                movimientosView.showRemoveMovimientoError();
+            }
+        });
+    }
+
+    @Override
+    public void logicRemoveMovimiento(Movimiento movimiento) {
+        logicRemoveMovimientoInteractor.run(movimientoUiMapper.reverseMap(movimiento), new Interactor.Callback<Boolean>() {
             @Override
             public void onSuccess(Boolean object) {
                 showAllMovimientos();

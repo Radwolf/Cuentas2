@@ -8,7 +8,7 @@ import java.util.Date;
 
 public class ResumenCuentaDomain {
 
-
+    private int id;
     private String nombreCuenta;
     private String anyoMes;
     private float ingresos;
@@ -21,6 +21,7 @@ public class ResumenCuentaDomain {
 
 
     private ResumenCuentaDomain(Builder builder) {
+        this.id = builder.id;
         this.nombreCuenta = builder.nombreCuenta;
         this.anyoMes = builder.anyoMes;
         this.ingresos = builder.ingresos;
@@ -30,6 +31,14 @@ public class ResumenCuentaDomain {
         this.gastosPrevistos = gastosPrevistos;
         this.ahorrosPrevistos = ahorrosPrevistos;
         this.fechaUltimaActualizacion = fechaUltimaActualizacion;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNombreCuenta() {
@@ -106,6 +115,7 @@ public class ResumenCuentaDomain {
 
     public static class Builder{
 
+        private int id;
         private String nombreCuenta;
         private String anyoMes;
         private float ingresos;
@@ -115,6 +125,11 @@ public class ResumenCuentaDomain {
         private float gastosPrevistos;
         private float ahorrosPrevistos;
         private String fechaUltimaActualizacion;
+
+        public Builder setId(int id){
+            this.id = id;
+            return this;
+        }
 
         public Builder setNombreCuenta(String nombreCuenta) {
             this.nombreCuenta = nombreCuenta;

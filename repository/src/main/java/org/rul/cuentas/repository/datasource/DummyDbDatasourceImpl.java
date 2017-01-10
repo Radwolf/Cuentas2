@@ -76,7 +76,7 @@ public class DummyDbDatasourceImpl implements DummyDbDatasource {
             for (int i = 0; i < categorias.length(); i++) {
                 JSONObject categoria = categorias.getJSONObject(i);
                 CategoriaDb categoriaDb = null;
-                categoriaDb = getRealm().createObject(CategoriaDb.class, i);
+                categoriaDb = getRealm().createObject(CategoriaDb.class, i+1);
                 categoriaDb.setNombre(categoria.getString("nombre"));
             }
             cuentas = new JSONObject(str).getJSONArray("cuenta");
@@ -102,11 +102,11 @@ public class DummyDbDatasourceImpl implements DummyDbDatasource {
             movimientos = new JSONObject(str).getJSONArray("movimientos");
             for (int i = 0; i < movimientos.length(); i++) {
                 JSONObject movimiento = movimientos.getJSONObject(i);
-                MovimientoDb movimientoDb = null;
+                MovimientoDb movimientoDb = getRealm().createObject(MovimientoDb.class, i+1);
                 ResumenCuentaDb resumenCuentaDb = getRealm().where(ResumenCuentaDb.class).equalTo("id", movimiento.getInt("resumenCuentaDb")).findFirst();
-                movimientoDb = getRealm().createObject(MovimientoDb.class, i+1);
+                CategoriaDb categoriaDb = getRealm().where(CategoriaDb.class).equalTo("id", movimiento.getInt("categoria")).findFirst();
                 movimientoDb.setAhorro(Boolean.parseBoolean(movimiento.getString("es_ahorro")));
-                //movimientoDb.setCategoria(new Categoria());
+                movimientoDb.setCategoriaDb(categoriaDb);
                 movimientoDb.setResumenCuentaDb(resumenCuentaDb);
                 movimientoDb.setDescripcion(movimiento.getString("descripcion"));
                 movimientoDb.setFechaConfirmacion((!Strings.isNullOrEmpty(movimiento.getString("fecha_confirmacion")))?formatter.parse(movimiento.getString("fecha_confirmacion")):null);
@@ -118,31 +118,29 @@ public class DummyDbDatasourceImpl implements DummyDbDatasource {
                 movimientoDb.setTipoMovimiento(movimiento.getString("tipo_movimiento"));
 
                 String tipoMovimiento = movimiento.getString("tipo_movimiento");
-                ResumenCuentaDb resumenCuenta = getRealm().where(ResumenCuentaDb.class)
-                        .equalTo("cuentaDb.nombre", movimiento.getString("cuentaDb"))
-                        .findAllSorted("anyoMes").first();
+
                 if("INGRESO".equals(tipoMovimiento)){
                     if(importe == 0) {
-                        resumenCuenta.setIngresosPrevistos(importePrevisto + resumenCuenta.getIngresosPrevistos());
+                        resumenCuentaDb.setIngresosPrevistos(importePrevisto + resumenCuentaDb.getIngresosPrevistos());
                     }else{
-                        resumenCuenta.setIngresos(importe + resumenCuenta.getIngresos());
+                        resumenCuentaDb.setIngresos(importe + resumenCuentaDb.getIngresos());
                     }
                 }
                 if("GASTO".equals(tipoMovimiento)){
                     if(importe == 0) {
-                        resumenCuenta.setGastosPrevistos(importePrevisto + resumenCuenta.getGastosPrevistos());
+                        resumenCuentaDb.setGastosPrevistos(importePrevisto + resumenCuentaDb.getGastosPrevistos());
                     }else{
-                        resumenCuenta.setGastos(importe + resumenCuenta.getGastos());
+                        resumenCuentaDb.setGastos(importe + resumenCuentaDb.getGastos());
                     }
                 }
                 if("AHORRO".equals(tipoMovimiento)){
                     if(importe == 0) {
-                        resumenCuenta.setAhorrosPrevistos(importePrevisto + resumenCuenta.getAhorrosPrevistos());
+                        resumenCuentaDb.setAhorrosPrevistos(importePrevisto + resumenCuentaDb.getAhorrosPrevistos());
                     }else{
-                        resumenCuenta.setAhorros(importe + resumenCuenta.getAhorros());
+                        resumenCuentaDb.setAhorros(importe + resumenCuentaDb.getAhorros());
                     }
                 }
-                getRealm().copyToRealmOrUpdate(resumenCuenta);
+                getRealm().copyToRealmOrUpdate(resumenCuentaDb);
             }
             //Para hacerlo desde el JSON directamente
             //getRealm().createAllFromJson(CuentaDb.class, cuentas.toString());

@@ -12,5 +12,6 @@ import org.rul.cuentas.ui.views.MovimientosView;
 public interface MovimientosPresenter extends BasePresenter<MovimientosView>{
 
     void showAllMovimientos();
+    void logicRemoveMovimiento(Movimiento movimiento);
     void removeMovimiento(Movimiento movimiento);
 }

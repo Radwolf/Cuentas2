@@ -13,6 +13,7 @@ import org.rul.cuentas.injection.component.repository.MovimientoRepositoryCompon
 import org.rul.cuentas.interactors.cuenta.get.GetAllCuentasInteractor;
 import org.rul.cuentas.interactors.cuenta.remove.RemoveCuentaInteractor;
 import org.rul.cuentas.interactors.movimiento.get.GetAllMovimientosInteractor;
+import org.rul.cuentas.interactors.movimiento.remove.LogicRemoveMovimientoInteractor;
 import org.rul.cuentas.interactors.movimiento.remove.RemoveMovimientoInteractor;
 import org.rul.cuentas.view.cuenta.CuentasActivity;
 import org.rul.cuentas.view.cuenta.CuentasFragment;
@@ -45,5 +46,6 @@ public interface MovimientosComponent extends MovimientosPresenterComponent, Mov
 
     GetAllMovimientosInteractor getAllMovimientosInteractor();
     RemoveMovimientoInteractor removeMovimientoInteractor();
+    LogicRemoveMovimientoInteractor logicRemoveMovimientoInteractor();
 
 }

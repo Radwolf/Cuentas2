@@ -1,7 +1,9 @@
 package org.rul.cuentas.repository.datasource;
 
 
+import org.rul.cuentas.repository.datasource.model.CategoriaDb;
 import org.rul.cuentas.repository.datasource.model.MovimientoDb;
+import org.rul.cuentas.repository.datasource.model.ResumenCuentaDb;
 import org.rul.cuentas.repository.providers.RealmProvider;
 import org.rul.cuentas.repository.exceptions.RepositoryException;
 
@@ -30,6 +32,11 @@ public class MovimientoDbDatasourceImpl implements MovimientoDbDatasource {
     @Override
     public List<MovimientoDb> findAll() {
         return getRealm().where(MovimientoDb.class).findAll();
+    }
+
+    @Override
+    public RealmResults<MovimientoDb> findAllFechaBorradoIsNull() {
+        return getRealm().where(MovimientoDb.class).isNull("fechaBorrado").findAll();
     }
 
     @Override
@@ -185,12 +192,18 @@ public class MovimientoDbDatasourceImpl implements MovimientoDbDatasource {
         if(!inTransaction) {
             getRealm().beginTransaction();
         }
+        ResumenCuentaDb resumenCuentaDb = getRealm().where(ResumenCuentaDb.class)
+                .equalTo(ResumenCuentaDb.K_RESUMEN_CUENTA_ID, movimiento.getCategoriaDb().getId())
+                .findFirst();
+        CategoriaDb categoriaDb = getRealm().where(CategoriaDb.class)
+                .equalTo(CategoriaDb.K_CATEGORIA_ID, movimiento.getCategoriaDb().getId())
+                .findFirst();
         MovimientoDb movimientoDb = null;
         try{
             movimientoDb = getRealm().createObject(MovimientoDb.class, movimiento.getId());
             movimientoDb.setAhorro(movimiento.isAhorro());
-            movimientoDb.setCategoriaDb(movimiento.getCategoriaDb());
-            movimientoDb.setResumenCuentaDb(movimiento.getResumenCuentaDb());
+            movimientoDb.setCategoriaDb(categoriaDb);
+            movimientoDb.setResumenCuentaDb(resumenCuentaDb);
             movimientoDb.setDescripcion(movimiento.getDescripcion());
             movimientoDb.setFechaConfirmacion(movimiento.getFechaConfirmacion());
             movimientoDb.setFechaPrevista(movimiento.getFechaPrevista());
@@ -211,8 +224,26 @@ public class MovimientoDbDatasourceImpl implements MovimientoDbDatasource {
     }
 
     @Override
+    public void logicRemoveMovimiento(int id, Date fechaRemove) {
+        MovimientoDb movimientoDb = getRealm().where(MovimientoDb.class)
+                .equalTo(MovimientoDb.K_MOVIMIENTO_ID, id).findFirst();
+        movimientoDb.setFechaBorrado(fechaRemove);
+        updateMovimiento(movimientoDb);
+    }
+
     public void updateMovimiento(MovimientoDb movimientoDb) {
+        boolean inTransaction = false;
+        if(getRealm().isInTransaction()){
+            inTransaction = true;
+        }
+        if(!inTransaction) {
+            getRealm().beginTransaction();
+        }
         getRealm().insertOrUpdate(movimientoDb);
+        if(!inTransaction) {
+            getRealm().commitTransaction();
+            getRealm().close();
+        }
     }
 
     @Override

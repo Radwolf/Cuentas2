@@ -67,7 +67,7 @@
 		"es_previsto": "false",
 		"importe": 123.85,
 		"importe_previsto": 0.00,
-		"categoria": "Compras",
+		"categoria": 7,
 		"fecha_confirmacion": "10/01/2017",
 		"fecha_prevista": ""
 	},
@@ -79,7 +79,7 @@
 		"es_previsto": "false",
 		"importe": 50.85,
 		"importe_previsto": 0.00,
-		"categoria": "Compras",
+		"categoria": 7,
 		"fecha_confirmacion": "08/01/2017",
 		"fecha_prevista": ""
 	},
@@ -91,7 +91,7 @@
 		"es_previsto": "false",
 		"importe": 1450.67,
 		"importe_previsto": 0.00,
-		"categoria": "Nómina",
+		"categoria": 5,
 		"fecha_confirmacion": "01/01/2017",
 		"fecha_prevista": ""
 	},
@@ -103,7 +103,7 @@
 		"es_previsto": "false",
 		"importe": 32.20,
 		"importe_previsto": 0.00,
-		"categoria": "Luz",
+		"categoria": 1,
 		"fecha_confirmacion": "10/01/2017",
 		"fecha_prevista": ""
 	},
@@ -115,7 +115,7 @@
 		"es_previsto": "true",
 		"importe": 0.00,
 		"importe_previsto": 38.95,
-		"categoria": "Internet",
+		"categoria": 4,
 		"fecha_confirmacion": "",
 		"fecha_prevista": "14/01/2017"
 	},
@@ -127,7 +127,7 @@
 		"es_previsto": "false",
 		"importe": 600.00,
 		"importe_previsto": 0.00,
-		"categoria": "Transferencia",
+		"categoria": 8,
 		"fecha_confirmacion": "01/01/2017",
 		"fecha_prevista": ""
 	}]

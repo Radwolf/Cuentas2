@@ -15,9 +15,11 @@ public class Movimiento {
     private String importe;
     private String importePrevisto;
     private String idCategoria;
+    private String nombreCategoria;
     private String idResumenCuenta;
     private String fechaPrevista;
     private String fechaConfirmacion;
+    private String fechaBorrado;
 
     private Movimiento(Builder builder) {
         this.id = builder.id;
@@ -27,9 +29,11 @@ public class Movimiento {
         this.importe = builder.importe;
         this.importePrevisto = builder.importePrevisto;
         this.idCategoria = builder.idCategoria;
+        this.nombreCategoria = builder.nombreCategoria;
         this.idResumenCuenta = builder.idResumenCuenta;
         this.fechaPrevista = builder.fechaPrevista;
         this.fechaConfirmacion = builder.fechaConfirmacion;
+        this.fechaBorrado = builder.fechaBorrado;
     }
 
     public String getId() {
@@ -88,6 +92,14 @@ public class Movimiento {
         this.idCategoria = idCategoria;
     }
 
+    public String getNombreCategoria() {
+        return nombreCategoria;
+    }
+
+    public void setNombreCategoria(String nombreCategoria) {
+        this.nombreCategoria = nombreCategoria;
+    }
+
     public String getIdResumenCuenta() {
         return idResumenCuenta;
     }
@@ -112,6 +124,14 @@ public class Movimiento {
         this.fechaConfirmacion = fechaConfirmacion;
     }
 
+    public String getFechaBorrado() {
+        return fechaBorrado;
+    }
+
+    public void setFechaBorrado(String fechaBorrado) {
+        this.fechaBorrado = fechaBorrado;
+    }
+
     public static class Builder {
 
         private String id;
@@ -121,9 +141,11 @@ public class Movimiento {
         private String importe;
         private String importePrevisto;
         private String idCategoria;
+        private String nombreCategoria;
         private String idResumenCuenta;
         private String fechaPrevista;
         private String fechaConfirmacion;
+        private String fechaBorrado;
 
         public Builder setId(String id) {
             this.id = id;
@@ -160,6 +182,10 @@ public class Movimiento {
             return this;
         }
 
+        public Builder setNombreCategoria(String nombreCategoria){
+            this.nombreCategoria = nombreCategoria;
+            return this;
+        }
         public Builder setIdResumenCuenta(String idResumenCuenta) {
             this.idResumenCuenta = idResumenCuenta;
             return this;
@@ -172,6 +198,11 @@ public class Movimiento {
 
         public Builder setFechaConfirmacion(String fechaConfirmacion) {
             this.fechaConfirmacion = fechaConfirmacion;
+            return this;
+        }
+
+        public Builder setFechaBorrado(String fechaBorrado){
+            this.fechaBorrado =  fechaBorrado;
             return this;
         }
 

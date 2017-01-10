@@ -15,6 +15,7 @@ import io.realm.RealmResults;
 
 public interface MovimientoDbDatasource extends DbDatasource<MovimientoDb> {
 
+    RealmResults<MovimientoDb> findAllFechaBorradoIsNull();
     RealmResults<MovimientoDb> findByTipoMovimiento(String tipoMovimiento);
     MovimientoDb findById(int id);
 
@@ -37,7 +38,7 @@ public interface MovimientoDbDatasource extends DbDatasource<MovimientoDb> {
     RealmResults<MovimientoDb> findByCategoriaAndPeriodoAndCuenta(int idCategoria, Date fechaInicio, Date fechaFin, String nombreCuenta);
 
 
-    void updateMovimiento (MovimientoDb movimientoDb);
+    void logicRemoveMovimiento (int id, Date fechaRemove);
     void confirmaMovimiento (MovimientoDb movimientoDb);
 
 

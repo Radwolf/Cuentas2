@@ -16,8 +16,9 @@ public class MovimientoDomain {
     private int idCategoria;
     private String nombreCategoria;
     private int idResumenCuenta;
-    private String fechaPrevista;
-    private String fechaConfirmacion;
+    private Date fechaPrevista;
+    private Date fechaConfirmacion;
+    private Date fechaBorrado;
 
     private MovimientoDomain(Builder builder) {
         this.id = builder.id;
@@ -31,6 +32,7 @@ public class MovimientoDomain {
         this.idResumenCuenta = builder.idResumenCuenta;
         this.fechaPrevista = builder.fechaPrevista;
         this.fechaConfirmacion = builder.fechaConfirmacion;
+        this.fechaBorrado =  builder.fechaBorrado;
     }
 
     public int getId() {
@@ -105,20 +107,28 @@ public class MovimientoDomain {
         this.idResumenCuenta = idResumenCuenta;
     }
 
-    public String getFechaPrevista() {
+    public Date getFechaPrevista() {
         return fechaPrevista;
     }
 
-    public void setFechaPrevista(String fechaPrevista) {
+    public void setFechaPrevista(Date fechaPrevista) {
         this.fechaPrevista = fechaPrevista;
     }
 
-    public String getFechaConfirmacion() {
+    public Date getFechaConfirmacion() {
         return fechaConfirmacion;
     }
 
-    public void setFechaConfirmacion(String fechaConfirmacion) {
+    public void setFechaConfirmacion(Date fechaConfirmacion) {
         this.fechaConfirmacion = fechaConfirmacion;
+    }
+
+    public Date getFechaBorrado() {
+        return fechaBorrado;
+    }
+
+    public void setFechaBorrado(Date fechaBorrado) {
+        this.fechaBorrado = fechaBorrado;
     }
 
     public static class Builder{
@@ -132,8 +142,9 @@ public class MovimientoDomain {
         private int idCategoria;
         private String nombreCategoria;
         private int idResumenCuenta;
-        private String fechaPrevista;
-        private String fechaConfirmacion;
+        private Date fechaPrevista;
+        private Date fechaConfirmacion;
+        private Date fechaBorrado;
 
         public Builder setId(int id) {
             this.id = id;
@@ -180,13 +191,18 @@ public class MovimientoDomain {
             return this;
         }
 
-        public Builder setFechaPrevista(String fechaPrevista) {
+        public Builder setFechaPrevista(Date fechaPrevista) {
             this.fechaPrevista = fechaPrevista;
             return this;
         }
 
-        public Builder setFechaConfirmacion(String fechaConfirmacion) {
+        public Builder setFechaConfirmacion(Date fechaConfirmacion) {
             this.fechaConfirmacion = fechaConfirmacion;
+            return this;
+        }
+
+        public Builder setFechaBorrado(Date fechaBorrado){
+            this.fechaBorrado = fechaBorrado;
             return this;
         }
 

@@ -7,6 +7,8 @@ import org.rul.cuentas.interactors.cuenta.remove.RemoveCuentaInteractor;
 import org.rul.cuentas.interactors.cuenta.remove.RemoveCuentaInteractorImpl;
 import org.rul.cuentas.interactors.movimiento.get.GetAllMovimientosInteractor;
 import org.rul.cuentas.interactors.movimiento.get.GetAllMovimientosInteractorImpl;
+import org.rul.cuentas.interactors.movimiento.remove.LogicRemoveMovimientoInteractor;
+import org.rul.cuentas.interactors.movimiento.remove.LogicRemoveMovimientoInteractorImpl;
 import org.rul.cuentas.interactors.movimiento.remove.RemoveMovimientoInteractor;
 import org.rul.cuentas.interactors.movimiento.remove.RemoveMovimientoInteractorImpl;
 import org.rul.cuentas.mappers.CuentaUiMapper;
@@ -63,6 +65,12 @@ public class MovimientosModule {
     @ForActivity
     public RemoveMovimientoInteractor providesRemoveMovimientoInteractor(RemoveMovimientoInteractorImpl removeMovimientoInteractor){
         return removeMovimientoInteractor;
+    }
+
+    @Provides
+    @ForActivity
+    public LogicRemoveMovimientoInteractor providesLogicRemoveMovimientoInteractor(LogicRemoveMovimientoInteractorImpl logicRemoveMovimientoInteractor){
+        return logicRemoveMovimientoInteractor;
     }
 
     @Provides

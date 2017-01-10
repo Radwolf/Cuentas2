@@ -41,6 +41,7 @@ public class ResumenCuentaRepositoryImpl implements ResumenCuentaRepository {
         return resumenCuentaDomainMapper.mapList(resumenCuentaDbDatasource.insertAll(resumenCuentaDomainMapper.reverseMapList(elementList)));
     }
 
+
     @Override
     public void remove(ResumenCuentaDomain element) {
         resumenCuentaDbDatasource.remove(resumenCuentaDomainMapper.reverseMap(element));
