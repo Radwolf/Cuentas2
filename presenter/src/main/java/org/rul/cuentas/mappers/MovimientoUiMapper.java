@@ -39,7 +39,7 @@ public class MovimientoUiMapper extends Mapper<Movimiento, MovimientoDomain> {
                 .setTipoMovimiento(type.getTipoMovimiento())
                 .setFechaConfirmacion(type.getFechaConfirmacion()!=null?sdf.format(type.getFechaConfirmacion()):null)
                 .setFechaPrevista(type.getFechaPrevista()!=null?sdf.format(type.getFechaPrevista()):null)
-                .setFechaPrevista(type.getFechaPrevista()!=null?sdf.format(type.getFechaPrevista()):null)
+                .setFechaBorrado(type.getFechaBorrado()!=null?sdf.format(type.getFechaBorrado()):null)
                 .build();
 
         return movimiento;

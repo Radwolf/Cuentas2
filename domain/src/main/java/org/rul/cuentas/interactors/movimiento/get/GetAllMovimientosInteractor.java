@@ -11,6 +11,6 @@ import java.util.List;
 
 public interface GetAllMovimientosInteractor extends Interactor {
 
-    void run(Callback<List<MovimientoDomain>> callback);
+    void run(boolean conEliminados, Callback<List<MovimientoDomain>> callback);
 
 }

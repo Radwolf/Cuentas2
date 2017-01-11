@@ -67,7 +67,7 @@ public class MovimientosFragment extends Fragment implements MovimientosView, On
                                 movimientosPresenter.logicRemoveMovimiento(movimiento);
                                 Snackbar snackbar1 = Snackbar.make(rvMovimientos, "Movimiento restaurado", Snackbar.LENGTH_SHORT);
                                 snackbar1.show();
-                                movimientosPresenter.showAllMovimientos();
+                                movimientosPresenter.showAllMovimientos(false);
                                 movimientoBorrado[0] = false;
                             }
                         });
@@ -76,7 +76,7 @@ public class MovimientosFragment extends Fragment implements MovimientosView, On
                 //return movimientoBorrado[0];
 
             } else {
-                movimientosPresenter.showAllMovimientos();
+                movimientosPresenter.showAllMovimientos(true);
             }
         }
     };
@@ -88,7 +88,7 @@ public class MovimientosFragment extends Fragment implements MovimientosView, On
         super.onActivityCreated(savedInstanceState);
         ((MovimientosActivity)getActivity()).getComponent().inject( this );
         movimientosPresenter.setView( this );
-        movimientosPresenter.showAllMovimientos();
+        movimientosPresenter.showAllMovimientos(false);
     }
 
     @Override

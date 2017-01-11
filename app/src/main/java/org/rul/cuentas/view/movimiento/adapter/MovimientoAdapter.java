@@ -117,6 +117,12 @@ public class MovimientoAdapter extends RecyclerView.Adapter<MovimientoAdapter.Mo
             }else if("AHORRO".equals(movimiento.getTipoMovimiento())){
                 tvMvImporte.setTextColor(Color.BLUE);
             }
+            if(movimiento.getFechaBorrado()!=null){
+                tvMvDescripcion.setTextColor(Color.RED);
+                tvMvCategoria.setTextColor(Color.RED);
+                tvMvFecha.setTextColor(Color.RED);
+                tvMvImporte.setTextColor(Color.RED);
+            }
 
             tvMvFecha.setText(fecha);
             tvMvImporte.setText(String.valueOf(importe));

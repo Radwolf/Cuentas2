@@ -44,8 +44,8 @@ public class MovimientosPresenterImpl implements MovimientosPresenter {
     }
 
     @Override
-    public void showAllMovimientos() {
-        getAllMovimientosInteractor.run(new Interactor.Callback<List<MovimientoDomain>>() {
+    public void showAllMovimientos(boolean conEliminados) {
+        getAllMovimientosInteractor.run(conEliminados, new Interactor.Callback<List<MovimientoDomain>>() {
             @Override
             public void onSuccess(List<MovimientoDomain> object) {
                 movimientosView.setMovimientos(movimientoUiMapper.mapList(object));
@@ -74,7 +74,7 @@ public class MovimientosPresenterImpl implements MovimientosPresenter {
         removeMovimientoInteractor.run(movimientoUiMapper.reverseMap(movimiento), new Interactor.Callback<Boolean>() {
             @Override
             public void onSuccess(Boolean object) {
-                showAllMovimientos();
+                showAllMovimientos(false);
             }
 
             @Override
@@ -89,7 +89,7 @@ public class MovimientosPresenterImpl implements MovimientosPresenter {
         logicRemoveMovimientoInteractor.run(movimientoUiMapper.reverseMap(movimiento), new Interactor.Callback<Boolean>() {
             @Override
             public void onSuccess(Boolean object) {
-                showAllMovimientos();
+                showAllMovimientos(false);
             }
 
             @Override

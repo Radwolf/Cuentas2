@@ -8,6 +8,7 @@ import org.rul.cuentas.repository.MovimientoRepository;
 import org.rul.cuentas.threads.InteractorExecutor;
 import org.rul.cuentas.threads.MainThread;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -19,6 +20,7 @@ import javax.inject.Inject;
 public class GetAllMovimientosInteractorImpl implements GetAllMovimientosInteractor {
 
     private Callback<List<MovimientoDomain>> callback;
+    private boolean conEliminados;
 
     private MovimientoRepository movimientoRepository;
 
@@ -37,8 +39,9 @@ public class GetAllMovimientosInteractorImpl implements GetAllMovimientosInterac
     }
 
     @Override
-    public void run(Callback<List<MovimientoDomain>> callback) {
+    public void run(boolean conEliminados, Callback<List<MovimientoDomain>> callback) {
 
+        this.conEliminados = conEliminados;
         this.callback = callback;
         interactorExecutor.executeInteractor( this );
 
@@ -51,9 +54,13 @@ public class GetAllMovimientosInteractorImpl implements GetAllMovimientosInterac
 
             @Override
             public void run() {
-                callback.onSuccess(
-                        movimientoRepository.findAllFechaBorradoIsNull()
-                );
+                List<MovimientoDomain> movimientos = new ArrayList<MovimientoDomain>();
+                if(conEliminados){
+                    movimientos = movimientoRepository.findAll();
+                }else {
+                    movimientos = movimientoRepository.findAllFechaBorradoIsNull();
+                }
+                callback.onSuccess(movimientos);
             }
 
         });
