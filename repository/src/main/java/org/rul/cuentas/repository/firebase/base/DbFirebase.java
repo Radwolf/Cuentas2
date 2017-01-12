@@ -19,8 +19,6 @@ package org.rul.cuentas.repository.firebase.base;
 
 import org.rul.cuentas.repository.Repository;
 
-import io.realm.RealmObject;
-
-public interface DbFirebase<T> extends Repository<T>{
+public interface DbFirebase<T> extends Repository<T> {
 
 }

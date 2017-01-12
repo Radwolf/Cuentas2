@@ -97,7 +97,7 @@ public class ResumenCuentaDb extends RealmObject {
     public ResumenCuentaDb() {
     }
 
-    public ResumenCuentaDb(Builder builder){
+    public ResumenCuentaDb(Builder builder) {
         this.id = builder.id;
         this.cuentaDb = builder.cuentaDb;
         this.anyoMes = builder.anyoMes;
@@ -121,7 +121,7 @@ public class ResumenCuentaDb extends RealmObject {
         private float gastosPrevistos;
         private float ahorrosPrevistos;
 
-        public Builder setId(int id){
+        public Builder setId(int id) {
             this.id = id;
             return this;
         }

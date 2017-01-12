@@ -4,8 +4,8 @@ package org.rul.cuentas.repository.datasource;
 import org.rul.cuentas.repository.datasource.model.CategoriaDb;
 import org.rul.cuentas.repository.datasource.model.MovimientoDb;
 import org.rul.cuentas.repository.datasource.model.ResumenCuentaDb;
-import org.rul.cuentas.repository.providers.RealmProvider;
 import org.rul.cuentas.repository.exceptions.RepositoryException;
+import org.rul.cuentas.repository.providers.RealmProvider;
 
 import java.util.Date;
 import java.util.List;
@@ -87,9 +87,9 @@ public class MovimientoDbDatasourceImpl implements MovimientoDbDatasource {
     @Override
     public float getTotalGastosPrevistos(Date fechaInicio, Date fechaFin) {
         return getRealm().where(MovimientoDb.class)
-            .equalTo("tipoMovimiento", "GASTO")
-            .between("fechaPrevista", fechaInicio, fechaFin).findAll()
-            .sum("importePrevisto").floatValue();
+                .equalTo("tipoMovimiento", "GASTO")
+                .between("fechaPrevista", fechaInicio, fechaFin).findAll()
+                .sum("importePrevisto").floatValue();
     }
 
     @Override
@@ -148,7 +148,7 @@ public class MovimientoDbDatasourceImpl implements MovimientoDbDatasource {
     }
 
     @Override
-    public float getGastosByCuentaAndCategoria(Date fechaInicio, Date fechaFin, int idCategoria,  String nombreCuenta) {
+    public float getGastosByCuentaAndCategoria(Date fechaInicio, Date fechaFin, int idCategoria, String nombreCuenta) {
         return getRealm().where(MovimientoDb.class)
                 .equalTo("tipoMovimiento", "GASTO")
                 .equalTo("cuentaDb.nombre", nombreCuenta)
@@ -186,10 +186,10 @@ public class MovimientoDbDatasourceImpl implements MovimientoDbDatasource {
     @Override
     public MovimientoDb insert(final MovimientoDb movimiento) throws RepositoryException {
         boolean inTransaction = false;
-        if(getRealm().isInTransaction()){
+        if (getRealm().isInTransaction()) {
             inTransaction = true;
         }
-        if(!inTransaction) {
+        if (!inTransaction) {
             getRealm().beginTransaction();
         }
         ResumenCuentaDb resumenCuentaDb = getRealm().where(ResumenCuentaDb.class)
@@ -199,7 +199,7 @@ public class MovimientoDbDatasourceImpl implements MovimientoDbDatasource {
                 .equalTo(CategoriaDb.K_CATEGORIA_ID, movimiento.getCategoriaDb().getId())
                 .findFirst();
         MovimientoDb movimientoDb = null;
-        try{
+        try {
             movimientoDb = getRealm().createObject(MovimientoDb.class, movimiento.getId());
             movimientoDb.setAhorro(movimiento.isAhorro());
             movimientoDb.setCategoriaDb(categoriaDb);
@@ -214,7 +214,7 @@ public class MovimientoDbDatasourceImpl implements MovimientoDbDatasource {
         } catch (Exception e) {
             throw new RepositoryException(e);
         } finally {
-            if(!inTransaction) {
+            if (!inTransaction) {
                 getRealm().commitTransaction();
                 getRealm().close();
             }
@@ -226,16 +226,16 @@ public class MovimientoDbDatasourceImpl implements MovimientoDbDatasource {
     @Override
     public void logicRemoveMovimiento(int id, Date fechaRemove) {
         boolean inTransaction = false;
-        if(getRealm().isInTransaction()){
+        if (getRealm().isInTransaction()) {
             inTransaction = true;
         }
-        if(!inTransaction) {
+        if (!inTransaction) {
             getRealm().beginTransaction();
         }
         MovimientoDb movimientoDb = getRealm().where(MovimientoDb.class)
                 .equalTo(MovimientoDb.K_MOVIMIENTO_ID, id).findFirst();
         movimientoDb.setFechaBorrado(fechaRemove);
-        if(!inTransaction) {
+        if (!inTransaction) {
             getRealm().commitTransaction();
             getRealm().close();
         }
@@ -243,14 +243,14 @@ public class MovimientoDbDatasourceImpl implements MovimientoDbDatasource {
 
     public void updateMovimiento(MovimientoDb movimientoDb) {
         boolean inTransaction = false;
-        if(getRealm().isInTransaction()){
+        if (getRealm().isInTransaction()) {
             inTransaction = true;
         }
-        if(!inTransaction) {
+        if (!inTransaction) {
             getRealm().beginTransaction();
         }
         getRealm().insertOrUpdate(movimientoDb);
-        if(!inTransaction) {
+        if (!inTransaction) {
             getRealm().commitTransaction();
             getRealm().close();
         }

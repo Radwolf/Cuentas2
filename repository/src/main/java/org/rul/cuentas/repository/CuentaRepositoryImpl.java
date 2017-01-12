@@ -1,13 +1,10 @@
 package org.rul.cuentas.repository;
 
-import org.rul.cuentas.repository.datasource.CuentaDbDatasource;
 import org.rul.cuentas.model.CuentaDomain;
-import org.rul.cuentas.repository.exceptions.RepositoryException;
-import org.rul.cuentas.repository.firebase.CuentaDbFirebase;
+import org.rul.cuentas.repository.datasource.CuentaDbDatasource;
 import org.rul.cuentas.repository.datasource.mapper.CuentaDomainMapper;
-import org.rul.cuentas.repository.firebase.mapper.CuentaDomainMapperFb;
+import org.rul.cuentas.repository.exceptions.RepositoryException;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;

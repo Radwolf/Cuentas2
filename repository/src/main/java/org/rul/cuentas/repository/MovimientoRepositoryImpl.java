@@ -1,10 +1,7 @@
 package org.rul.cuentas.repository;
 
-import org.rul.cuentas.model.CuentaDomain;
 import org.rul.cuentas.model.MovimientoDomain;
-import org.rul.cuentas.repository.datasource.CuentaDbDatasource;
 import org.rul.cuentas.repository.datasource.MovimientoDbDatasource;
-import org.rul.cuentas.repository.datasource.mapper.CuentaDomainMapper;
 import org.rul.cuentas.repository.datasource.mapper.MovimientoDomainMapper;
 import org.rul.cuentas.repository.exceptions.RepositoryException;
 

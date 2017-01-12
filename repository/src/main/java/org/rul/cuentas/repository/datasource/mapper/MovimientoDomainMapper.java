@@ -1,14 +1,12 @@
 package org.rul.cuentas.repository.datasource.mapper;
 
+import org.rul.cuentas.model.MovimientoDomain;
 import org.rul.cuentas.repository.datasource.model.CategoriaDb;
 import org.rul.cuentas.repository.datasource.model.MovimientoDb;
-import org.rul.cuentas.model.MovimientoDomain;
 import org.rul.cuentas.repository.datasource.model.ResumenCuentaDb;
 import org.rul.cuentas.util.Mapper;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import javax.inject.Inject;
 
@@ -21,7 +19,7 @@ public class MovimientoDomainMapper extends Mapper<MovimientoDomain, MovimientoD
     private SimpleDateFormat sdf;
 
     @Inject
-    public MovimientoDomainMapper()  {
+    public MovimientoDomainMapper() {
         this.sdf = new SimpleDateFormat("dd/MM/yyyy");
     }
 
@@ -63,6 +61,6 @@ public class MovimientoDomainMapper extends Mapper<MovimientoDomain, MovimientoD
                 .setFechaBorrado(type.getFechaBorrado())
                 .build();
 
-         return movimientoDb;
+        return movimientoDb;
     }
 }

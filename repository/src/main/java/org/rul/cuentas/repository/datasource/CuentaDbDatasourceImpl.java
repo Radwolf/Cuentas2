@@ -4,8 +4,8 @@ import org.rul.cuentas.repository.datasource.model.CategoriaDb;
 import org.rul.cuentas.repository.datasource.model.CuentaDb;
 import org.rul.cuentas.repository.datasource.model.MovimientoDb;
 import org.rul.cuentas.repository.datasource.model.ResumenCuentaDb;
-import org.rul.cuentas.repository.providers.RealmProvider;
 import org.rul.cuentas.repository.exceptions.RepositoryException;
+import org.rul.cuentas.repository.providers.RealmProvider;
 
 import java.util.Calendar;
 import java.util.List;
@@ -15,7 +15,6 @@ import javax.inject.Inject;
 import io.realm.Realm;
 import io.realm.RealmQuery;
 import io.realm.RealmResults;
-import io.realm.Sort;
 
 /**
  * Created by rgonzalez on 03/10/2016.
@@ -90,12 +89,12 @@ public class CuentaDbDatasourceImpl implements CuentaDbDatasource {
         Calendar calendar = Calendar.getInstance();
         int month = calendar.get(Calendar.MONTH) + 1;
         int year = calendar.get(Calendar.YEAR);
-        try{
+        try {
             cuentaDb = getRealm().createObject(CuentaDb.class, cuenta.getNombre());
             cuentaDb.setSaldo(cuenta.getSaldo());
             cuentaDb.setFechaActualizacion(Calendar.getInstance().getTime());
 
-            int idResumen = getRealm().where(ResumenCuentaDb.class).findAll().max("id").intValue()+1;
+            int idResumen = getRealm().where(ResumenCuentaDb.class).findAll().max("id").intValue() + 1;
 
             ResumenCuentaDb resumenCuentaDb = new ResumenCuentaDb.Builder()
                     .setId(idResumen)
@@ -112,7 +111,7 @@ public class CuentaDbDatasourceImpl implements CuentaDbDatasource {
 
             CategoriaDb categoriaDb = this.categoriaDbDatasource.findByNombre("Ingreso"); // getRealm().where(CategoriaDb.class).equalTo("nombre", "Ingreso").findFirst();
 
-            int idMovimiento = getRealm().where(MovimientoDb.class).findAll().max("id").intValue()+1;
+            int idMovimiento = getRealm().where(MovimientoDb.class).findAll().max("id").intValue() + 1;
             MovimientoDb movimientoDb = new MovimientoDb.Builder()
                     .setId(idMovimiento)
                     .setAhorro(false)
@@ -125,7 +124,7 @@ public class CuentaDbDatasourceImpl implements CuentaDbDatasource {
 
             this.movimientoDbDatasource.insert(movimientoDb);
 
-            for(int i = month+1; i <= 12; i++){
+            for (int i = month + 1; i <= 12; i++) {
                 idResumen++;
                 resumenCuentaDb = new ResumenCuentaDb.Builder()
                         .setId(idResumen)
@@ -150,9 +149,9 @@ public class CuentaDbDatasourceImpl implements CuentaDbDatasource {
     }
 
     private String calculaSiguienteAnyoMes(int anyo, int mes) {
-        if(mes+1 < 10){
+        if (mes + 1 < 10) {
             return String.format("%d0%d", anyo, mes);
-        }else{
+        } else {
             return String.format("%d%d", anyo, mes);
         }
     }

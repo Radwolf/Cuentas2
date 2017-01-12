@@ -1,8 +1,8 @@
 package org.rul.cuentas.repository.datasource;
 
 import org.rul.cuentas.repository.datasource.model.ResumenCuentaDb;
-import org.rul.cuentas.repository.providers.RealmProvider;
 import org.rul.cuentas.repository.exceptions.RepositoryException;
+import org.rul.cuentas.repository.providers.RealmProvider;
 
 import java.util.List;
 
@@ -71,16 +71,16 @@ public class ResumenCuentaDbDatasourceImpl implements ResumenCuentaDbDatasource 
     @Override
     public ResumenCuentaDb insert(final ResumenCuentaDb resumenCuenta) throws RepositoryException {
         boolean inTransaction = false;
-        if(getRealm().isInTransaction()){
+        if (getRealm().isInTransaction()) {
             inTransaction = true;
         }
-        if(!inTransaction) {
+        if (!inTransaction) {
             getRealm().beginTransaction();
         }
         ResumenCuentaDb resumenCuentaDb = null;
-        try{
+        try {
             ResumenCuentaDb resumenCuentaDbLast = getRealm().where(ResumenCuentaDb.class).findAllSorted("id", Sort.DESCENDING).first();
-            resumenCuentaDb = getRealm().createObject(ResumenCuentaDb.class, resumenCuentaDbLast.getId()+1);
+            resumenCuentaDb = getRealm().createObject(ResumenCuentaDb.class, resumenCuentaDbLast.getId() + 1);
             resumenCuentaDb.setCuentaDb(resumenCuenta.getCuentaDb());
             resumenCuentaDb.setAnyoMes(resumenCuenta.getAnyoMes());
             resumenCuentaDb.setAhorros(resumenCuenta.getAhorros());
@@ -92,7 +92,7 @@ public class ResumenCuentaDbDatasourceImpl implements ResumenCuentaDbDatasource 
         } catch (Exception e) {
             throw new RepositoryException(e);
         } finally {
-            if(!inTransaction) {
+            if (!inTransaction) {
                 getRealm().commitTransaction();
                 getRealm().close();
             }
@@ -105,12 +105,12 @@ public class ResumenCuentaDbDatasourceImpl implements ResumenCuentaDbDatasource 
         int anyo = Integer.parseInt(anyoMes.substring(0, 3));
         int mes = Integer.parseInt(anyoMes.substring(4, 5));
 
-        if(mes == 12){
-            return String.format("%d0%d", anyo+1, 1);
-        }else if(mes+1 < 10){
-            return String.format("%d0%d", anyo, mes+1);
-        }else{
-            return String.format("%d%d", anyo, mes+1);
+        if (mes == 12) {
+            return String.format("%d0%d", anyo + 1, 1);
+        } else if (mes + 1 < 10) {
+            return String.format("%d0%d", anyo, mes + 1);
+        } else {
+            return String.format("%d%d", anyo, mes + 1);
         }
     }
 
@@ -138,7 +138,7 @@ public class ResumenCuentaDbDatasourceImpl implements ResumenCuentaDbDatasource 
         ResumenCuentaDb resumenCuenta = getRealm().where(ResumenCuentaDb.class)
                 .equalTo("cuentaDb.nombre", nombreCuenta)
                 .findAllSorted("anyoMes").first();
-        resumenCuenta.setIngresos(importe +  resumenCuenta.getIngresos());
+        resumenCuenta.setIngresos(importe + resumenCuenta.getIngresos());
         getRealm().beginTransaction();
         getRealm().copyToRealmOrUpdate(resumenCuenta);
         getRealm().commitTransaction();
@@ -150,7 +150,7 @@ public class ResumenCuentaDbDatasourceImpl implements ResumenCuentaDbDatasource 
         ResumenCuentaDb resumenCuenta = getRealm().where(ResumenCuentaDb.class)
                 .equalTo("cuentaDb.nombre", nombreCuenta)
                 .findAllSorted("anyoMes").first();
-        resumenCuenta.setGastos(importe +  resumenCuenta.getGastos());
+        resumenCuenta.setGastos(importe + resumenCuenta.getGastos());
         getRealm().beginTransaction();
         getRealm().copyToRealmOrUpdate(resumenCuenta);
         getRealm().commitTransaction();
@@ -162,7 +162,7 @@ public class ResumenCuentaDbDatasourceImpl implements ResumenCuentaDbDatasource 
         ResumenCuentaDb resumenCuenta = getRealm().where(ResumenCuentaDb.class)
                 .equalTo("cuentaDb.nombre", nombreCuenta)
                 .findAllSorted("anyoMes").first();
-        resumenCuenta.setAhorros(importe +  resumenCuenta.getAhorros());
+        resumenCuenta.setAhorros(importe + resumenCuenta.getAhorros());
         getRealm().beginTransaction();
         getRealm().copyToRealmOrUpdate(resumenCuenta);
         getRealm().commitTransaction();

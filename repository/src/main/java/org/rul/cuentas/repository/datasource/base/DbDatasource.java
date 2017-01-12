@@ -21,6 +21,6 @@ import org.rul.cuentas.repository.Repository;
 
 import io.realm.RealmObject;
 
-public interface DbDatasource<T extends RealmObject> extends Repository<T>{
+public interface DbDatasource<T extends RealmObject> extends Repository<T> {
 
 }

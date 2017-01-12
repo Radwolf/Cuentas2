@@ -12,9 +12,13 @@ import java.util.List;
 
 public interface ResumenCuentaDbDatasource extends DbDatasource<ResumenCuentaDb> {
     List<ResumenCuentaDb> findByResumenesActuales(String anyoMes);
+
     ResumenCuentaDb findByCuentaMesAnyo(String nombreCuenta, String anyoMes);
+
     //Siempre se actualiza el último mes registrado
     ResumenCuentaDb updateIngresos(String nombreCuenta, float importe);
+
     ResumenCuentaDb updateGastos(String nombreCuenta, float importe);
+
     ResumenCuentaDb updateAhorros(String nombreCuenta, float importe);
 }

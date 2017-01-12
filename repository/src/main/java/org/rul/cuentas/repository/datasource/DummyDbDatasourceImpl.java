@@ -8,8 +8,8 @@ import org.rul.cuentas.repository.datasource.model.CategoriaDb;
 import org.rul.cuentas.repository.datasource.model.CuentaDb;
 import org.rul.cuentas.repository.datasource.model.MovimientoDb;
 import org.rul.cuentas.repository.datasource.model.ResumenCuentaDb;
-import org.rul.cuentas.repository.providers.RealmProvider;
 import org.rul.cuentas.repository.exceptions.RepositoryException;
+import org.rul.cuentas.repository.providers.RealmProvider;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -41,9 +41,9 @@ public class DummyDbDatasourceImpl implements DummyDbDatasource {
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
         System.out.println(is.toString());
         //try {
-           // InputStream is = new FileInputStream(new File("cuentas2.json"));
+        // InputStream is = new FileInputStream(new File("cuentas2.json"));
         //} catch (FileNotFoundException e) {
-          //  System.out.println(e.getMessage());
+        //  System.out.println(e.getMessage());
         //}
         BufferedReader reader = new BufferedReader(new InputStreamReader(is));
         StringBuilder out = new StringBuilder();
@@ -76,7 +76,7 @@ public class DummyDbDatasourceImpl implements DummyDbDatasource {
             for (int i = 0; i < categorias.length(); i++) {
                 JSONObject categoria = categorias.getJSONObject(i);
                 CategoriaDb categoriaDb = null;
-                categoriaDb = getRealm().createObject(CategoriaDb.class, i+1);
+                categoriaDb = getRealm().createObject(CategoriaDb.class, i + 1);
                 categoriaDb.setNombre(categoria.getString("nombre"));
             }
             cuentas = new JSONObject(str).getJSONArray("cuenta");
@@ -92,7 +92,7 @@ public class DummyDbDatasourceImpl implements DummyDbDatasource {
                 JSONObject resumenCuenta = resumenCuentas.getJSONObject(i);
                 CuentaDb cuentaDb = getRealm().where(CuentaDb.class).equalTo("nombre", resumenCuenta.getString("cuentaDb")).findFirst();
                 ResumenCuentaDb resumenCuentaDb = null;
-                resumenCuentaDb = getRealm().createObject(ResumenCuentaDb.class, i+1);
+                resumenCuentaDb = getRealm().createObject(ResumenCuentaDb.class, i + 1);
                 resumenCuentaDb.setCuentaDb(cuentaDb);
                 resumenCuentaDb.setAnyoMes(resumenCuenta.getString("anyomes"));
                 resumenCuentaDb.setAhorros(Float.parseFloat(resumenCuenta.getString("ahorros")));
@@ -102,15 +102,15 @@ public class DummyDbDatasourceImpl implements DummyDbDatasource {
             movimientos = new JSONObject(str).getJSONArray("movimientos");
             for (int i = 0; i < movimientos.length(); i++) {
                 JSONObject movimiento = movimientos.getJSONObject(i);
-                MovimientoDb movimientoDb = getRealm().createObject(MovimientoDb.class, i+1);
+                MovimientoDb movimientoDb = getRealm().createObject(MovimientoDb.class, i + 1);
                 ResumenCuentaDb resumenCuentaDb = getRealm().where(ResumenCuentaDb.class).equalTo("id", movimiento.getInt("resumenCuentaDb")).findFirst();
                 CategoriaDb categoriaDb = getRealm().where(CategoriaDb.class).equalTo("id", movimiento.getInt("categoria")).findFirst();
                 movimientoDb.setAhorro(Boolean.parseBoolean(movimiento.getString("es_ahorro")));
                 movimientoDb.setCategoriaDb(categoriaDb);
                 movimientoDb.setResumenCuentaDb(resumenCuentaDb);
                 movimientoDb.setDescripcion(movimiento.getString("descripcion"));
-                movimientoDb.setFechaConfirmacion((!Strings.isNullOrEmpty(movimiento.getString("fecha_confirmacion")))?formatter.parse(movimiento.getString("fecha_confirmacion")):null);
-                movimientoDb.setFechaPrevista((!Strings.isNullOrEmpty(movimiento.getString("fecha_prevista")))?formatter.parse(movimiento.getString("fecha_prevista")):null);
+                movimientoDb.setFechaConfirmacion((!Strings.isNullOrEmpty(movimiento.getString("fecha_confirmacion"))) ? formatter.parse(movimiento.getString("fecha_confirmacion")) : null);
+                movimientoDb.setFechaPrevista((!Strings.isNullOrEmpty(movimiento.getString("fecha_prevista"))) ? formatter.parse(movimiento.getString("fecha_prevista")) : null);
                 float importe = Float.parseFloat(movimiento.getString("importe"));
                 movimientoDb.setImporte(importe);
                 float importePrevisto = Float.parseFloat(movimiento.getString("importe_previsto"));
@@ -119,24 +119,24 @@ public class DummyDbDatasourceImpl implements DummyDbDatasource {
 
                 String tipoMovimiento = movimiento.getString("tipo_movimiento");
 
-                if("INGRESO".equals(tipoMovimiento)){
-                    if(importe == 0) {
+                if ("INGRESO".equals(tipoMovimiento)) {
+                    if (importe == 0) {
                         resumenCuentaDb.setIngresosPrevistos(importePrevisto + resumenCuentaDb.getIngresosPrevistos());
-                    }else{
+                    } else {
                         resumenCuentaDb.setIngresos(importe + resumenCuentaDb.getIngresos());
                     }
                 }
-                if("GASTO".equals(tipoMovimiento)){
-                    if(importe == 0) {
+                if ("GASTO".equals(tipoMovimiento)) {
+                    if (importe == 0) {
                         resumenCuentaDb.setGastosPrevistos(importePrevisto + resumenCuentaDb.getGastosPrevistos());
-                    }else{
+                    } else {
                         resumenCuentaDb.setGastos(importe + resumenCuentaDb.getGastos());
                     }
                 }
-                if("AHORRO".equals(tipoMovimiento)){
-                    if(importe == 0) {
+                if ("AHORRO".equals(tipoMovimiento)) {
+                    if (importe == 0) {
                         resumenCuentaDb.setAhorrosPrevistos(importePrevisto + resumenCuentaDb.getAhorrosPrevistos());
-                    }else{
+                    } else {
                         resumenCuentaDb.setAhorros(importe + resumenCuentaDb.getAhorros());
                     }
                 }

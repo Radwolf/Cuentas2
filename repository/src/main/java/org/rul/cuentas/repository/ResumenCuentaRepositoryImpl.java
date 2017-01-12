@@ -2,8 +2,8 @@ package org.rul.cuentas.repository;
 
 import org.rul.cuentas.model.ResumenCuentaDomain;
 import org.rul.cuentas.repository.datasource.ResumenCuentaDbDatasource;
-import org.rul.cuentas.repository.exceptions.RepositoryException;
 import org.rul.cuentas.repository.datasource.mapper.ResumenCuentaDomainMapper;
+import org.rul.cuentas.repository.exceptions.RepositoryException;
 
 import java.util.List;
 
@@ -26,6 +26,7 @@ public class ResumenCuentaRepositoryImpl implements ResumenCuentaRepository {
         this.resumenCuentaDomainMapper = resumenCuentaDomainMapper;
 
     }
+
     @Override
     public List<ResumenCuentaDomain> findAll() {
         return resumenCuentaDomainMapper.mapList(resumenCuentaDbDatasource.findAll());

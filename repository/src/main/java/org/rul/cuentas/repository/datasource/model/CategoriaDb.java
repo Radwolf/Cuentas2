@@ -43,7 +43,7 @@ public class CategoriaDb extends RealmObject {
     public CategoriaDb() {
     }
 
-    private CategoriaDb (Builder builder){
+    private CategoriaDb(Builder builder) {
         this.id = builder.id;
         this.nombre = builder.nombre;
     }

@@ -1,8 +1,6 @@
 package org.rul.cuentas.repository.firebase;
 
 
-import org.rul.cuentas.repository.datasource.base.DbDatasource;
-import org.rul.cuentas.repository.datasource.model.CuentaDb;
 import org.rul.cuentas.repository.firebase.base.DbFirebase;
 import org.rul.cuentas.repository.firebase.model.CuentaFb;
 
@@ -12,5 +10,6 @@ import org.rul.cuentas.repository.firebase.model.CuentaFb;
 
 public interface CuentaDbFirebase extends DbFirebase<CuentaFb> {
     CuentaFb findByNombre(String nombre);
+
     void updateSaldo(CuentaFb cuentaDb);
 }

@@ -2,11 +2,6 @@ package org.rul.cuentas.repository.firebase.model;
 
 import com.google.firebase.database.IgnoreExtraProperties;
 
-import org.rul.cuentas.repository.datasource.model.CuentaDb;
-import org.rul.cuentas.repository.firebase.CuentaDbFirebase;
-
-import java.util.Date;
-
 /**
  * Created by rgonzalez on 15/12/2016.
  */
@@ -51,7 +46,7 @@ public class CuentaFb {
         this.fechaActualizacion = fechaActualizacion;
     }
 
-    public CuentaFb (Builder builder){
+    public CuentaFb(Builder builder) {
         this.fechaActualizacion = builder.fechaActualizacion;
         this.nombre = builder.nombre;
         this.saldo = builder.saldo;

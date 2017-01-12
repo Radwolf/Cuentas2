@@ -1,7 +1,7 @@
 package org.rul.cuentas.repository.datasource.mapper;
 
-import org.rul.cuentas.repository.datasource.model.CuentaDb;
 import org.rul.cuentas.model.CuentaDomain;
+import org.rul.cuentas.repository.datasource.model.CuentaDb;
 import org.rul.cuentas.util.Mapper;
 
 import java.text.ParseException;
@@ -14,7 +14,7 @@ import javax.inject.Inject;
  * Created by rgonzalez on 02/12/2016.
  */
 
-public class CuentaDomainMapper  extends Mapper<CuentaDomain, CuentaDb> {
+public class CuentaDomainMapper extends Mapper<CuentaDomain, CuentaDb> {
 
     private SimpleDateFormat sdf;
 
@@ -37,7 +37,7 @@ public class CuentaDomainMapper  extends Mapper<CuentaDomain, CuentaDb> {
     public CuentaDb reverseMap(CuentaDomain type) {
         Date date = new Date();
         try {
-             date = sdf.parse(type.getFechaActualizacion());
+            date = sdf.parse(type.getFechaActualizacion());
         } catch (ParseException e) {
             e.printStackTrace();
         }

@@ -195,8 +195,8 @@ public class MovimientoDb extends RealmObject {
             return this;
         }
 
-        public Builder setFechaBorrado(Date fechaBorrado){
-            this.fechaBorrado =  fechaBorrado;
+        public Builder setFechaBorrado(Date fechaBorrado) {
+            this.fechaBorrado = fechaBorrado;
             return this;
         }
 
